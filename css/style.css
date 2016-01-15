@@ -57,11 +57,11 @@ input[type="button"]:active, input[type="reset"]:active {
 }
 
 #nav {
-  background-color: #ccbbaa;
+  background-color: #2c7873;
 }
 
 #footer {
-  background-color: #aabbcc;
+  background-color: #336b87;
   clear: both;
   padding-top: 20px;
 }
