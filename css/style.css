@@ -79,6 +79,13 @@ html, body {
 
 }
 
+#navItems li {
+    display: inline;
+    font-family:Pacifica;
+    color:#045184;
+    font-size:18pt;
+}
+
 
 input {
   border: solid 1px;
@@ -120,16 +127,6 @@ input[type="button"]:active, input[type="reset"]:active {
 #loginFormContainer {
   float: left;
 
-}
-
-
-
-#navItems li {
-  display: inline;
-
-margin-top: 0%;
-
-  padding: 2%; 
 }
 
 #messages {
