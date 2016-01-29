@@ -3,78 +3,81 @@
 
 @font-face {
     font-family: Pacifica;
-    src: url(../libs/font/Pacifica-Condesnsed-Regular.ttf);
+    src: url(../libs/font/Pacifica-Condensed-Regular.ttf);
 }
 
 html, body {
-<<<<<<< HEAD
-font-family: 'Roboto Condensed', sans-serif;
-font-size: 14pt;
+
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 14pt;
 
 }
 
 .bodybackground {
-height: 45vh;   
-background-image: url(../img/greek.jpg);
-no-repeat center center fixed; 
--webkit-background-size: cover;
--moz-background-size: cover;
- -o-background-size: cover;
-background-size: cover;
+    height: 45vh;   
+    background-image: url(../img/greek.jpg);
+    no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+     -o-background-size: cover;
+    background-size: cover;
 
 
         
 }
 .clearbox {
- background-color:  #33CCCC;
-opacity: 0.3;
-height: 89vh;
-width: 39%;
-margin-left: 4%; 
-margin-bottom: 5%;
-=======
-  font-family: 'Roboto Condensed', sans-serif;
-  font-size: 14pt;
-background-color: #FFFFFF;
+    background-color:  #33CCCC;
+    opacity: 0.3;
+    height: 89vh;
+    width: 39%;
+    margin-left: 4%; 
+    margin-bottom: 5%;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 14pt;
+    background-color: #FFFFFF;
 }
 
 
 .clearbox {
- background-color: #FFFFFF;
-opacity: 0.7;
-height: 89vh;
-width: 41.6%;
-margin-left: 3%;     
+    background-color: #FFFFFF;
+    opacity: 0.7;
+    height: 89vh;
+    width: 41.6%;
+    margin-left: 3%;     
     
 }
 
 .white {
- 
-background-image: url('<?php echo $profpic;?>');    
-width: 50%;
-height: 90vh;
->>>>>>> 1de6e44e78d3fdb195b4f174cff7828fa42ac30b
-    
+    background-color:#fff;
+    height:25vh;
 }
 
 
-.green{
+.header{
     background-color:#6fb98f;
     float:left;
-    height:35vh;
-    margin-left: 3%;
-<<<<<<< HEAD
-    margin-top: 5%;
-=======
-    
->>>>>>> 1de6e44e78d3fdb195b4f174cff7828fa42ac30b
+    height:25vh;
 }
 
-.green h2 {
+.titlewrap {
+    
+    width:80%;
+    margin:10%;
+}
+.header h2 {
     font-family:Pacifica;
     color:#fff;
-    margin: 4%;
+    float:right;
 }
+
+.subtitle {
+    font-family:Pacifica;
+    color:#626262;
+    float:right;
+    text-align:center;
+
+}
+
 
 input {
   border: solid 1px;
@@ -122,11 +125,9 @@ input[type="button"]:active, input[type="reset"]:active {
 
 #navItems li {
   display: inline;
-<<<<<<< HEAD
-margin-top: 0%;
-=======
 
->>>>>>> 1de6e44e78d3fdb195b4f174cff7828fa42ac30b
+margin-top: 0%;
+
   padding: 2%; 
 }
 
@@ -136,17 +137,7 @@ margin-top: 0%;
 }
 
 #nav {
-<<<<<<< HEAD
-
-margin-top: 25%;
-width: auto;
-height: 2vh;
-=======
-background-color: #E8E8E8;
-width: auto;
-height: 35vh;
->>>>>>> 1de6e44e78d3fdb195b4f174cff7828fa42ac30b
-    
+  
 }
 
 #footer {

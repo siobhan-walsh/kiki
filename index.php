@@ -1,12 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-   
- 
-=======
-    $profpic = "img/greek.jpg";
-    $foodpic = "img/greekfeast.jpg";
->>>>>>> 1de6e44e78d3fdb195b4f174cff7828fa42ac30b
     require_once('./libs/PHPTAL-1.3.0/PHPTAL.php');
 
     // render the whole page using PHPTAL
