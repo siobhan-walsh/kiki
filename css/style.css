@@ -7,6 +7,7 @@
 }
 
 html, body {
+<<<<<<< HEAD
 font-family: 'Roboto Condensed', sans-serif;
 font-size: 14pt;
 
@@ -31,6 +32,28 @@ height: 89vh;
 width: 39%;
 margin-left: 4%; 
 margin-bottom: 5%;
+=======
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 14pt;
+background-color: #FFFFFF;
+}
+
+
+.clearbox {
+ background-color: #FFFFFF;
+opacity: 0.7;
+height: 89vh;
+width: 41.6%;
+margin-left: 3%;     
+    
+}
+
+.white {
+ 
+background-image: url('<?php echo $profpic;?>');    
+width: 50%;
+height: 90vh;
+>>>>>>> 1de6e44e78d3fdb195b4f174cff7828fa42ac30b
     
 }
 
@@ -40,7 +63,11 @@ margin-bottom: 5%;
     float:left;
     height:35vh;
     margin-left: 3%;
+<<<<<<< HEAD
     margin-top: 5%;
+=======
+    
+>>>>>>> 1de6e44e78d3fdb195b4f174cff7828fa42ac30b
 }
 
 .green h2 {
@@ -95,7 +122,11 @@ input[type="button"]:active, input[type="reset"]:active {
 
 #navItems li {
   display: inline;
+<<<<<<< HEAD
 margin-top: 0%;
+=======
+
+>>>>>>> 1de6e44e78d3fdb195b4f174cff7828fa42ac30b
   padding: 2%; 
 }
 
@@ -105,10 +136,16 @@ margin-top: 0%;
 }
 
 #nav {
+<<<<<<< HEAD
 
 margin-top: 25%;
 width: auto;
 height: 2vh;
+=======
+background-color: #E8E8E8;
+width: auto;
+height: 35vh;
+>>>>>>> 1de6e44e78d3fdb195b4f174cff7828fa42ac30b
     
 }
 
