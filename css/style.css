@@ -9,25 +9,38 @@
 html, body {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 14pt;
- 
+background-color: #FFFFFF;
+}
+
+
+.clearbox {
+ background-color: #FFFFFF;
+opacity: 0.7;
+height: 89vh;
+width: 41.6%;
+margin-left: 3%;     
+    
 }
 
 .white {
-    background-color:#ffffff;
-    float:left;
-    height:20vh;
+ 
+background-image: url('<?php echo $profpic;?>');    
+width: 50%;
+height: 90vh;
     
 }
 .green{
     background-color:#6fb98f;
     float:left;
-    height:20vh;
+    height:35vh;
+    margin-left: 3%;
     
 }
 
 .green h2 {
     font-family:Pacifica;
     color:#fff;
+    margin: 4%;
 }
 
 input {
@@ -72,8 +85,12 @@ input[type="button"]:active, input[type="reset"]:active {
 
 }
 
+
+
 #navItems li {
   display: inline;
+
+  padding: 2%; 
 }
 
 #messages {
@@ -82,7 +99,10 @@ input[type="button"]:active, input[type="reset"]:active {
 }
 
 #nav {
-  background-color: #2c7873;
+background-color: #E8E8E8;
+width: auto;
+height: 35vh;
+    
 }
 
 #footer {
