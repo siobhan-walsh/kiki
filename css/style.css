@@ -1,5 +1,4 @@
 
-@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed);
 
 @font-face {
     font-family: Pacifica;
@@ -8,9 +7,17 @@
 
 html, body {
 
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 14pt;
+    font-family:'Martel Sans', sans-serif;
+    font-size: 16pt;
 
+}
+
+a {
+    color:#045184;   
+}
+
+a:hover {
+    color:#3588CC;   
 }
 
 .bodybackground {
@@ -32,7 +39,6 @@ html, body {
     width: 39%;
     margin-left: 4%; 
     margin-bottom: 5%;
-    font-family: 'Roboto Condensed', sans-serif;
     font-size: 14pt;
     background-color: #FFFFFF;
 }
@@ -49,41 +55,88 @@ html, body {
 }
 
 .white {
-    background-color:#fff;
-    height:25vh;
+   
 }
 
+.white-to-green {
+    background: -webkit-linear-gradient(-40deg, rgba(255,255,255,1) 50%,rgba(111,185,143,1) 50%,rgba(111,185,143,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    
+    background: linear-gradient(120deg, rgba(255,255,255,1) 50%,rgba(111,185,143,1) 50%,rgba(111,185,143,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    
+    background: -moz-linear-gradient(-40deg, rgba(255,255,255,1) 50%, rgba(111,185,143,1) 50%, rgba(111,185,143,1) 100%); /* FF3.6-15 */
+    
+     height:30vh;
+}
+
+.green-to-white {
+    background: -webkit-linear-gradient(-40deg, rgba(111,185,143,1) 50%,rgba(255,255,255,1) 50%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    
+    background: linear-gradient(-60deg, rgba(255,255,255,1) 50%,rgba(111,185,143,1) 50%,rgba(111,185,143,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    
+    background: -moz-linear-gradient(-40deg, rgba(111,185,143,1) 50%,rgba(255,255,255,1) 50%,rgba(255,255,255,1) 100%); /* FF3.6-15 */
+    
+     height:30vh;
+}
 
 .header{
     background-color:#6fb98f;
     float:left;
-    height:25vh;
+    height:30vh;
+    
+
 }
 
-.titlewrap {
-    
-    width:80%;
-    margin:10%;
+.titlewrap {  
+    width:100%;
+    margin:10% 0%;
 }
 .header h2 {
-    font-family:Pacifica;
+    font-family:Pacifica, sans-serif;
     color:#fff;
     float:right;
+    font-size:180%;
+    clear:both;
 }
 
 .subtitle {
-    font-family:Pacifica;
+    font-family:Pacifica, sans-serif;
     color:#626262;
     float:right;
     text-align:center;
+    clear:both;
+    font-size:140%;
 
+}
+
+#nav {
+    clear:both;
+}
+
+.navmen {
+    height:30vh;
+
+}
+
+#navItems {
+    margin-top:20vh;
+    float:right;
 }
 
 #navItems li {
     display: inline;
-    font-family:Pacifica;
-    color:#045184;
-    font-size:18pt;
+    font-family:Pacifica, sans-serif;
+    color:#3588CC;
+    font-size:140%;
+}
+
+
+#content {
+
+    background-image: url('../img/greek.jpg');
+    background-repeat:no-repeat;
+    background-size:80%;
+    height:65vh;
+
 }
 
 
@@ -139,9 +192,11 @@ input[type="button"]:active, input[type="reset"]:active {
 }
 
 #footer {
-  background-color: #336b87;
-  clear: both;
-  padding-top: 20px;
+    background-color: #336b87;
+    clear: both;
+    height:5vh;
+    position:fixed;
+    bottom:0;
 }
 
 #logoutFormContainer, #loginFormContainer {
