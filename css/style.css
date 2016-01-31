@@ -29,6 +29,10 @@ a:hover {
     color:#3588CC;   
 }
 
+#content {
+    padding-top: 10%;
+}
+
 .bodybackground {
     height: 45vh;   
     background-image: url(../img/greek.jpg);
@@ -158,15 +162,59 @@ a:hover {
 
 #panelly {
     
-    background-color:rgba(255, 255, 255, 0.6);
-    margin-top: 2%;
-    margin-bottom: 2%;
+    background-color:rgba(255, 255, 255, 0.8);
+    margin-top:1%;
+    margin-bottom:1%;
+
     float:left;
+}
+
+#panelly img {
+    border-radius: 5%;
+    width:80%;
+    clear:both;
+    float:left;
+    margin:10%;
+}
+
+#quote {
+    padding-left:10%;
+    padding-top:8%;
+    padding-right:20%;
+    float:left;
+    color:#626262;
+    font-style: italic;
+}
+
+#order {
+    
+    float:right;
+    clear:both;
+    background-color:#6FB98F;
+    padding:10px;
+    color:#fff;
+    margin:0 22%;
+}
+
+
+#order:hover {
+    background-color:#4A7B5F;
 }
 
 #middlewrap {
     
     height:80%;
+}
+
+#greenbox {
+    background-color:#6FB98F;
+    color:#fff;
+    float:left;
+   
+    margin-left:10%;
+    margin-top:50%;
+    padding:6%;
+    width:50%;
 }
 
 #about {
