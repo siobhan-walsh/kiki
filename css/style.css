@@ -5,12 +5,47 @@
     src: url(../libs/font/Pacifica-Condensed-Regular.ttf);
 }
 
+
+//**Home Page**//
+
 html, body {
 
     font-family:'Martel Sans', sans-serif;
     font-size: 16pt;
 
 }
+
+#read{
+font-family: Pacifica;
+color: #3588CC;
+    
+      
+    
+}
+
+
+.meet {
+font-family: Pacifica;
+color: #3588CC;   
+
+    
+    
+}
+
+.fam {
+   float : left;
+ position: relative;
+    
+}
+
+#aboutp {
+ 
+ font-size: 18pt;
+float: right;
+    
+    
+}
+
 
 .columns {
     padding:0;
