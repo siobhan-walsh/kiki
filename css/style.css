@@ -6,26 +6,214 @@
 }
 
 
+@import url(http://fonts.googleapis.com/css?family=Dancing+Script:700);
+@import url(http://fonts.googleapis.com/css?family=Crimson+Text:400,600,700,400italic);
 
+
+
+/* ---------------------------------------------- /*
+ * CONTACT
+/* ---------------------------------------------- */
+
+#whitebox-contact{
+    
+ background-color:#FFFFFF;
+    opacity: 1.0;
+    float:left;
+    margin-left: 4.2%;
+    margin-right: 6%;
+    padding-left: 6%;
+   margin-top: 5%;
+    width:100%;    
+    
+    
+}
+
+
+
+.map {
+    
+    
+padding: 15%; 
+    
+}
+/* ---------------------------------------------- /*
+ * Menu Typography
+/* ---------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6, h8 {
+	font: 700 30pt/1.2 'Pacifica', serif;
+
+    color: #3588CC; 
+}
+
+h2 {
+	font-size: 48pt;
+	margin: 0 0 18pt;
+}
+
+h3 {
+	font-size: 25pt;
+	padding-top: 15%;
+    margin-left: -5%;
+    margin-top: 5%;
+     margin-bottom: 5%;
+}
+
+h4 {
+	font-size: 20pt;
+	margin: 0 0 10pt;
+}
+
+h5 {
+	font-size: 18pt;
+	font-weight: 400;
+	margin: 0 0 8pt;
+}
+
+h6 {
+	font-size: 16pt;
+	font-weight: 400;
+	margin: 0 0 5pt;
+}
+
+blockquote {
+	font: 700 50pt/1.2 'Dancing Script', cursive;
+	margin: 0 0 20pt;
+	padding: 0;
+	border: 0;
+}
+
+blockquote small,
+blockquote footer,
+blockquote .small {
+	display: block;
+	font-size: 40%;
+	line-height: 1.42857143;
+	color: #999;
+}
+
+.intro-title,
+.module-title,
+.callout-text,
+.iconbox-title {
+	font: 700 28pt/1.2 'Dancing Script', cursive;
+	margin: 0 0 18pt;
+}
+
+.module-title,
+.callout-text {
+	font-size: 50pt;
+}
+
+.module-subtitle {
+	font-family: Pacifica;
+    color: #3588CC;   
+
+    
+    
+}
+
+.intro-title {
+	font-size: 55pt;
+}
+
+
+/* ---------------------------------------------- /*
+ * Menu
+/* ---------------------------------------------- */
+
+.menu {
+	border-bottom: 1px dotted #DDD;
+	padding: 0 0 10%;
+	margin: 0 0 2%;
+}
+
+.menu-classic img {
+	margin: 0 0 10%;
+}
+
+.menu-title,
+.menu-price {
+	font-size: 10pt;
+	margin: 0;
+}
+
+.menu-detail {
+	font-size: 10pt;
+}
+
+.menu-price-detail {
+	position: relative;
+	text-align: right;
+}
+
+.menu-label {
+	background: #fae7d7;
+	position: relative;
+	display: inline-block;
+	padding: 2% 10% 0% 10%;
+	font-family: 'Crimson Text', serif;
+	letter-spacing: 1px;
+	font-style: italic;
+	font-size: 13pt;
+	float: right;
+	top: 5%;
+}
+
+
+
+
+
+/* ---------------------------------------------- /*
 //**About Page**//
 
 
 
-.collage {
-
-
-   
+#aboutp {
+ 	font-family: 'Crimson Text', serif;   
+    
+    
+    
 }
 
+
+.owners {
+    
+width: 100%; 
+
+position: relative;
+       
+}
+
+
+.meet2 {
+font-family: Pacifica;
+color: #3588CC;   
+margin-left: 5%;
+
+    
+    
+}
+
+#panelly2 {
+    
+    background-color:rgba(255, 255, 255, 0.8);
+    margin-top:1%;
+    margin-bottom:1%;
+
+    float:left;
+}
 
 
 
 #content2 {
     padding: 12%;
     padding-left: 3%;
-   text-align: left;
+   margin-left: 4%;
+    text-align: left;
   
-    
+    float: left;
 }
 
 
@@ -33,7 +221,7 @@
 
 #bg2 {
 
-    background-image: url('../img/round.jpg');
+    background-image: url('../img/greece4.png');
     background-repeat:no-repeat;
     background-size:cover;
     -ms-background-position-x: center;
@@ -54,16 +242,34 @@
     width:100%;
     margin:0;
     padding:4%;
-    height: 500%;
+    height: 100%;
     
 
 }
 
+
+
+#whitebox {
+    background-color:#FFFFFF;
+    opacity: 1.0;
+    float:left;
+    margin-left: 4.2%;
+    padding-left: 6%;
+    width:50%;
+}
+
+
+
+/* ---------------------------------------------- /*
 //**Home Page**//
+
+
+
+
 
 html, body {
 
-    font-family:'Martel Sans', sans-serif;
+    font-family:'Crimson Text', serif;   
     font-size: 16pt;
 
 }
@@ -79,6 +285,7 @@ color: #3588CC;
 
 .meet {
 font-family: Pacifica;
+
 color: #3588CC;   
 
     
@@ -132,16 +339,6 @@ a:hover {
 
 
         
-}
-.clearbox {
-    background-color:  #33CCCC;
-    opacity: 0.3;
-    height: 89vh;
-    width: 39%;
-    margin-left: 4%; 
-    margin-bottom: 5%;
-    font-size: 14pt;
-    background-color: #FFFFFF;
 }
 
 
