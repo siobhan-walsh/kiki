@@ -1,0 +1,53 @@
+PATH=$PATH:/Applications/MAMP/Library/bin
+export PATH
+mysql -u root -p
+
+create database kiki;
+use kiki;
+
+//states are: started, completed, cancelled
+
+CREATE TABLE cart (
+  cart_id int NOT NULL AUTO_INCREMENT,
+  state varchar(30) NOT NULL,
+  time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  total numeric(15,2) NOT NULL,
+  PRIMARY KEY (cart_id)
+  -- UPDATE/DELETE CASCADE = allow cascading operation, UPDATE/DELETE RESTRICT = disallow cascading operation
+);
+
+INSERT INTO cart (total, state) VALUES (0.00, 'cancelled');
+INSERT INTO cart (total, state) VALUES (0.00, 'cancelled');
+
+
+CREATE TABLE products (
+  product_id int NOT NULL AUTO_INCREMENT,
+  product_price  numeric(15, 2) NOT NULL,
+  product_name varchar(100) NOT NULL,
+  description varchar(600) NOT NULL,
+  PRIMARY KEY (product_id)
+);
+
+INSERT INTO products (product_name, product_price, description) VALUES ('Chicken Souvlaki', '10.50', 'Mushroom / Veggie / White Sauces');
+
+INSERT INTO products (product_name, product_price, description) VALUES ('Lemon and Garlic Green Beans', '14.50', 'Lemon / Garlic / Beans');
+
+INSERT INTO products (product_name, product_price, description) VALUES ('Lamb Skewers with Tzatziki', '18.50', 'Lamb / Wine / Butter');
+
+INSERT INTO products (product_name, product_price, description) VALUES ('Imported Oysters Grill (5 Pieces)', '15.90', 'Oysters / Veggie / Ginger');
+
+CREATE TABLE cart_product (
+  cp_id int NOT NULL AUTO_INCREMENT,
+  product_id int NOT NULL,
+  cart_id int NOT NULL,
+  quantity int NOT NULL,
+  time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (product_id) REFERENCES products(product_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+  FOREIGN KEY (cart_id) REFERENCES cart(cart_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+  PRIMARY KEY (cp_id)
+);
+
+INSERT INTO cart_product (cart_id, product_id) VALUES (1, 1);
+INSERT INTO cart_product (cart_id, product_id) VALUES (1, 2);
+INSERT INTO cart_product (cart_id, product_id) VALUES (2, 1);
+INSERT INTO cart_product (cart_id, product_id) VALUES (2, 2);
