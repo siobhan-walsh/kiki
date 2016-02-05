@@ -39,12 +39,9 @@ margin-left:-7%;
 .whitebox2 {
     
    background-color: #336b87;  
-  
+  position: relative; 
     float:left;
-    margin-left: 5.5%;
-    padding-left: 6%;
-    width:50%;    
-   
+
     
 }
 
@@ -217,7 +214,7 @@ font: 700 12pt/1.2 'Dancing Script';
 color: aliceblue;  
 display: block;
 text-align: center;
-margin-top: 5%; 
+margin-top: 2%; 
 margin-left: -13%; 
 }
 
@@ -226,20 +223,21 @@ margin-left: -13%;
     
 position: relative;
 padding-top: 10%; 
-padding-bottom: 45%; // This is the aspect ratio
-height: 0;
-overflow: hidden;
+padding-bottom: 35%; // This is the aspect ratio
+height: 40%;
+width: 50%; 
+margin-left: 18%; 
     
 }
 
 .map iframe {
     
 position: absolute;
-top: 10%;
+top: 15%;
 right: 10%; 
-bottom: 25%; 
-width: 100% !important;
-height: 100% !important;   
+bottom: 10%; 
+width: 75% !important;
+height: 65% !important;   
     
     
 }
@@ -439,7 +437,7 @@ margin-left: 0;
 
 .owners {
     
-width: 100%; 
+width: 50%; 
 
 position: relative;
        
@@ -843,8 +841,10 @@ input[type="button"]:active, input[type="reset"]:active {
 
 #footer {
     background-color: #336b87;
+    float: left; 
     clear: both;
-    height:5vh;
+    height:20%;
+
 
 }
 
