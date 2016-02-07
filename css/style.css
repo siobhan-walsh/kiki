@@ -9,7 +9,9 @@
 @import url(http://fonts.googleapis.com/css?family=Dancing+Script:700);
 @import url(http://fonts.googleapis.com/css?family=Crimson+Text:400,600,700,400italic);
 
-
+.test {
+    background-color:#ffccee;
+}
 
 /* ---------------------------------------------- /*
  * CONTACT
@@ -29,8 +31,6 @@ margin-top: 5%;
 width: 100%; 
 margin-bottom: 20%;   
 margin-left:-7%;
-    
- 
     
 }
 
@@ -508,11 +508,11 @@ margin-left: 5%;
 
 
 #whitebox {
-    background-color:#FFFFFF;
-   float:left;
-    margin-left: 5.5%;
-    padding-left: 6%;
-    width:50%; 
+    background-color:rgba(255, 255, 255, 0.9);
+    float:left;
+    padding:4%;
+
+
 }
 
 
@@ -565,6 +565,7 @@ color: #3588CC;
  
  font-size: 18pt;
 float: right;
+    margin:6% 0;
     
     
 }
@@ -588,7 +589,7 @@ a:hover {
 }
 
 #content {
-    padding-top: 10%;
+    padding: 6% 0;
 }
 
 .bodybackground {
