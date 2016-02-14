@@ -5,10 +5,6 @@
     src: url(../libs/font/Pacifica-Condensed-Regular.ttf);
 }
 
-
-@import url(http://fonts.googleapis.com/css?family=Dancing+Script:700);
-@import url(http://fonts.googleapis.com/css?family=Crimson+Text:400,600,700,400italic);
-
 .test {
     background-color:#ffccee;
 }
@@ -16,11 +12,6 @@
 /* ---------------------------------------------- /*
  * CONTACT
 /* ---------------------------------------------- */
-
-
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
-
-
 
 #bg5 {
     
@@ -52,16 +43,9 @@
     background-color:  #6FB98F;
     float:left;
     padding:2%;
-    margin-left: 5%; 
-
+    margin-left: 5%;
     width: 50%; 
-
-
-    
-    
-    
-    
-    
+  
 }
 
 #contactbody {
@@ -857,33 +841,6 @@ input[type="button"]:active, input[type="reset"]:active {
    background-color: #000000;
 }
 
-#shoppingCartContainer {
-  background-color: #aabbff;
-  float: right;
-}
-
-#shoppingCart {
-  list-style-type: none;
-}
-
-#shoppingCart li {
-  width: 100%;
-}
-
-#productTable{
-  border: 1px solid black;
-  float: left;
-  width: 100%;
-}
-
-#productTable input {
-  width: 60px;
-}
-
-#loginFormContainer {
-  float: left;
-
-}
 
 #messages {
   float: left;
@@ -899,12 +856,6 @@ input[type="button"]:active, input[type="reset"]:active {
     float: left; 
     clear: both;
     height:20%;
-
-
-}
-
-#logoutFormContainer, #loginFormContainer {
-  width: 200px;
 }
 
 .info {

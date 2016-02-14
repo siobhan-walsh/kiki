@@ -109,11 +109,12 @@
                     }
                 }
                 
-               // console.log(spans[0].getAttribute(data-sku));
-              /*
-               
+               // visual cart
                 
-                */
+                
+                var cartdiv = document.createElement('div');
+                
+                cartdiv.id = 'cart';
             }
          
         });
