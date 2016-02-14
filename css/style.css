@@ -456,10 +456,27 @@ margin-left: 0;
     margin-left: 5.5%;
     padding-left: 6%;
     width: 30pt;    
-    
-    
+   
     
 }
+
+/* ======= cart ======== */
+
+#cart {
+    
+    background-color:rgba(255, 255, 255, 0.9);
+    border: rgba(4,81,132,1);
+    border-style: solid;
+    border-right-style: none;
+    position: fixed;
+    top:20vh;
+    right:0;
+    width:30%;
+    min-height:20%;
+    padding:1%;
+}
+
+
 /* ---------------------------------------------- /*
 //**About Page**//
 

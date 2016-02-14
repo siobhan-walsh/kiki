@@ -29,7 +29,7 @@ loadScripts();
 							</div>
 							<div class='col-sm-4 menu-price-detail'>
 								<h4 class='menu-price'>$ $price</h4>
-                                <span h4 class='menu-price add' data-sku = '$sku'>+ add to cart</span>
+                                <span h4 class='menu-price add' data-pname = '$pname' data-price = '$price' data-sku = '$sku'>+ add to cart</span>
                                 <br>
                             
 						</div>
@@ -44,7 +44,7 @@ loadScripts();
         
 
 
-//  echo json_encode($rows, JSON_FORCE_OBJECT);
+ // echo json_encode($rows, JSON_FORCE_OBJECT);
 
 
 ?>

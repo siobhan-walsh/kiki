@@ -12,10 +12,10 @@
                 $.ajax({
                     url: "./cont/products.php",
                     type: "POST",
-                    dataType: 'html',
-                    success: function(returnedData) {
-                       // console.log("cart checkout response: ", returnedData);
-                        $("#listitems").html(returnedData);
+                    dataType: 'HTML',
+                    success: function(presp) {
+                        //console.log("cart checkout response: ", presp);
+                        $("#listitems").html(presp);
                         
                         addtocart();
                     },
@@ -46,19 +46,27 @@
                         
                         console.log('hihi', this.getAttribute('data-sku'));
                         
-                        var thesku = this.getAttribute('data-sku');
+                        var sku = this.getAttribute('data-sku');
+                        var name = this.getAttribute('data-pname');
+                        var cart = document.getElementById('cart');
                         
-                        items.push(thesku);
+                        items.push(sku);
                         
                         this.innerHTML = 'added';
                         
                         console.log('items', items);
                         
+                        var p = document.createElement('p');
+                        p.innerHTML = name;
+                        p.className = 'menu-title';
+                        
+                        cart.appendChild(p);
+                        
                         if(cartstarted == true){
                             
                             //add new item to cart
                             
-                            console.log('add that thing to cart', thesku);
+                            console.log('add that thing to cart', sku);
                             /*
                             $.ajax({
                                 url: "./cont/products.php",
@@ -109,12 +117,19 @@
                     }
                 }
                 
-               // visual cart
-                
-                
-                var cartdiv = document.createElement('div');
-                
-                cartdiv.id = 'cart';
+          
             }
+            
+            
+             function objectSize(the_object) {
+				 /* function to validate the existence of each key in the object to get the number of valid keys. */
+					  var object_size = 0;
+					  for (key in the_object){
+						if (the_object.hasOwnProperty(key)) {
+						  object_size++;
+						}
+					  }
+					  return object_size;
+				};
          
         });
