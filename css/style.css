@@ -129,6 +129,11 @@ textarea{
     overflow:hidden;
 }
 
+.qty {
+    width:50%;
+    font-size:10pt;
+}
+
 input {
      width: 105%;
     height: 105%;
@@ -383,7 +388,7 @@ margin-top: 0;
 .menu {
 	border-bottom: 1px dotted #DDD;
 	padding: 0 0 7%;
-    width: 50%;
+    width: 100%;
    
 }
 
