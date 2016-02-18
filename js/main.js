@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 
-
+    
     // from: http://www.developerdrive.com/2013/04/turning-a-form-element-into-json-and-submiting-it-via-jquery/
     function ConvertFormToJSON(form){
         var array = $(form).serializeArray();

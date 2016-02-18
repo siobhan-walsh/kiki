@@ -16,6 +16,7 @@
                     success: function(presp) {
                         //console.log("cart checkout response: ", presp);
                         $("#listitems").html(presp);
+                        $("#whitebox").fadeIn('slow');
                         
                         addtocart();
                     },
