@@ -865,12 +865,21 @@ input[type="button"]:active, input[type="reset"]:active {
 #nav {
   
 }
-
 #footer {
     background-color: #336b87;
+    color: aliceblue;
     float: left; 
     clear: both;
     height:20%;
+}
+
+h4 {
+    
+ 	font: 700 30pt/1.2 'Pacifica', serif;
+
+    color: aliceblue;   
+      
+    
 }
 
 .info {
