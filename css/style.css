@@ -474,6 +474,17 @@ margin-left: 0;
     margin-top:4%;
 }
 
+.qty {
+    
+    width:20%;
+    float:left;
+}
+
+.crow {
+    
+    width:100%;
+    float:left;
+}
 
 /* ---------------------------------------------- /*
 //**About Page**//

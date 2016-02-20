@@ -51,17 +51,49 @@
                         var name = this.getAttribute('data-pname');
                         var cart = document.getElementById('cart');
                         
+                        var qty = document.createElement('select');
+                        var o1 = document.createElement('option');
+                        var o2 = document.createElement('option');
+                        var o3 = document.createElement('option');
+                        var o4 = document.createElement('option');
+                        
+                        var crow = document.createElement('div');
+                        crow.className = 'crow';
+                        
+                        o1.value = '1';
+                        o2.value = '2';
+                        o3.value = '3';
+                        o4.value = '4';
+                        
+                        o1.innerHTML = '1';
+                        o2.innerHTML = '2';
+                        o3.innerHTML = '3';
+                        o4.innerHTML = '4';
+                        
+                        qty.className = 'qty';
+                        
+                        
+                        
                         items.push(sku);
                         
                         this.innerHTML = 'added';
                         
                         console.log('items', items);
                         
-                        var p = document.createElement('p');
+                        var p = document.createElement('span');
                         p.innerHTML = name;
                         p.className = 'menu-title';
                         
-                        cart.appendChild(p);
+                        qty.appendChild(o1);
+                        qty.appendChild(o2);
+                        qty.appendChild(o3);
+                        qty.appendChild(o4);
+                        
+                        crow.appendChild(p);
+                        
+                        crow.appendChild(qty);
+                        cart.appendChild(crow);
+                        
                         
                         if(cartstarted == true){
                             
