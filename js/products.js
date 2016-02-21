@@ -52,6 +52,11 @@
                         var cart = document.getElementById('cart');
                         
                         var qty = document.createElement('select');
+                        
+                        jQuery.data(qty, 'sku', sku);
+                        
+                        console.log('qty dta', sku);
+                       
                         var o1 = document.createElement('option');
                         var o2 = document.createElement('option');
                         var o3 = document.createElement('option');
@@ -74,7 +79,12 @@
                         
                         
                         
-                        items.push(sku);
+                        items.push(
+                            {
+                                sku:sku,
+                                qty:1
+                            }
+                        );
                         
                         this.innerHTML = 'added';
                         
