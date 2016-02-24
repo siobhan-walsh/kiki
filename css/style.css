@@ -63,8 +63,8 @@ form {
     
     width: 80%;
     height: 108%;
-    padding: 3%;
-    padding-bottom: 6%;
+    padding: 6%;
+    padding-bottom: 15%;
     border: 1px solid rgba(0,0,0,.2);
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -142,17 +142,18 @@ input[type=submit] {
 }
 
 input.name {
-	  background: rgba(255, 255, 255, 0.4) url(http://luismruiz.com/img/gemicon_name.png) no-repeat scroll 16px 16px; 
-	  padding-left:45px;
+	  background: rgba(255, 255, 255, 0.4) url(http://luismruiz.com/img/gemicon_name.png) no-repeat scroll 10px 10px; 
+	  padding-left:42px;
 }
 
 input.email {
-	  background: rgba(255, 255, 255, 0.4) url(http://luismruiz.com/img/gemicon_email.png) no-repeat scroll 16px 20px;
-	  padding-left:45px;
+	  background: rgba(255, 255, 255, 0.4) 
+	  url(http://luismruiz.com/img/gemicon_name.png) no-repeat scroll 10px 10px;
+          padding-left:45px;
 }
 
 input.message {
-	  background: rgba(255, 255, 255, 0.4) url(http://luismruiz.com/img/gemicon_message.png) no-repeat scroll 16px 16px;
+	  background: rgba(255, 255, 255, 0.4) 
 	  padding-left:45px;
 }
 
@@ -491,10 +492,20 @@ margin-left: 0;
 
 
 
-#aboutp {
- 	font-family: 'Crimson Text', serif;   
+
+#about {
     
-    
+ font-family: 'Crimson Text', serif;   
+float:right; 
+padding-left: 3%;     
+}
+
+
+
+
+.aboutp {
+
+margin-right: 5%;     
     
 }
 
@@ -621,7 +632,7 @@ color: #3588CC;
 }
 
 .fam {
-   float : left;
+float : left;
  position: relative;
     
 }
@@ -630,7 +641,7 @@ color: #3588CC;
  
  font-size: 18pt;
 float: right;
-    margin:6% 0;
+   
     
     
 }
@@ -882,6 +893,28 @@ input[type="button"]:active, input[type="reset"]:active {
     float: left; 
     clear: both;
     height:20%;
+}
+
+.footerpic {
+    
+margin-right: -25%;     
+    
+}
+
+
+#headery {
+    
+margin-right: 2%;
+    
+    
+    
+}
+
+.footername{
+    
+  font-family: 'Source Sans Pro', sans-serif;  
+margin-left: 3%;
+    
 }
 
 h4 {
