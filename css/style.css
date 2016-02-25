@@ -284,7 +284,7 @@ height: 65% !important;
  * Menu Typography
 /* ---------------------------------------------- */
 
-h1, h3, h5, h6, h8 {
+h1, h3, h4, h5, h6, h8 {
 	font: 700 30pt/1.2 'Pacifica', serif;
 
     color: #3588CC; 
@@ -911,24 +911,22 @@ margin-right: -25%;
 
 #headery {
     
-margin-right: 2%;
-    
-    
-    
+    margin-right: 2%;
+  
 }
 
 .footername{
     
   font-family: 'Source Sans Pro', sans-serif;  
-margin-left: 3%;
+    margin-left: 3%;
     
 }
 
-h4 {
+.footerh4 {
     
  	font: 700 30pt/1.2 'Pacifica', serif;
-
-    color: aliceblue;   
+    color: aliceblue;  
+    margin-right: 2%;
       
     
 }
@@ -958,7 +956,7 @@ h2 {
 }
 
 /* NAVIGATION */
-
+/*
 nav {
 	position: fixed;
 	top: 10px;
@@ -980,6 +978,7 @@ nav a:hover {
 nav a.focus {
 	opacity: 1;
 }
+*/
 
 /* LOGIN & REGISTER FORM */
 

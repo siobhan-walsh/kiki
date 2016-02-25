@@ -24,11 +24,11 @@ loadScripts();
 						<div class='row'>
                         
 							<div class='col-sm-8'>
-								<h4 class='menu-title'>$pname</h4>
+								<p class='menu-title'>$pname</p>
 								<div class='menu-detail'>$desc</div>
 							</div>
 							<div class='col-sm-4 menu-price-detail'>
-								<h4 class='menu-price'>$ $price</h4>
+								<p class='menu-price'>$ $price</p>
                                 <span h4 class='menu-price add' data-pname = '$pname' data-price = '$price' data-sku = '$sku'>+ add to cart</span>
                             </div>
 						</div>
