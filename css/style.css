@@ -590,7 +590,14 @@ margin-left: 5%;
 
 
 }
+#awhitebox {
+    background-color:rgba(255, 255, 255, 0.9);
+    float:left;
+    padding:4%;
 
+
+
+}
 
 
 /* ---------------------------------------------- /*

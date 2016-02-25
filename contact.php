@@ -23,7 +23,7 @@
 
 
 
-/* if (isset($_REQUEST['submitted'])) {
+ if (isset($_REQUEST['submitted'])) {
 
   $errors = array();
  
@@ -80,7 +80,6 @@ if (isset($_REQUEST['submitted'])) {
   }
 
 
-*////
 
 
 ?> 
