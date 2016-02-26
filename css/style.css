@@ -1,4 +1,7 @@
-
+body {
+    
+    
+}
 
 @font-face {
     font-family: Pacifica;
@@ -103,7 +106,7 @@ textarea{
     -webkit-background-clip: padding-box;
     background-clip: padding-box; 
     display:block;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Dancing Script', sans-serif;
     font-size:18px;
     color:#fff;
     padding-left:45px;
@@ -129,7 +132,7 @@ input {
     -webkit-background-clip: padding-box;
     background-clip: padding-box; 
     display:block;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Dancing Script', sans-serif;
     font-size:18px;
     color:#fff;
     padding-left:20px;
@@ -646,6 +649,7 @@ html, body {
 
  
     font-size: 16pt;
+    font-family: Martel Sans, sans-serif;
 
 }
 
@@ -946,7 +950,7 @@ margin-right: -25%;
 
 .footername{
     
-  font-family: 'Source Sans Pro', sans-serif;  
+  font-family: 'Dancing Script', sans-serif;  
     margin-left: 3%;
     
 }
@@ -975,6 +979,19 @@ margin-right: -25%;
 
 //**Admin Page**//
 
-input {
+.input-group-addon {
 width: 50%; 
+background-color: aquamarine;
+}
+
+#contactbody2 {
+    
+   background:#009999;
+    width: 50%;
+  	-webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	  background-size: cover;
+    padding-top:5%;   
+    
 }
