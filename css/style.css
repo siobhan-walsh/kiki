@@ -43,7 +43,7 @@ body {
 
 #whitebox2 {
     
-    background-color:  #6FB98F;
+    background-color:  #fff;
     float:left;
     padding:2%;
     margin-left: 5%;
@@ -253,7 +253,7 @@ input {
 .contactp {
     
 font: 700 12pt/1.2 'Dancing Script';
-color: aliceblue;  
+color: #3588CC; 
 display: block;
 text-align: center;
 margin-top: 2%; 
@@ -537,7 +537,8 @@ padding-left: 3%;
 
 .aboutp {
 
-margin-right: 5%;     
+margin-right: 5%; 
+
     
 }
 
