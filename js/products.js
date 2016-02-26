@@ -49,7 +49,7 @@
                         
                         var sku = this.getAttribute('data-sku');
                         var name = this.getAttribute('data-pname');
-                        var cart = document.getElementById('cart');
+                        var cart = document.getElementById('itemarea');
                         
                         var qty = document.createElement('select');
                         
@@ -162,6 +162,40 @@
                 
           
             }
+            
+            
+            //checking out man woaaaaah
+            
+            
+            
+              
+                var checkoutbtn = document.getElementById('checkout');
+            
+                var clearbtn = document.getElementById('clear');
+                
+                
+                    checkoutbtn.onclick = function(){
+
+                        //do the checkout stuff!
+                        
+                            //cycle through, get qty value, save info in local storage
+                            //send items through ajax to db
+                            //for each product insert cart_id, product_id, qty INTO cart_product
+                            //update status of cart to completed
+                            //update qty in products
+                        
+                        console.log('buy the things');
+
+                    };
+            
+                clearbtn.onclick = function(){
+
+                        //clear the cart
+                        console.log('clear the things');
+
+                    };
+                
+           
             
             
              function objectSize(the_object) {
