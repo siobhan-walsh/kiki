@@ -50,12 +50,12 @@
                         var sku = this.getAttribute('data-sku');
                         var name = this.getAttribute('data-pname');
                         var cart = document.getElementById('itemarea');
-                        
                         var qty = document.createElement('select');
                         
-                        jQuery.data(qty, 'sku', sku);
+                        qty.dataset.sku = sku;
+
                         
-                        console.log('qty dta', sku);
+                        console.log('qty dta', qty.dataset.sku );
                        
                         var o1 = document.createElement('option');
                         var o2 = document.createElement('option');
@@ -76,6 +76,7 @@
                         o4.innerHTML = '4';
                         
                         qty.className = 'qty';
+                        //qty.data('sku', sku);
                         
                         
                         
@@ -179,6 +180,15 @@
                         //do the checkout stuff!
                         
                             //cycle through, get qty value, save info in local storage
+                        
+                            var qtyselectors = document.querySelectorAll('select');
+                        
+                            console.log('select val', qtyselectors[0].value);
+                            console.log('skuuu', qtyselectors[0].dataset.sku);
+                        
+                                //check to see if that skuuu is in the items array
+                        
+                        
                             //send items through ajax to db
                             //for each product insert cart_id, product_id, qty INTO cart_product
                             //update status of cart to completed
