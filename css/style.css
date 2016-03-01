@@ -152,7 +152,8 @@ input.name {
 input.email {
 	  background: rgba(255, 255, 255, 0.4) 
 	  url(http://luismruiz.com/img/gemicon_name.png) no-repeat scroll 10px 10px;
-          padding-left:45px;
+          padding-left:42px;
+    width: 100%;
 }
 
 input.message {
@@ -257,7 +258,7 @@ color: #3588CC;
 display: block;
 text-align: center;
 margin-top: 2%; 
-margin-left: -13%; 
+margin-left:1%; 
 }
 
 
@@ -266,9 +267,9 @@ margin-left: -13%;
 position: relative;
 padding-top: 10%; 
 padding-bottom: 35%; // This is the aspect ratio
-height: 50%;
-width: 50%; 
-margin-left: 18%; 
+height: 75%;
+width: 75%; 
+margin-left: 10%; 
     
 }
 
@@ -537,7 +538,8 @@ padding-left: 3%;
 
 .aboutp {
 
-margin-right: 5%; 
+
+margin-left: 55%; 
 
     
 }
@@ -561,6 +563,14 @@ margin-left: 5%;
     
 }
 
+.meet {
+font-family: Pacifica;
+color: #3588CC;   
+margin-left: 55%;
+
+    
+    
+}
 #panelly2 {
     
     background-color:rgba(255, 255, 255, 0.8);
@@ -654,10 +664,15 @@ html, body {
 
 }
 
-#read{
+.read{
 font-family: Pacifica;
 color: #3588CC;
+padding-top: 2%;
+margin-left: 0;
+margin-top: -10%;
     
+    
+}   
       
     
 }
@@ -683,6 +698,15 @@ float : left;
  font-size: 18pt;
 float: right;
    
+    
+    
+}
+
+.aboutp2 {
+ 
+ font-size: 18pt;
+float: right;
+margin-top: 10%;  
     
     
 }
@@ -938,7 +962,8 @@ input[type="button"]:active, input[type="reset"]:active {
 
 .footerpic {
     
-margin-right: -25%;     
+margin-left: 5%; 
+float: left;
     
 }
 
@@ -960,9 +985,17 @@ margin-right: -25%;
     
  	font: 700 30pt/1.2 'Pacifica', serif;
     color: aliceblue;  
-    margin-right: 2%;
+    margin-left: 6%;
       
     
+}
+
+.footerh5 {
+    
+ 	font: 700 30pt/1.2 'Pacifica', serif;
+    color: aliceblue;  
+    margin-left: 35%;
+      
 }
 
 .info {
