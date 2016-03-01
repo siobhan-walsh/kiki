@@ -36,12 +36,12 @@
                             Email: kostatheos@gmail.com <br></br>  
                         Address: 118-1959 152 St. Surrey, BC V4A 9E3</p>
 <br />
-<form id="contactbody">
-		<input name="name" placeholder="Name" pattern = '^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$' class= 'name' />
-		<input name="emailaddress" placeholder="Email" class="email"/>
+<form id="contactbody" name="contactform" method="post" action="userfeedback.php">
+		<input name="first_name" placeholder="Name" pattern = '^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$' class= 'name' />
+		<input name="email" placeholder="Email" class="email"/>
 
-    <textarea rows="4" cols="50" name="subject" placeholder="Message" class="message" required = 'true'  id="msgFee"></textarea>
-    <input name="submit" class="btn" type="submit" value="Send" />
+    <textarea rows="4" cols="50" name="message" placeholder="Message" class="message" required = 'true'  id="msgFee"></textarea>
+    <input class="btn" type="submit" value="Send" />
 </form>
      
       
