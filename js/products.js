@@ -88,8 +88,8 @@
                 // get the sku
                 var sku = this.getAttribute("data-sku-add");
                 var qty = $("input[data-sku-qty='" + sku + "']").val();
-                var price = $("p[data-sku-price='" + sku + "']").text();
-                var desc = $("div[data-sku-desc='" + sku + "']").text();
+                var price = $("span[data-sku-price='" + sku + "']").text();
+                var desc = $("p[data-sku-name='" + sku + "']").text();
                 var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
                 console.log(desc, "quantity", qty, "price", price);
 
@@ -99,7 +99,7 @@
                 // ALTERED FOR WEB STORAGE
                 var aDate = new Date();
                 var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-                    + aDate.getTime() + "'>" + desc + " " + qty + " x $" + price + " = " + subtotal
+                    + aDate.getTime() + "'><p>" + desc + "</p><p>" + qty + " x </p>$" + price + " = " + subtotal
                     + " <input type='button' data-remove-button='remove' value='X'/></li>";
                 shoppingCartList.append(item);
 

@@ -24,11 +24,11 @@ loadScripts();
 						<div class='row'>
                         
 							<div class='col-sm-8'>
-								<p class='menu-title'>$pname</p>
+								<p class='menu-title' data-sku-name='$sku'>$pname</p>
 								<div data-sku-desc='$sku' class='menu-detail'>$desc</div>
 							</div>
 							<div class='col-sm-4 menu-price-detail'>
-								<p class='menu-price' data-sku-price='$sku'>$ $price</p>
+								$<span class='menu-price' data-sku-price='$sku'>$price</span>
                                 
                                 <input class='qty' data-sku-qty='$sku' value='1' min='1' max='5' step='1' type='number'>
                                 

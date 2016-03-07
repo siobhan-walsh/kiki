@@ -1081,3 +1081,11 @@ background-color: aquamarine;
     padding-top:5%;   
     
 }
+#shoppingCart li{
+    font-size:12pt;
+    list-style-type: none;
+}
+
+#shoppingCart {
+    text-decoration: none;
+}
