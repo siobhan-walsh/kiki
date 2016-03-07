@@ -18,8 +18,8 @@ loadScripts();
             $price = $row['product_price'];
             $desc = $row['description'];
             
-            
-          $html .=   "<div class='menu'>
+           // <div class='menu'>
+          $html .=   "
           
 						<div class='row'>
                         
@@ -35,9 +35,9 @@ loadScripts();
                                 <input type='button' h4 class='menu-price add' id='add'  data-pname = '$pname' data-price = '$price' data-sku-add = '$sku' value='+ add to cart'/>
                             </div>
 						</div>
-					</div>";
+					";
             
-            /*
+            /*</div>
             
             <input data-sku-qty="sk-2843y" value="1" min="1" max="10" step="1" type="number">
             
