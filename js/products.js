@@ -4,11 +4,13 @@
             //
             
             Storage.prototype.setObject = function(key, value) {
+                
                 this.setItem(key, JSON.stringify(value));
              
             }
 
             Storage.prototype.getObject = function(key) {
+                
                 var value = this.getItem(key);
                 return value && JSON.parse(value);
             }
@@ -55,8 +57,9 @@
                 if(cartData == null) {
                     return;
                 }
+                
                 var cartDataItems = cartData['items'];
-                var shoppingCartList = $("#itemarea");
+                var shoppingCartList = $("#shoppingCart");
 console.log('cartdata', cartData);
 
                 for(var i = 0; i < cartDataItems.length; i++) {
@@ -85,6 +88,7 @@ console.log('cartdata', cartData);
                 
                 var adds = document.querySelectorAll('.add');
                 
+                
                 for(var i = 0; i < adds.length; i++){
                     adds[i].addEventListener('click', adding(i));
                 };
@@ -93,53 +97,132 @@ console.log('cartdata', cartData);
                     return function(){
                       
                         console.log('this is ', this);
-                 
-                //if first time clicking (make toggle value or something)
+                        var clickeditem = this;
+                        
+                        if(sessionStorage.cartstarted != 'true'){
+                            
+                            console.log('start that cart');
+                            //if first time clicking (make toggle value or something)
                         
                          //startcart();
+                            
+                                console.log("Start cart.");
+                                $.ajax({
+                                    url: "./cont/cart.php",
+                                    type: "POST",
+                                    dataType: 'json',
+                                    data: {action: "startcart"},
+                                    success: function(returnedData) {
+                                        console.log("cart start response: ", returnedData);
+
+                                        // WEB STORAGE - SESSION STORAGE
+                                        //var sessionID = returnedData['s_id'];
+                                        sessionStorage.setObject('autosave', {items: []});
+                                        
+                                        
+                                        
+                                        console.log(clickeditem.getAttribute("data-sku-add"));
+
+                                        // get the sku
+                                        var sku = clickeditem.getAttribute("data-sku-add");
+                                        var qty = $("input[data-sku-qty='" + sku + "']").val();
+                                        var price = $("span[data-sku-price='" + sku + "']").text();
+                                        var desc = $("p[data-sku-name='" + sku + "']").text();
+                                        var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
+                                        console.log(desc, "quantity", qty, "price", price);
+
+                                        var shoppingCartList = $("#shoppingCart");
+
+
+                                        // ALTERED FOR WEB STORAGE
+                                        var aDate = new Date();
+                                        var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
+                                            + aDate.getTime() + "'><span style='font-weight:bold;' >" + desc + "</span><span> x" + qty + "  </span><span style='float:right'>$ " + subtotal
+                                            + "</span <input type='button' data-remove-button='remove' value='X'/></li>";
+                                        shoppingCartList.append(item);
+
+
+                                        // SESSION STORAGE - SAVE SKU AND QTY AS AN OBJECT IN THE
+                                        // ARRAY INSIDE OF THE AUTOSAVE OBJECT
+
+                                        //sessionStorage.setObject('autosave', 'none');
+
+                                        var cartData = sessionStorage.getObject('autosave', 'save');
+
+                                        console.log('ses', sessionStorage.getObject('autosave', 'save'));
+
+                                        if(cartData == null ) {
+                                            return;
+                                        }
+
+                                        console.log('cart data', cartData);
+
+                                        var item = {'sku': sku, 'qty': qty, date: aDate.getTime(), 'desc': desc, 'price': price};
+                                        cartData['items'].push(item);
+                                        // clobber the old value
+                                        sessionStorage.setObject('autosave', cartData);
+                                        console.log('sesssto', sessionStorage);
+
+
+
+                                    },
+                                    error: function(jqXHR, textStatus, errorThrown) {
+                                        console.log(jqXHR.statusText, textStatus);
+                                    }
+                                });
+                                
+                                sessionStorage.cartstarted = 'true';
+                                console.log('what waht', sessionStorage.cartstarted);
+                        } 
+                 
                 
 
                         console.log(this.getAttribute("data-sku-add"));
 
-                // get the sku
-                var sku = this.getAttribute("data-sku-add");
-                var qty = $("input[data-sku-qty='" + sku + "']").val();
-                var price = $("span[data-sku-price='" + sku + "']").text();
-                var desc = $("p[data-sku-name='" + sku + "']").text();
-                var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
-                console.log(desc, "quantity", qty, "price", price);
+                        // get the sku
+                        var sku = this.getAttribute("data-sku-add");
+                        var qty = $("input[data-sku-qty='" + sku + "']").val();
+                        var price = $("span[data-sku-price='" + sku + "']").text();
+                        var desc = $("p[data-sku-name='" + sku + "']").text();
+                        var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
+                        console.log(desc, "quantity", qty, "price", price);
 
-                var shoppingCartList = $("#shoppingCart");
-
-
-                // ALTERED FOR WEB STORAGE
-                var aDate = new Date();
-                var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-                    + aDate.getTime() + "'><span style='font-weight:bold;' >" + desc + "</span><span> x" + qty + "  </span><span style='float:right'>$ " + subtotal
-                    + "</span <input type='button' data-remove-button='remove' value='X'/></li>";
-                shoppingCartList.append(item);
+                        var shoppingCartList = $("#shoppingCart");
 
 
-                // SESSION STORAGE - SAVE SKU AND QTY AS AN OBJECT IN THE
-                // ARRAY INSIDE OF THE AUTOSAVE OBJECT
+                        // ALTERED FOR WEB STORAGE
+                        var aDate = new Date();
+                        var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
+                            + aDate.getTime() + "'><span style='font-weight:bold;' >" + desc + "</span><span> x" + qty + "  </span><span style='float:right'>$ " + subtotal
+                            + "</span <input type='button' data-remove-button='remove' value='X'/></li>";
+                        shoppingCartList.append(item);
+
+
+                        // SESSION STORAGE - SAVE SKU AND QTY AS AN OBJECT IN THE
+                        // ARRAY INSIDE OF THE AUTOSAVE OBJECT
+
+                        //sessionStorage.setObject('autosave', 'none');
                         
-                sessionStorage.setObject('autosave', 'none');
-                var cartData = sessionStorage.getObject('autosave', 'save');
-      /*          if(cartData == null) {
-                    return;
-                } */
+                        var cartData = sessionStorage.getObject('autosave', 'save');
                         
+                        console.log('ses', sessionStorage.getObject('autosave', 'save'));
+                        
+                        if(cartData == null ) {
+                            return;
+                        }
+
                         console.log('cart data', cartData);
-                var item = {'sku': sku, 'qty': qty, date: aDate.getTime(), 'desc': desc, 'price': price};
-                cartData['items'].push(item);
-                // clobber the old value
-                sessionStorage.setObject('autosave', cartData);
-                console.log('sesssto', sessionStorage.setObject('autosave'));
+                        
+                        var item = {'sku': sku, 'qty': qty, date: aDate.getTime(), 'desc': desc, 'price': price};
+                        cartData['items'].push(item);
+                        // clobber the old value
+                        sessionStorage.setObject('autosave', cartData);
+                        console.log('sesssto', sessionStorage);
 
-                   
-                    };
-                };
-                
+
+                            };
+                        };
+
             };
 
             // remove items from the cart
@@ -179,7 +262,7 @@ console.log('cartdata', cartData);
 
             // start the cart
             
-            function() startcart{
+            function startcart(){
                 
                 $("#startCart").click(function() {
                     console.log("Start cart.");
