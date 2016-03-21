@@ -11,10 +11,264 @@ body {
 .test {
     background-color:#ffccee;
 }
+/********************************************
+ADMIN LOGIN
+********************************************/
+#contactbody2 {
+    
+   background:#009999;
+    width: 50%;
+  	-webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	  background-size: cover;
+    padding-top:5%;   
+}
+
+
+#dashlogin {
+  width: 100;
+  text-align: center;
+  margin-top: 20vh;
+}
+
+#dashlogin form {
+  width: 60%;
+  margin: 0 auto;
+}
+
+#adminlogin input {
+  width: 250px;
+}
+
+#loginbutton {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  color: white;
+  background-color: darkblue;
+  border-style: none;
+  border-radius: 2px;
+  margin-bottom: 5px;
+}
+
+#loginbutton:hover {
+  background-color: #4d4d4d;
+  -webkit-transition: all 300ms ease 0s;
+  -webkit-transition: all 200ms ease 0s;
+  transition: all 200ms ease 0s;
+}
+
+#resetLoginForm {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  color: white;
+  background-color: darkblue;
+  border-style: none;
+  border-radius: 2px;
+}
+
+#resetLoginForm:hover {
+  background-color: darkblue;
+  -webkit-transition: all 300ms ease 0s;
+  -webkit-transition: all 200ms ease 0s;
+  transition: all 200ms ease 0s;
+}
+
+#AJAXMessages {
+  padding: 20px 0;
+  font-weight: 300;
+}
+
+#AJAXMessages li {
+  list-style: none;
+}
+
+
+
+/* ---------------------------------------------- /*
+ * ADMIN
+/* ---------------------------------------------- */
+
+#logoutbutton {
+  border: none;
+  background: none;
+  color: darkcyan;
+  padding: 0;
+}
+
+#logoutbutton:hover {
+  color: darkcyan;
+  text-decoration: underline;
+}
+
+#gotosite {
+  color: darkcyan;
+  text-decoration: none;
+}
+
+#gotosite:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+#logout {
+  color: darkblue;
+  text-decoration: none;
+}
+
+#logout:hover {
+  color: lightblue;
+  text-decoration: underline;
+}
+
+#itemcontainer {
+  width: 70%;
+  height: 70vh;
+  margin: 0 auto;
+  border: 2px solid gray;
+  margin-bottom: 20px;
+  overflow-y: scroll;
+}
+
+#itemcontainer table {
+  width: 94%;
+  margin: 10px auto;
+  text-align: left;
+}
+
+#itemcontainer table td {
+  padding: 8px 0;
+}
+
+.editbutton {
+  width: 20px;
+  height: 20px;
+}
+
+.editbutton:hover {
+  opacity: 0.4;
+  cursor: pointer;
+}
+
+#editcell {
+  width: 40px;
+}
+
+#itemcontainer table tr:nth-of-type(even) {
+  background-color: #f2f2f2;
+}
+
+.popupitem2 {
+  width: 70%;
+  background-color: #fff;
+  border: 5px solid #d3d3d3;
+  text-align: center;
+  position: relative;
+}
+
+
+
+#pdescription {
+  width: 100%;
+  border-color: #d3d3d3;
+  min-height: 90px;
+}
+
+
+
+
+.submitedit {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  color: white;
+  background-color: darkblue;
+  border-style: none;
+  border-radius: 2px;
+}
+
+.submitadd {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  color: white;
+  background-color: darkblue;
+  border-style: none;
+  border-radius: 2px;
+}
+
+.submitadd:hover {
+  background-color: #4d4d4d;
+  -webkit-transition: all 300ms ease 0s;
+  -webkit-transition: all 200ms ease 0s;
+  transition: all 200ms ease 0s;
+}
+
+.submitedit:hover {
+  background-color: #4d4d4d;
+  -webkit-transition: all 300ms ease 0s;
+  -webkit-transition: all 200ms ease 0s;
+  transition: all 200ms ease 0s;
+}
+
+.updatedelete {
+  background-color: #c66;
+  color: white;
+  border: none;
+  margin-top: 3px;
+  border-radius: 2px;
+}
+
+.updatedelete:hover {
+  background-color: #a44;
+  -webkit-transition: all 300ms ease 0s;
+  -webkit-transition: all 200ms ease 0s;
+  transition: all 200ms ease 0s;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  margin: 0;
+}
+
+.inputfile + label {
+  text-align: center;
+  cursor: pointer;
+  width: 175px;
+  display: block;
+  margin: 10px auto;
+  font-size: 0.9em;
+  -webkit-transition: ease-in-out 0.2s;
+  transition: ease-in-out 0.2s;
+  outline: none;
+  background-color: grey;
+  color:white;
+  
+}
+
+
+
+
+
 
 /* ---------------------------------------------- /*
  * CONTACT
 /* ---------------------------------------------- */
+
+
+
+
+.pushy {
+  height: 4em;
+}
+
+
+
+
+
 
 #bg5 {
     
@@ -1054,16 +1308,7 @@ width: 50%;
 background-color: aquamarine;
 }
 
-#contactbody2 {
-    
-   background:#009999;
-    width: 50%;
-  	-webkit-background-size: cover;
-	  -moz-background-size: cover;
-	  -o-background-size: cover;
-	  background-size: cover;
-    padding-top:5%;   
-    
+ 
 }
 #shoppingCart li{
     font-size:12pt;

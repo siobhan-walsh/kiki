@@ -62,3 +62,18 @@ INSERT INTO cart_product (cart_id, product_id) VALUES (1, 1);
 INSERT INTO cart_product (cart_id, product_id) VALUES (1, 2);
 INSERT INTO cart_product (cart_id, product_id) VALUES (2, 1);
 INSERT INTO cart_product (cart_id, product_id) VALUES (2, 2);
+
+ CREATE TABLE ‘user` (
+   `ID` int(11) NOT NULL,
+   `email` varchar(300) NOT NULL,
+    `password` varchar(300) NOT NULL
+    -> ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+Query OK, 0 rows affected (0.01 sec)
+
+INSERT INTO `user` (`ID`, `email`, `password`) VALUES
+   (1, 'ksakdesigns@gmail.com', 'katie'),
+   (2, 'siobhanemmaw@gmail.com', 'siobhan'),
+   (3, 'teacher@email.com', 'arron');
+
+
+

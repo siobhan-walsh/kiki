@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!-- View -->
+  <headReplace metal:use-macro="/templating/head.xhtml/meta_head">
+  </headReplace>
+
+
+
+
+    <navReplace metal:use-macro="./templating/nav.xhtml/nav_bar">
+    </navReplace>
+      
+<body>
+    <h1>Kikis Restaurant</h1>
+    <h3>admin login</h3>
+  </header>
+  <section id="dashlogin">
+
+      
+         <div id="profileContainer">
+      <div id="userProfile" tal:condition="exists:profile">
+        <h2>User Profile</h2>
+        <span tal:content="profile/user_name"></span>
+        <span tal:content="profile/first_name"></span>
+        <span tal:content="profile/last_name"></span>
+        <br/>
+        <br/>
+        <br/>
+      </div>
+    </div>
+
+
+    
+    <div id="loginFormContainer" tal:condition="php: !Session::get('isLoggedIn')">
+
+      <form id="loginForm">
+        <label for="user_name">Username</label>
+        <br />
+        <input id="user_name" type="text" name="user_name" autofocus="autofocus" />
+        <br/>
+        <br/>
+        <label for="password">Password</label>
+        <br />
+        <input id="password" type="password" name="password" />
+        <br/>
+        <br/>
+        <input id="loginbutton" type="button" value="Login" /><br/>
+        <input id="resetLoginForm" type="reset" value="Reset" />
+
+      </form>
+                
+       <div id="messages">
+      <ul id="talMessages" tal:condition="php: count(messages) GT 0">
+        <li tal:repeat="msg messages" class="${msg/type}"><span tal:content="msg/text"></span></li>
+      </ul>
+      <ul id="AJAXMessages">
+      </ul>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+  </section>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="js/login.js"></script>   
+
+    <script src="js/main.js"></script>
+
+    <footerReplace metal:use-macro="/templating/footer.xhtml/page_footer">
+    </footerReplace>
+
+  
+    
+    
+ 
+    
+    
+    </body>
+</html>
