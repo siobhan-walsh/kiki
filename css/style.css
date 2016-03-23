@@ -241,9 +241,12 @@ textarea{
 }
 
 .qty {
-    width:10%;
-    font-size:10pt;
-    margin-left:90%;
+    width:100%;
+   
+}
+
+.label {
+     font-size:10pt;
 }
 
 #add {
@@ -379,7 +382,7 @@ center{
 }
 input {
     position: relative;
-    z-index: 9999;
+
 }
 
 
@@ -599,7 +602,7 @@ margin-left: 0;
 
 #cart {
     
-    background-color:rgba(255, 255, 255, 0.9);
+    background-color:rgba(255, 255, 255, 1);
     border: rgba(4,81,132,1);
     border-style: solid;
     border-right-style: none;
@@ -607,9 +610,17 @@ margin-left: 0;
     top:20vh;
     right:0;
     width:30%;
-    min-height:20%;
+    min-height:60%;
     padding:1%;
     margin-top:4%;
+    z-index: 3;
+}
+
+.cartbuttons {
+    float:left;
+    position:absolute;
+    bottom:0;
+    margin-top:20%;
 }
 
 #checkout {
@@ -1154,4 +1165,20 @@ background-color: aquamarine;
 
 #shoppingCart {
     text-decoration: none;
+    list-style-type: none;
+    position:absolute;
+    overflow: scroll;
+    height:40vh;
+    margin-bottom: 10%;
+}
+
+.cartlist {
+    text-decoration: none;  
+
+}
+
+.removeitem {
+    margin:4%;
+    font-size:10pt;
+    color:rgba(142,0,0,1);
 }

@@ -1,7 +1,44 @@
 
         $(document).ready(function() {
 
-            //
+            //cart move out on hover
+            var tog = false;
+            $('#cart').hover(function(){
+                
+                console.log('oh hey hovererer');
+                
+                console.log('tog is', tog);
+                
+                if(tog == false){
+                    
+                    $('#cart').stop(true).animate(
+                            {
+
+                                width:'50%',
+                                opacity:1
+                            }, 1000, function(){
+
+                            }
+                    );
+                    
+                    tog = true;
+                
+                } else if(tog == true){
+                    
+                    console.log('go back');
+                    $('#cart').stop(true).animate(
+                            {
+
+                                width:'30%',
+                                opacity:1
+                            }, 1000, function(){
+
+                            }
+                    );
+                    tog = false;
+                }
+                
+            });
             
             Storage.prototype.setObject = function(key, value) {
                 
@@ -78,16 +115,15 @@
                         
                         
                     }
+                    var aDate = new Date();
                     
+                    //figuring out the structure for how items appear in cart here first, then move to other functions.
+                    //make quantity input value change session upon change of number
+                    //check to make sure remove button works
                     
-                    
-                    
-                    
-                    
-
                     var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-                        + date + "'>" + desc + " " + qty + " x $" + price + " = " + subtotal
-                        + " <input type='button' data-remove-button='remove' value='X'/></li>";
+                        + aDate.getTime() + "'><div class='row'><span style='font-weight:bold;font-size:18pt;' >" + desc + "</span><br><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>quantity:</span><br><input class='qty' data-sku-qty=' " + sku + "' value='" + qty + "' min='1' max='5' step='1' type='number'></div><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>price:</span><br><span >$ " + subtotal + "</span></div><div class='row '><div class = ' large-10 small-10 large-offset-2 small-offset-2 columns'><input class='removeitem' type='button' data-remove-button='remove' value='remove item'/></div></div></div></li>";
+            
                     shoppingCartList.append(item);
 
 
@@ -133,7 +169,7 @@
 
                                         // get the sku
                                         var sku = clickeditem.getAttribute("data-sku-add");
-                                        var qty = $("input[data-sku-qty='" + sku + "']").val();
+                                        var qty = 1;
                                         var price = $("span[data-sku-price='" + sku + "']").text();
                                         var desc = $("p[data-sku-name='" + sku + "']").text();
                                         var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
@@ -147,6 +183,9 @@
                                         var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
                                             + aDate.getTime() + "'><span style='font-weight:bold;' >" + desc + "</span><span> x" + qty + "  </span><span style='float:right'>$ " + subtotal
                                             + "</span <input type='button' data-remove-button='remove' value='X'/></li>";
+                                        
+                                        
+                                        
                                         shoppingCartList.append(item);
 
 
@@ -201,7 +240,7 @@
                         var clickeditem = this;
                             
                         var sku = this.getAttribute("data-sku-add");
-                        var qty = $("input[data-sku-qty='" + sku + "']").val();
+                        var qty = 1;
                         var price = $("span[data-sku-price='" + sku + "']").text();
                         var desc = $("p[data-sku-name='" + sku + "']").text();
                         var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
@@ -222,12 +261,14 @@
                             
                                 var test =  arrayObjectIndexOf(cartDataItems, sku, "sku"); // 1
                                 console.log("test is", test);
+                                console.log("sku is", sku);
 
-                                if(test != -1){
+                                if(test != -1 && sku == cartDataItems[i].sku){
 
-                                    console.log('2 that thing is already in the cart qty is', item.qty);
+                                    console.log('2 that thing is already in the cart qty is', cartDataItems[i].qty);
                                     var quan = parseFloat(item.qty);
-                                    quan = quan + 1; 
+                                    var addedqty = parseFloat(qty);
+                                    quan = quan + addedqty; 
                                     console.log('noowow quan is', quan);
                                     
                                     var cartData = sessionStorage.getObject('autosave', 'save');
@@ -261,28 +302,29 @@
                                     
                                     for(var i = 0; i < listeditems.length; i++){
                                         console.log('thing', listeditems[i].getAttribute("data-item-sku"));
+                                        console.log('thing sku', sku);
                                         var listeditemsku = listeditems[i].getAttribute("data-item-sku");
                                         
                                         if(listeditemsku == sku ){
                                             
-                                        //update the html for the quantity... will have to put qty in a span element in the php code for addingitems in cart
+                                        //update the html for the quantity... will have to put qty in a span element in th code for addingitems in cart
                                             listeditems[i].innerHTML = 'yooo';
                                         
                                         }
                                     }
                                     
-                                    
+                                   return;
 
                                     };
                                     
-                                   return;
+                                   
                                 }
                           
 
                         // ALTERED FOR WEB STORAGE
                         var aDate = new Date();
-                        var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-                            + aDate.getTime() + "'><span style='font-weight:bold;' >" + desc + "</span><span> x" + qty + "  </span><span style='float:right'>$ " + subtotal
+                        var item = "<li class='cartlist' data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
+                            + aDate.getTime() + "'><span style='font-weight:bold;float:left;' >" + desc + "</span><span> x" + qty + "  </span><span style='float:right'>$ " + subtotal
                             + "</span <input type='button' data-remove-button='remove' value='X'/></li>";
                         shoppingCartList.append(item);
 
@@ -317,7 +359,7 @@
             };
 
             // remove items from the cart
-            $("#shoppingCart").on("click", "input", function() {
+            $("#shoppingCart").on("click", "input[type='button']", function() {
                 // https://api.jquery.com/closest/
 
 

@@ -30,7 +30,6 @@ loadScripts();
 							<div class='col-sm-4 menu-price-detail'>
 								$<span class='menu-price' data-sku-price='$sku'>$price</span>
                                 
-                                <input class='qty' data-sku-qty='$sku' value='1' min='1' max='5' step='1' type='number'>
                                 
                                 <input type='button' h4 class='menu-price add' id='add'  data-pname = '$pname' data-price = '$price' data-sku-add = '$sku' value='+ add to cart'/>
                             </div>
