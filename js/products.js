@@ -19,7 +19,6 @@
             var items = [];
             var cartstarted = false;
             
-            console.log('cartstarted', cartstarted);
             
             function loadProducts() {
                 $.ajax({
@@ -50,8 +49,7 @@
             function loadShoppingCartItems() {
 
                 var cartData = sessionStorage.getObject('autosave');
-                
-                console.log('cartdata', cartData);
+
 
                 // if nothing added leave function
                 if(cartData == null) {
@@ -60,9 +58,11 @@
                 
                 var cartDataItems = cartData['items'];
                 var shoppingCartList = $("#shoppingCart");
-console.log('cartdata', cartData);
+
 
                 for(var i = 0; i < cartDataItems.length; i++) {
+                    
+                    
                     var item = cartDataItems[i];
                     // sku, qty, date
                     var sku = item['sku'];
@@ -71,6 +71,19 @@ console.log('cartdata', cartData);
                     var price = item['price'];
                     var desc = item['desc'];
                     var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
+                    
+                    var alreadythere = cartDataItems.indexOf(item);
+                    
+                    if(alreadythere != -1){
+                        
+                        
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
 
                     var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
                         + date + "'>" + desc + " " + qty + " x $" + price + " = " + subtotal
@@ -95,18 +108,13 @@ console.log('cartdata', cartData);
                 
                 function adding(i){
                     return function(){
-                      
-                        console.log('this is ', this);
+                   
                         var clickeditem = this;
                         
                         if(sessionStorage.cartstarted != 'true'){
                             
                             console.log('start that cart');
-                            //if first time clicking (make toggle value or something)
-                        
-                         //startcart();
-                            
-                                console.log("Start cart.");
+                           
                                 $.ajax({
                                     url: "./cont/cart.php",
                                     type: "POST",
@@ -132,7 +140,7 @@ console.log('cartdata', cartData);
                                         console.log(desc, "quantity", qty, "price", price);
 
                                         var shoppingCartList = $("#shoppingCart");
-
+                                        
 
                                         // ALTERED FOR WEB STORAGE
                                         var aDate = new Date();
@@ -173,13 +181,25 @@ console.log('cartdata', cartData);
                                 
                                 sessionStorage.cartstarted = 'true';
                                 console.log('what waht', sessionStorage.cartstarted);
-                        } 
+                        } else {
+                            
+                            
+                            function arrayObjectIndexOf(myArray, searchTerm, property) {
+                                for(var i = 0, len = myArray.length; i < len; i++) {
+                                    if (myArray[i][property] === searchTerm) return i;
+                                }
+                                return -1;
+                            }
+                           // arrayObjectIndexOf(cartDataItems, sku, "sku"); // 1
+                        
                  
                 
 
                         console.log(this.getAttribute("data-sku-add"));
 
                         // get the sku
+                        var clickeditem = this;
+                            
                         var sku = this.getAttribute("data-sku-add");
                         var qty = $("input[data-sku-qty='" + sku + "']").val();
                         var price = $("span[data-sku-price='" + sku + "']").text();
@@ -188,7 +208,76 @@ console.log('cartdata', cartData);
                         console.log(desc, "quantity", qty, "price", price);
 
                         var shoppingCartList = $("#shoppingCart");
+                            
+                           
+                            
+                         var cartData = sessionStorage.getObject('autosave', 'save');
+                            var cartDataItems = cartData.items;
+                            
+                            for(var i = 0; i < cartDataItems.length; i++) {
+                                var item = cartDataItems[i];
+                                
+                                console.log('cartData2 is', cartData);
+                                console.log('cartData2 item', item);
+                            
+                                var test =  arrayObjectIndexOf(cartDataItems, sku, "sku"); // 1
+                                console.log("test is", test);
 
+                                if(test != -1){
+
+                                    console.log('2 that thing is already in the cart qty is', item.qty);
+                                    var quan = parseFloat(item.qty);
+                                    quan = quan + 1; 
+                                    console.log('noowow quan is', quan);
+                                    
+                                    var cartData = sessionStorage.getObject('autosave', 'save');
+                                  
+                                    console.log('ses', cartData);
+                                    
+                                   
+
+                                    if(cartData == null ) {
+                                        return;
+                                    }
+
+                                    console.log('cart data', cartData);
+                                    
+                                     cartData.items[i].qty = quan;
+                                    console.log('quan is', quan);
+                                    
+                                    console.log('cardataitems qty', cartData.items[i].qty);
+
+                                  
+                                    sessionStorage.setObject('autosave', cartData);
+                                    console.log('sesssto', sessionStorage);
+                                    
+                                    console.log('this is this right', clickeditem);
+                                     var updateqty = $("#shoppingCart li[data-sku-qty='" + sku + "']");
+                                    console.log('updateqty is', updateqty);
+                                    
+                                    
+                                    
+                                    var listeditems = document.querySelectorAll("#shoppingCart li");
+                                    
+                                    for(var i = 0; i < listeditems.length; i++){
+                                        console.log('thing', listeditems[i].getAttribute("data-item-sku"));
+                                        var listeditemsku = listeditems[i].getAttribute("data-item-sku");
+                                        
+                                        if(listeditemsku == sku ){
+                                            
+                                        //update the html for the quantity... will have to put qty in a span element in the php code for addingitems in cart
+                                            listeditems[i].innerHTML = 'yooo';
+                                        
+                                        }
+                                    }
+                                    
+                                    
+
+                                    };
+                                    
+                                   return;
+                                }
+                          
 
                         // ALTERED FOR WEB STORAGE
                         var aDate = new Date();
@@ -220,8 +309,10 @@ console.log('cartdata', cartData);
                         console.log('sesssto', sessionStorage);
 
 
-                            };
                         };
+                        
+                    };    
+                };
 
             };
 
