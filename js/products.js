@@ -1,17 +1,25 @@
 
         $(document).ready(function() {
+            
+            
+             function arrayObjectIndexOf(myArray, searchTerm, property) {
+                for(var i = 0, len = myArray.length; i < len; i++) {
+                    if (myArray[i][property] === searchTerm) return i;
+                }
+                return -1;
+            }
+           // arrayObjectIndexOf(cartDataItems, sku, "sku"); // 1
 
             //cart move out on hover
+            
+            
             var tog = false;
-            $('#cart').hover(function(){
-                
-                console.log('oh hey hovererer');
-                
-                console.log('tog is', tog);
+            $('#arrow').click(function(){
+
                 
                 if(tog == false){
                     
-                    $('#cart').stop(true).animate(
+                   $('#cart').stop(true).animate(
                             {
 
                                 width:'50%',
@@ -20,13 +28,13 @@
 
                             }
                     );
-                    
+                   
+                    $('#arrow i').html('keyboard_arrow_right');
                     tog = true;
                 
                 } else if(tog == true){
                     
-                    console.log('go back');
-                    $('#cart').stop(true).animate(
+                   $('#cart').stop(true).animate(
                             {
 
                                 width:'30%',
@@ -35,11 +43,64 @@
 
                             }
                     );
+                    $('#arrow i').html('keyboard_arrow_left');
                     tog = false;
                 }
                 
             });
             
+            ///// function to change qty:
+                    
+            function changeqty(){
+
+                var numinps = document.querySelectorAll('input[type="number"]');
+
+                function changenums(i){
+                    return function(){
+
+                        var changedinp = this;
+                        var quan = parseFloat(changedinp.value);
+
+                        var cartData = sessionStorage.getObject('autosave', 'save');
+
+
+                        if(cartData == null ) {
+                            return;
+                        }
+                         cartData.items[i].qty = quan;
+
+                        sessionStorage.setObject('autosave', cartData);
+                        console.log('sesssto', sessionStorage);
+
+
+                        var thisSku = cartData.items[i].sku; 
+
+                        var listeditems = document.querySelectorAll(".showsubtotal");
+                        var price = cartData.items[i].price;
+                        var subtotal = parseFloat(Math.round((quan * price) * 100) / 100).toFixed(2);
+
+                        for(var x = 0; x < listeditems.length; x++){
+
+                            var listeditemsku = listeditems[x].getAttribute("data-price-sku");
+
+                            if(listeditemsku == thisSku ){
+                              listeditems[x].innerHTML = subtotal;
+
+                            }
+                        };
+
+
+                    };
+                };
+
+                for (var i = 0; i < numinps.length; i++){
+
+                    numinps[i].addEventListener("change", changenums(i));
+
+                };
+
+            };
+
             Storage.prototype.setObject = function(key, value) {
                 
                 this.setItem(key, JSON.stringify(value));
@@ -68,9 +129,7 @@
                         $("#whitebox").fadeIn('slow');
                         
                         addtocart();
-                        
-              
-                        
+                        loadShoppingCartItems();
                                 
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -80,8 +139,6 @@
             }
 
             loadProducts();
-
-//////
             
             function loadShoppingCartItems() {
 
@@ -101,7 +158,6 @@
                     
                     
                     var item = cartDataItems[i];
-                    // sku, qty, date
                     var sku = item['sku'];
                     var qty = item['qty'];
                     var date = item['date'];
@@ -109,29 +165,46 @@
                     var desc = item['desc'];
                     var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
                     
-                    var alreadythere = cartDataItems.indexOf(item);
                     
-                    if(alreadythere != -1){
-                        
-                        
-                    }
                     var aDate = new Date();
                     
-                    //figuring out the structure for how items appear in cart here first, then move to other functions.
-                    //make quantity input value change session upon change of number
-                    //check to make sure remove button works
-                    
                     var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-                        + aDate.getTime() + "'><div class='row'><span style='font-weight:bold;font-size:18pt;' >" + desc + "</span><br><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>quantity:</span><br><input class='qty' data-sku-qty=' " + sku + "' value='" + qty + "' min='1' max='5' step='1' type='number'></div><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>price:</span><br><span >$ " + subtotal + "</span></div><div class='row '><div class = ' large-10 small-10 large-offset-2 small-offset-2 columns'><input class='removeitem' type='button' data-remove-button='remove' value='remove item'/></div></div></div></li>";
+                        + aDate.getTime() + "'><div class='row'><span style='font-weight:bold;font-size:18pt;' >" + desc + "</span><br><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>quantity:</span><br><input class='qty' data-sku-qty=' " + sku + "' value='" + qty + "' min='1' max='5' step='1' type='number'></div><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>price:</span><br><span >$</span><span class='showsubtotal' data-price-sku='" + sku + "'>" + subtotal + "</span></div><div class='row '><div class = ' large-10 small-10 large-offset-2 small-offset-2 columns'><input class='removeitem' type='button' data-remove-button='remove' value='remove item' data-item-sku='" + sku + "' data-item-qty='" + qty +" data-item-date = '" + aDate.getTime() +"' /></div></div></div></li>";
+                    
+                    
             
                     shoppingCartList.append(item);
+                    
+                    var alreadythere = arrayObjectIndexOf(cartDataItems, sku, "sku"); // 1
+                   
+                    if(alreadythere != -1){
+                       
+                        var addbuttons = document.querySelectorAll('.add');
+                        
+                        
+                        for(var x = 0; x < addbuttons.length; x++){
+                           
+                            if(addbuttons[x].getAttribute('data-sku-add') == sku){
+                                
+                                addbuttons[x].disabled = true;
+                                addbuttons[x].value = 'added';
 
-
+                            }
+                        }
+                      
+                    };
+                                        
+                                        
+               
+                    
+                    changeqty();
+                   
+                    
                 }
                 console.log('cart items array, added', cartDataItems);
             }
             
-            loadShoppingCartItems();
+            
             
             function addtocart(){
                 
@@ -144,8 +217,10 @@
                 
                 function adding(i){
                     return function(){
-                   
-                        var clickeditem = this;
+                    var clickeditem = this;
+                        
+                        this.disabled = true;
+                        this.value = 'added';
                         
                         if(sessionStorage.cartstarted != 'true'){
                             
@@ -173,20 +248,18 @@
                                         var price = $("span[data-sku-price='" + sku + "']").text();
                                         var desc = $("p[data-sku-name='" + sku + "']").text();
                                         var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
+                                        var aDate = new Date();
                                         console.log(desc, "quantity", qty, "price", price);
 
                                         var shoppingCartList = $("#shoppingCart");
-                                        
 
-                                        // ALTERED FOR WEB STORAGE
-                                        var aDate = new Date();
                                         var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-                                            + aDate.getTime() + "'><span style='font-weight:bold;' >" + desc + "</span><span> x" + qty + "  </span><span style='float:right'>$ " + subtotal
-                                            + "</span <input type='button' data-remove-button='remove' value='X'/></li>";
-                                        
-                                        
+                        + aDate.getTime() + "'><div class='row'><span style='font-weight:bold;font-size:18pt;' >" + desc + "</span><br><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>quantity:</span><br><input class='qty' data-sku-qty=' " + sku + "' value='" + qty + "' min='1' max='5' step='1' type='number'></div><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>price:</span><br><span >$</span><span class='showsubtotal' data-price-sku='" + sku + "'>" + subtotal + "</span></div><div class='row '><div class = ' large-10 small-10 large-offset-2 small-offset-2 columns'><input class='removeitem' type='button' data-remove-button='remove' value='remove item' data-item-sku='" + sku + "' data-item-qty='" + qty +" data-item-date = '" + aDate.getTime() +"' /></div></div></div></li>";
+            
+            
                                         
                                         shoppingCartList.append(item);
+                                        changeqty();
 
 
                                         // SESSION STORAGE - SAVE SKU AND QTY AS AN OBJECT IN THE
@@ -209,6 +282,7 @@
                                         // clobber the old value
                                         sessionStorage.setObject('autosave', cartData);
                                         console.log('sesssto', sessionStorage);
+                                        
 
 
 
@@ -219,7 +293,7 @@
                                 });
                                 
                                 sessionStorage.cartstarted = 'true';
-                                console.log('what waht', sessionStorage.cartstarted);
+                              
                         } else {
                             
                             
@@ -319,14 +393,16 @@
                                     
                                    
                                 }
-                          
+                                var shoppingCartList = $("#shoppingCart");
+                                var aDate = new Date();
 
-                        // ALTERED FOR WEB STORAGE
-                        var aDate = new Date();
-                        var item = "<li class='cartlist' data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-                            + aDate.getTime() + "'><span style='font-weight:bold;float:left;' >" + desc + "</span><span> x" + qty + "  </span><span style='float:right'>$ " + subtotal
-                            + "</span <input type='button' data-remove-button='remove' value='X'/></li>";
+                                 var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
+                        + aDate.getTime() + "'><div class='row'><span style='font-weight:bold;font-size:18pt;' >" + desc + "</span><br><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>quantity:</span><br><input class='qty' data-sku-qty=' " + sku + "' value='" + qty + "' min='1' max='5' step='1' type='number'></div><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>price:</span><br><span >$</span><span class='showsubtotal' data-price-sku='" + sku + "'>" + subtotal + "</span></div><div class='row '><div class = ' large-10 small-10 large-offset-2 small-offset-2 columns'><input class='removeitem' type='button' data-remove-button='remove' value='remove item' data-item-sku='" + sku + "' data-item-qty='" + qty +" data-item-date = '" + aDate.getTime() +"' /></div></div></div></li>";
+            
+            
+                                        
                         shoppingCartList.append(item);
+                            changeqty();
 
 
                         // SESSION STORAGE - SAVE SKU AND QTY AS AN OBJECT IN THE
@@ -363,13 +439,15 @@
                 // https://api.jquery.com/closest/
 
 
-
+                    console.log('removiyg');
                 // WEB STORAGE REMOVE
-                var thisInputSKU = this.parentNode.getAttribute('data-item-sku');
-                var thisInputQty = this.parentNode.getAttribute('data-item-qty');
-                var thisInputDate = this.parentNode.getAttribute('data-item-date');
+                var thisInputSKU = this.getAttribute('data-item-sku');
+                var thisInputQty = this.getAttribute('data-item-qty');
+                var thisInputDate = this.getAttribute('data-item-date');
 
                 var cartData = sessionStorage.getObject('autosave');
+                
+                console.log('removeit cartData', cartData);
                 if(cartData == null) {
                     return;
                 }
@@ -377,9 +455,10 @@
                 for(var i = 0; i < cartDataItems.length; i++) {
                     var item = cartDataItems[i];
                     // get the item based on the sku, qty, and date
-                    if(item['sku'] == thisInputSKU && item['date'] == thisInputDate) {
+                    if(item['sku'] == thisInputSKU) {
                         // remove from web storage
                         cartDataItems.splice(i, 1);
+                        console.log('removeit splicethatshit');
 
                     }
                 }
@@ -389,6 +468,19 @@
                 sessionStorage.setObject('autosave', cartData);
 
                 this.closest("li").remove();
+                var addbuttons = document.querySelectorAll('.add');
+                
+                
+                for(var i = 0; i < addbuttons.length; i++){
+                    
+                    if(addbuttons[i].getAttribute('data-sku-add') == thisInputSKU){
+                        
+                        addbuttons[i].disabled = false;
+                        addbuttons[i].value = '+ add to cart';
+                        
+                    }
+                };
+                
 
             });
 
