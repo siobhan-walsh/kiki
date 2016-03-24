@@ -9,6 +9,10 @@ function loadScripts() {
                      'ProductManager.php',
                      'ShoppingCartManager.php',
                      'UserManager.php',
+                     'UserLoginAction.php',
+                     'UserLogoutAction.php',
+                     'ShowUserProfileAction.php',
+                     'Session.php',
                      'Utils.php');
 
         $subDir = "src";
