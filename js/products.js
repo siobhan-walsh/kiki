@@ -57,8 +57,12 @@
 
                         var changedinp = this;
                         var quan = parseFloat(changedinp.value);
+                        
+                        console.log('quan is', quan);
 
                         var cartData = sessionStorage.getObject('autosave', 'save');
+                        
+                        console.log('cartdata is', cartData);
 
 
                         if(cartData == null ) {
@@ -67,6 +71,10 @@
                          cartData.items[i].qty = quan;
 
                         sessionStorage.setObject('autosave', cartData);
+                        var thisli = $(changedinp).parents('li');
+                        
+                        console.log('thisli is', thisli);
+                                    console.log('thisli attr', thisli[0]);
                         
                         var thisSku = cartData.items[i].sku; 
 
