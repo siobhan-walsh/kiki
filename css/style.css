@@ -11,6 +11,39 @@ body {
 .test {
     background-color:#ffccee;
 }
+
+
+* {box-sizing: border-box;}
+
+/********************************************
+DASHBOARD
+********************************************/
+
+#item-form {
+    
+    
+ background:#6FB98F;   
+
+
+}
+.row {
+  max-width: 30em;
+  margin: 3%;
+}
+
+@media only screen and (min-width: 64.063em) {
+  .row {
+    max-width: 60em;
+  }
+}
+
+
+button.tiny {
+  margin-bottom: 0;
+  font-size: .8rem;
+}
+
+
 /********************************************
 ADMIN LOGIN
 ********************************************/
@@ -547,13 +580,7 @@ margin-top: 0;
 }
 
 
-.row {
-    
- margin: 3%;    
-  
-    
-    
-}
+
 
 .col-sm-6{
     
