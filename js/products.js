@@ -73,9 +73,8 @@
                         sessionStorage.setObject('autosave', cartData);
                         var thisli = $(changedinp).parents('li');
                         
-                        console.log('thisli is', thisli);
-                                    console.log('thisli attr', thisli[0]);
-                        
+                        thisli[0].setAttribute('data-item-qty', quan);
+                       
                         var thisSku = cartData.items[i].sku; 
 
                         var listeditems = document.querySelectorAll(".showsubtotal");
