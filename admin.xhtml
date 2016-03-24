@@ -51,9 +51,31 @@
                   </div>
 
                   <div id="shoppingCartContainer" tal:condition="php: Session::get('isLoggedIn')">
-                        <p><i>this is where product stuff will go</i></p>
-              </div>
+                    
+                      
+                      
+                      <div id="items-view" class="small-12 large-8 columns">
+                       <table id="main" class="small-12">
+                        <thead class="expand">
+                          <tr>
+                            <th>Item</th>
+                            <th>Sku</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                          </tr>
+                          <tbody id="table-body">
 
+
+                          </tbody>
+                        </thead>
+                      </table>
+                      </div>
+                      
+                      
+                      
+              </div>
+            <br/>
                   <div id="loginFormContainer" tal:condition="php: !Session::get('isLoggedIn')">
 
                     <form id="loginForm">
@@ -115,6 +137,25 @@
                             });
                             return json;
                         }
+                        
+                        function getProducts(){
+                             $.ajax({
+                                url: "./cont/products.php",
+                                type: "POST",
+                                dataType: 'HTML',
+                                 data:{forpage:'admin'},
+                                success: function(presp) {
+                                   console.log("cart checkout response: ", presp);
+                                   $('#table-body').append(presp);
+
+                                },
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    console.log(jqXHR.statusText, textStatus);
+                                }
+                            });
+                        };
+                        
+                        getProducts();
 
                         function doLogin() {
 
@@ -210,8 +251,7 @@
           </div>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="./js/main.js"></script>
-
+        
         <footerReplace metal:use-macro="/templating/footer.xhtml/page_footer">
         </footerReplace>
 

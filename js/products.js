@@ -118,6 +118,7 @@
                     url: "./cont/products.php",
                     type: "POST",
                     dataType: 'HTML',
+                    data:{forpage:'menu'},
                     success: function(presp) {
                         //console.log("cart checkout response: ", presp);
                         $("#listitems").html(presp);
