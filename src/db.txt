@@ -26,26 +26,27 @@ CREATE TABLE products (
   product_price  numeric(15, 2) NOT NULL,
   product_name varchar(100) NOT NULL,
   description varchar(600) NOT NULL,
+  qty int NOT NULL,
   PRIMARY KEY (product_id)
 );
 
-INSERT INTO products (product_name, sku, product_price, description) VALUES ('Chicken Souvlaki', 'kg1', '10.50', 'Mushroom / Veggie / White Sauces',);
+INSERT INTO products (product_name, sku, product_price, description, qty) VALUES ('Chicken Souvlaki', 'kg1', '10.50', 'Mushroom / Veggie / White Sauces', '10');
 
-INSERT INTO products (product_name, sku, product_price, description) VALUES ('Lemon and Garlic Green Beans', 'kg2', '14.50', 'Lemon / Garlic / Beans');
+INSERT INTO products (product_name, sku, product_price, description, qty) VALUES ('Lemon and Garlic Green Beans', 'kg2', '14.50', 'Lemon / Garlic / Beans', '10');
 
-INSERT INTO products (product_name, sku, product_price, description) VALUES ('Lamb Skewers with Tzatziki', 'kg3', '18.50', 'Lamb / Wine / Butter');
+INSERT INTO products (product_name, sku, product_price, description, qty) VALUES ('Lamb Skewers with Tzatziki', 'kg3', '18.50', 'Lamb / Wine / Butter', '10');
 
-INSERT INTO products (product_name, sku, product_price, description) VALUES ('Imported Oysters Grill (5 Pieces)', 'kg4', '15.90', 'Oysters / Veggie / Ginger');
+INSERT INTO products (product_name, sku, product_price, description, qty) VALUES ('Imported Oysters Grill (5 Pieces)', 'kg4', '15.90', 'Oysters / Veggie / Ginger', '10');
 
-INSERT INTO products (product_name, sku, product_price, description) VALUES ('Meatloaf with Black Pepper-Honey BBQ', 'kg5', '16.40', 'Pepper / Chicken / Honey');
+INSERT INTO products (product_name, sku, product_price, description, qty) VALUES ('Meatloaf with Black Pepper-Honey BBQ', 'kg5', '16.40', 'Pepper / Chicken / Honey', '10');
 
-INSERT INTO products (product_name, sku, product_price, description) VALUES ('Linguine Fantasia', 'kg6', '14.50', 'Shrimp / Veggie / White Wine');
+INSERT INTO products (product_name, sku, product_price, description, qty) VALUES ('Linguine Fantasia', 'kg6', '14.50', 'Shrimp / Veggie / White Wine', '10');
 
-INSERT INTO products (product_name, sku, product_price, description) VALUES ('Kalamari', 'kg7', '18.50', 'Squid / Wine / Butter');
+INSERT INTO products (product_name, sku, product_price, description, qty) VALUES ('Kalamari', 'kg7', '18.50', 'Squid / Wine / Butter', '10');
 
-INSERT INTO products (product_name, sku, product_price, description) VALUES ('Garlic Prawns', 'kg8', '15.90', 'Prawns / White Wine / Lemon');
+INSERT INTO products (product_name, sku, product_price, description, qty) VALUES ('Garlic Prawns', 'kg8', '15.90', 'Prawns / White Wine / Lemon', '10');
 
-INSERT INTO products (product_name, sku, product_price, description) VALUES ('Mousaka', 'kg9', '16.40', 'Lamb / Nutmeg / Eggplant');
+INSERT INTO products (product_name, sku, product_price, description, qty) VALUES ('Mousaka', 'kg9', '16.40', 'Lamb / Nutmeg / Eggplant', '10');
 
 CREATE TABLE cart_product (
   cp_id int NOT NULL AUTO_INCREMENT,
@@ -63,17 +64,17 @@ INSERT INTO cart_product (cart_id, product_id) VALUES (1, 2);
 INSERT INTO cart_product (cart_id, product_id) VALUES (2, 1);
 INSERT INTO cart_product (cart_id, product_id) VALUES (2, 2);
 
- CREATE TABLE ‘user` (
-   `ID` int(11) NOT NULL,
-   `email` varchar(300) NOT NULL,
-    `password` varchar(300) NOT NULL
-    -> ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-Query OK, 0 rows affected (0.01 sec)
+create table user (
+  ID int NOT NULL AUTO_INCREMENT,
+  user_name varchar(50),
+  first_name varchar(50),
+  last_name varchar(50),
+  password varchar(50),
+  type varchar(50),
+  PRIMARY KEY (ID)
+);
 
-INSERT INTO `user` (`ID`, `email`, `password`) VALUES
-   (1, 'ksakdesigns@gmail.com', 'katie'),
-   (2, 'siobhanemmaw@gmail.com', 'siobhan'),
-   (3, 'teacher@email.com', 'arron');
-
-
+insert into user (user_name, first_name, last_name, password, type) values ('aaa', 'arron', 'ferguson', '123', 'admin');
+insert into user (user_name, first_name, last_name, password, type) values ('jjj', 'jim', 'parry', '123', 'admin');
+insert into user (user_name, first_name, last_name, password, type) values ('jaa', 'jason', 'harrison', '123', 'admin');
 

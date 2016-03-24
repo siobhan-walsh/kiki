@@ -217,7 +217,7 @@ ADMIN LOGIN
 }
 
 
-form {
+.boxform {
     margin-left:auto;
     margin-right:auto;
     
@@ -319,19 +319,19 @@ input.name {
 }
 
 input.email {
-	  background: rgba(255, 255, 255, 0.4) 
+	  background: rgba(255, 255, 255, 0.4);
 	  url(http://luismruiz.com/img/gemicon_name.png) no-repeat scroll 10px 10px;
           padding-left:42px;
     width: 100%;
 }
 
 input.message {
-	  background: rgba(255, 255, 255, 0.4) 
+	  background: rgba(255, 255, 255, 0.4) ;
 	  padding-left:45px;
 }
 
 ::-webkit-input-placeholder {
-	  color: #fff;
+	  color: #cccccc;
 }
 
 :-moz-placeholder{ 
@@ -1238,4 +1238,17 @@ background-color: aquamarine;
 
   /* Support for IE. */
   font-feature-settings: 'liga';
+}
+
+
+/* user editor  */
+
+
+.whitebg {
+    background-color:rgba(255, 255, 255, 0.9);
+    float:left;
+}
+
+.addNewUser {
+    color:#000;
 }

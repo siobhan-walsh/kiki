@@ -8,6 +8,7 @@ function loadScripts() {
                      'Parameters.php',
                      'ProductManager.php',
                      'ShoppingCartManager.php',
+                     'UserManager.php',
                      'Utils.php');
 
         $subDir = "src";

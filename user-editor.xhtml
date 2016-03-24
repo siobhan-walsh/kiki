@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <headReplace metal:use-macro="/templating/head.xhtml/meta_head"></headReplace>
+
+  <body>
+
+
+    <navReplace metal:use-macro="./templating/nav.xhtml/nav_bar">
+    </navReplace>
+
+      <div id='bg2'>
+      
+      
+      </div>
+      
+       
+       <div id='content' class=' large-12 columns'>
+           
+           <div class = 'whitebg large-offset-1 large-10 columns'>
+               
+               <div class = 'row'>
+
+                  <h2>Current Users</h2>
+                  <table id="users">
+                    <thead>
+                      <tr>
+                        <th class="first_name_header"><span>First Name</span></th>
+                        <th class="last_name_header"><span>Last Name</span></th>
+                        <th class="login_header"><span>User Name</span></th>
+                        <th class="delete_header"><span>Delete</span></th>
+                        <th class="delete_header"><span>Update</span></th>
+                      </tr>
+                    </thead>
+
+                    <tbody id='userrows'>
+                     
+                    </tbody>
+                  </table>
+                   
+                   <h2> Add a new user:</h2>
+                  <form id="addNewUser">
+                    <input id="addFirstName" type="text" placeholder="first name" required="required"/>
+                    <input id="addLastName" type="text" placeholder="last name" required="required"/>
+                    <input id="addUserName" type="text" placeholder="User name" required="required"/>
+                    <input id="submitNewUser" type="submit" value="Add"/>
+                  </form>
+      </div>
+    </div>
+</div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function() {
+
+            function loadUsers() {
+                $.ajax({
+                    url: "./cont/users.php",
+                    type: "GET",
+                    dataType: 'html',
+                    success: function(returnedData) {
+                       
+                        $("#userrows").html(returnedData);
+                      
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR.statusText, textStatus);
+                    }
+                });
+            }
+
+            loadUsers();
+
+
+            $("#addNewUser").submit(function(e) {
+                e.preventDefault();
+
+                // get values from form
+                var firstName = $("#addFirstName").val();
+                var lastName = $("#addLastName").val();
+                var userName = $("#addUserName").val();
+
+                //console.log(firstName, lastName, userName);
+
+                $.ajax({
+                    url: "./cont/users.php",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {action: "add", newFirstName: firstName,
+                        newLastName: lastName, newUserName: userName},
+                    success: function(returnedData) {
+                        loadUsers();
+                        console.log(returnedData);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        $("#p1").text(jqXHR.statusText);
+                    }
+
+                });
+
+            });
+
+            $('#users').on('click', '.delete', function() {
+                var loginValue = this.getAttribute("id");
+                loginValue = loginValue.replace("d-", "");
+
+                $.ajax({
+                    url: "./cont/users.php",
+                    type: "POST",
+                    dataType: 'json',
+                    data: {action: "delete", username: loginValue},
+                    success: function(returnedData) {
+                        loadUsers();
+
+                        //window.location.href = "user-editor.html";
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR.statusText, textStatus);
+                    }
+                });
+
+            });
+
+            $('#users').on('click', '.update', function() {
+                var loginValue = this.getAttribute("id");
+                //var firstName = $(this).val(
+                loginValue = loginValue.replace("u-", "");
+                var editedFirstName = $(this).parent().parent().find(".first_name span").text();
+               
+                //console.log(loginValue, editedFirstName);
+
+                $.ajax({
+                    url: "./cont/users.php",
+                    type: "POST",
+                    dataType: 'json',
+                    data: {action: "update", username: loginValue, newFirstName: editedFirstName},
+                    success: function(returnedData) {
+                        loadUsers();
+
+                        //window.location.href = "user-editor.html";
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR.statusText, textStatus);
+                    }
+                });
+
+            });
+
+
+            // http://stackoverflow.com/questions/11882693/change-table-cell-from-span-to-input-on-click
+            $('#users').on('click', 'span', function() {
+
+                var $td = $(this).parent();
+                var $input = null;
+
+                var val = $(this).html();
+
+                if($td.attr('class') === 'first_name') {
+                    //var val = $(this).html();
+                    $td.html('<input type="text" value="' + val + '"/>');
+                    var $input = $td.find('input');
+                    $input.focus();
+                    $input.select();
+                }
+
+                if($input != null) {
+
+                    $input.on('blur', function() {
+                        $(this).parent().html('<span>' + $(this).val() + '</span>');
+                    });
+
+                    $input.keyup(function(e) {
+                        if(e.which == 13) {
+                            $(this).parent().html('<span>' + $(this).val() + '</span>');
+                        } else if(e.which == 27) {
+                            // escape key, means user canceled operation
+                            $(this).parent().html('<span>' + val + '</span>');
+                        }
+                    });
+                }
+            });
+
+
+
+        });
+
+    </script>
+
+ 
+      
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="./js/main.js"></script>
+
+    <footerReplace metal:use-macro="/templating/footer.xhtml/page_footer">
+    </footerReplace>
+
+  
+    
+    
+ 
+    
+    
+    </body>
+</html>
+
+    

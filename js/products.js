@@ -481,8 +481,8 @@
                     success: function(returnedData) {
                         console.log("cart check out response: ", returnedData);
                         
-                        sessionStorage.setObject('autosave', '');
-                        //window.location = './thankyou.php';
+                        sessionStorage.setObject('autosave', {items: []});
+                        window.location = './thankyou.php';
 
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
