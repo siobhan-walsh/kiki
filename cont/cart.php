@@ -75,11 +75,15 @@ loadScripts();
 
                 // turn the JSON into an array of arrays (true means arrays and not objects)
                 $items = json_decode($_POST['items'], true);
+                $total = $_POST['total'];
+                
+               
                 $scm->addItemsToCart($items, $_SESSION['id']);
 
-                $affectedRows = $scm->checkoutCart($_SESSION['id']);
+                $affectRows = $scm->checkoutCart($_SESSION['id'], $total);
+           
 
-                if($affectedRows > 0) {
+                if($affectRows > 0) {
 
                     session_unset();
                     session_destroy();

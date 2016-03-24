@@ -29,7 +29,7 @@ CREATE TABLE products (
   PRIMARY KEY (product_id)
 );
 
-INSERT INTO products (product_name, sku, product_price, description) VALUES ('Chicken Souvlaki', 'kg1', '10.50', 'Mushroom / Veggie / White Sauces');
+INSERT INTO products (product_name, sku, product_price, description) VALUES ('Chicken Souvlaki', 'kg1', '10.50', 'Mushroom / Veggie / White Sauces',);
 
 INSERT INTO products (product_name, sku, product_price, description) VALUES ('Lemon and Garlic Green Beans', 'kg2', '14.50', 'Lemon / Garlic / Beans');
 

@@ -1,18 +1,15 @@
 
         $(document).ready(function() {
             
-            
-             function arrayObjectIndexOf(myArray, searchTerm, property) {
+            //index of for objects in arrays
+            function arrayObjectIndexOf(myArray, searchTerm, property) {
                 for(var i = 0, len = myArray.length; i < len; i++) {
                     if (myArray[i][property] === searchTerm) return i;
                 }
                 return -1;
             }
-           // arrayObjectIndexOf(cartDataItems, sku, "sku"); // 1
-
-            //cart move out on hover
-            
-            
+           
+            //click to expand cart
             var tog = false;
             $('#arrow').click(function(){
 
@@ -70,9 +67,7 @@
                          cartData.items[i].qty = quan;
 
                         sessionStorage.setObject('autosave', cartData);
-                        console.log('sesssto', sessionStorage);
-
-
+                        
                         var thisSku = cartData.items[i].sku; 
 
                         var listeditems = document.querySelectorAll(".showsubtotal");
@@ -169,7 +164,7 @@
                     var aDate = new Date();
                     
                     var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-                        + aDate.getTime() + "'><div class='row'><span style='font-weight:bold;font-size:18pt;' >" + desc + "</span><br><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>quantity:</span><br><input class='qty' data-sku-qty=' " + sku + "' value='" + qty + "' min='1' max='5' step='1' type='number'></div><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>price:</span><br><span >$</span><span class='showsubtotal' data-price-sku='" + sku + "'>" + subtotal + "</span></div><div class='row '><div class = ' large-10 small-10 large-offset-2 small-offset-2 columns'><input class='removeitem' type='button' data-remove-button='remove' value='remove item' data-item-sku='" + sku + "' data-item-qty='" + qty +" data-item-date = '" + aDate.getTime() +"' /></div></div></div></li>";
+                        + aDate.getTime() + "' data-item-total='" + subtotal + "'><div class='row'><span style='font-weight:bold;font-size:18pt;' >" + desc + "</span><br><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>quantity:</span><br><input class='qty' data-sku-qty=' " + sku + "' value='" + qty + "' min='1' max='5' step='1' type='number'></div><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>price:</span><br><span >$</span><span class='showsubtotal' data-price-sku='" + sku + "'>" + subtotal + "</span></div><div class='row '><div class = ' large-10 small-10 large-offset-2 small-offset-2 columns'><input class='removeitem' type='button' data-remove-button='remove' value='remove item' data-item-sku='" + sku + "' data-item-qty='" + qty +" data-item-date = '" + aDate.getTime() +"' /></div></div></div></li>";
                     
                     
             
@@ -193,15 +188,12 @@
                         }
                       
                     };
-                                        
-                                        
-               
                     
                     changeqty();
                    
                     
                 }
-                console.log('cart items array, added', cartDataItems);
+                console.log('cart items array', cartDataItems);
             }
             
             
@@ -234,29 +226,19 @@
                                     success: function(returnedData) {
                                         console.log("cart start response: ", returnedData);
 
-                                        // WEB STORAGE - SESSION STORAGE
-                                        //var sessionID = returnedData['s_id'];
                                         sessionStorage.setObject('autosave', {items: []});
                                         
-                                        
-                                        
-                                        console.log(clickeditem.getAttribute("data-sku-add"));
-
-                                        // get the sku
                                         var sku = clickeditem.getAttribute("data-sku-add");
                                         var qty = 1;
                                         var price = $("span[data-sku-price='" + sku + "']").text();
                                         var desc = $("p[data-sku-name='" + sku + "']").text();
                                         var subtotal = parseFloat(Math.round((qty * price) * 100) / 100).toFixed(2);
                                         var aDate = new Date();
-                                        console.log(desc, "quantity", qty, "price", price);
-
+                                        
                                         var shoppingCartList = $("#shoppingCart");
 
                                         var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-                        + aDate.getTime() + "'><div class='row'><span style='font-weight:bold;font-size:18pt;' >" + desc + "</span><br><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>quantity:</span><br><input class='qty' data-sku-qty=' " + sku + "' value='" + qty + "' min='1' max='5' step='1' type='number'></div><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>price:</span><br><span >$</span><span class='showsubtotal' data-price-sku='" + sku + "'>" + subtotal + "</span></div><div class='row '><div class = ' large-10 small-10 large-offset-2 small-offset-2 columns'><input class='removeitem' type='button' data-remove-button='remove' value='remove item' data-item-sku='" + sku + "' data-item-qty='" + qty +" data-item-date = '" + aDate.getTime() +"' /></div></div></div></li>";
-            
-            
+                        + aDate.getTime() + "' data-item-total='" + subtotal + "'><div class='row'><span style='font-weight:bold;font-size:18pt;' >" + desc + "</span><br><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>quantity:</span><br><input class='qty' data-sku-qty=' " + sku + "' value='" + qty + "' min='1' max='5' step='1' type='number'></div><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>price:</span><br><span >$</span><span class='showsubtotal' data-price-sku='" + sku + "'>" + subtotal + "</span></div><div class='row '><div class = ' large-10 small-10 large-offset-2 small-offset-2 columns'><input class='removeitem' type='button' data-remove-button='remove' value='remove item' data-item-sku='" + sku + "' data-item-qty='" + qty +" data-item-date = '" + aDate.getTime() +"' /></div></div></div></li>";
                                         
                                         shoppingCartList.append(item);
                                         changeqty();
@@ -265,7 +247,6 @@
                                         // SESSION STORAGE - SAVE SKU AND QTY AS AN OBJECT IN THE
                                         // ARRAY INSIDE OF THE AUTOSAVE OBJECT
 
-                                        //sessionStorage.setObject('autosave', 'none');
 
                                         var cartData = sessionStorage.getObject('autosave', 'save');
 
@@ -274,8 +255,6 @@
                                         if(cartData == null ) {
                                             return;
                                         }
-
-                                        console.log('cart data', cartData);
 
                                         var item = {'sku': sku, 'qty': qty, date: aDate.getTime(), 'desc': desc, 'price': price};
                                         cartData['items'].push(item);
@@ -295,21 +274,7 @@
                                 sessionStorage.cartstarted = 'true';
                               
                         } else {
-                            
-                            
-                            function arrayObjectIndexOf(myArray, searchTerm, property) {
-                                for(var i = 0, len = myArray.length; i < len; i++) {
-                                    if (myArray[i][property] === searchTerm) return i;
-                                }
-                                return -1;
-                            }
-                           // arrayObjectIndexOf(cartDataItems, sku, "sku"); // 1
-                        
-                 
-                
-
-                        console.log(this.getAttribute("data-sku-add"));
-
+                          
                         // get the sku
                         var clickeditem = this;
                             
@@ -326,78 +291,12 @@
                             
                          var cartData = sessionStorage.getObject('autosave', 'save');
                             var cartDataItems = cartData.items;
-                            
-                            for(var i = 0; i < cartDataItems.length; i++) {
-                                var item = cartDataItems[i];
-                                
-                                console.log('cartData2 is', cartData);
-                                console.log('cartData2 item', item);
-                            
-                                var test =  arrayObjectIndexOf(cartDataItems, sku, "sku"); // 1
-                                console.log("test is", test);
-                                console.log("sku is", sku);
 
-                                if(test != -1 && sku == cartDataItems[i].sku){
-
-                                    console.log('2 that thing is already in the cart qty is', cartDataItems[i].qty);
-                                    var quan = parseFloat(item.qty);
-                                    var addedqty = parseFloat(qty);
-                                    quan = quan + addedqty; 
-                                    console.log('noowow quan is', quan);
-                                    
-                                    var cartData = sessionStorage.getObject('autosave', 'save');
-                                  
-                                    console.log('ses', cartData);
-                                    
-                                   
-
-                                    if(cartData == null ) {
-                                        return;
-                                    }
-
-                                    console.log('cart data', cartData);
-                                    
-                                     cartData.items[i].qty = quan;
-                                    console.log('quan is', quan);
-                                    
-                                    console.log('cardataitems qty', cartData.items[i].qty);
-
-                                  
-                                    sessionStorage.setObject('autosave', cartData);
-                                    console.log('sesssto', sessionStorage);
-                                    
-                                    console.log('this is this right', clickeditem);
-                                     var updateqty = $("#shoppingCart li[data-sku-qty='" + sku + "']");
-                                    console.log('updateqty is', updateqty);
-                                    
-                                    
-                                    
-                                    var listeditems = document.querySelectorAll("#shoppingCart li");
-                                    
-                                    for(var i = 0; i < listeditems.length; i++){
-                                        console.log('thing', listeditems[i].getAttribute("data-item-sku"));
-                                        console.log('thing sku', sku);
-                                        var listeditemsku = listeditems[i].getAttribute("data-item-sku");
-                                        
-                                        if(listeditemsku == sku ){
-                                            
-                                        //update the html for the quantity... will have to put qty in a span element in th code for addingitems in cart
-                                            listeditems[i].innerHTML = 'yooo';
-                                        
-                                        }
-                                    }
-                                    
-                                   return;
-
-                                    };
-                                    
-                                   
-                                }
                                 var shoppingCartList = $("#shoppingCart");
                                 var aDate = new Date();
 
-                                 var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
-                        + aDate.getTime() + "'><div class='row'><span style='font-weight:bold;font-size:18pt;' >" + desc + "</span><br><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>quantity:</span><br><input class='qty' data-sku-qty=' " + sku + "' value='" + qty + "' min='1' max='5' step='1' type='number'></div><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>price:</span><br><span >$</span><span class='showsubtotal' data-price-sku='" + sku + "'>" + subtotal + "</span></div><div class='row '><div class = ' large-10 small-10 large-offset-2 small-offset-2 columns'><input class='removeitem' type='button' data-remove-button='remove' value='remove item' data-item-sku='" + sku + "' data-item-qty='" + qty +" data-item-date = '" + aDate.getTime() +"' /></div></div></div></li>";
+                                var item = "<li data-item-sku='" + sku + "' data-item-qty='" + qty + "' data-item-date='"
+                        + aDate.getTime() + "' data-item-total='" + subtotal + "'><div class='row'><span style='font-weight:bold;font-size:18pt;' >" + desc + "</span><br><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>quantity:</span><br><input class='qty' data-sku-qty=' " + sku + "' value='" + qty + "' min='1' max='5' step='1' type='number'></div><div class='large-4 large-offset-2 small-offset-2 small-4 columns'><span class='label'>price:</span><br><span >$</span><span class='showsubtotal' data-price-sku='" + sku + "'>" + subtotal + "</span></div><div class='row '><div class = ' large-10 small-10 large-offset-2 small-offset-2 columns'><input class='removeitem' type='button' data-remove-button='remove' value='remove item' data-item-sku='" + sku + "' data-item-qty='" + qty +" data-item-date = '" + aDate.getTime() +"' /></div></div></div></li>";
             
             
                                         
@@ -438,16 +337,13 @@
             $("#shoppingCart").on("click", "input[type='button']", function() {
                 // https://api.jquery.com/closest/
 
-
-                    console.log('removiyg');
                 // WEB STORAGE REMOVE
                 var thisInputSKU = this.getAttribute('data-item-sku');
                 var thisInputQty = this.getAttribute('data-item-qty');
                 var thisInputDate = this.getAttribute('data-item-date');
 
                 var cartData = sessionStorage.getObject('autosave');
-                
-                console.log('removeit cartData', cartData);
+               
                 if(cartData == null) {
                     return;
                 }
@@ -458,12 +354,11 @@
                     if(item['sku'] == thisInputSKU) {
                         // remove from web storage
                         cartDataItems.splice(i, 1);
-                        console.log('removeit splicethatshit');
-
+                       
                     }
                 }
                 cartData['items'] = cartDataItems;
-                console.log('cart data stuff', cartData);
+                
                 // clobber the old value
                 sessionStorage.setObject('autosave', cartData);
 
@@ -518,11 +413,11 @@
 
 
             // cancel the cart
-            $("#cancelCart").click(function() {
+            $("#clear").click(function() {
 
                 console.log("End cart.");
                 $.ajax({
-                    url: "./shoppingcart.php",
+                    url: "./cont/cart.php",
                     type: "POST",
                     dataType: 'json',
                     data: {action: "cancelcart"},
@@ -541,30 +436,53 @@
                 var shoppingCartList = $("#shoppingCart").html("");
             });
 
-            // cancel the cart
+            // checkout the cart
             $("#checkoutcart").click(function() {
 
                 // retrieve all of the items from the cart:
                 var items = $("#shoppingCart li");
                 var itemArray = [];
+                var totals = [];
+                
+                console.log('chekcout', items);
                 $.each(items, function(key, value) {
 
                     var item = {sku: value.getAttribute("data-item-sku"),
                         qty: value.getAttribute("data-item-qty")};
                     itemArray.push(item);
+                    
+                    var total = value.getAttribute('data-item-total');
+                    total = parseFloat(total);
+                    console.log('total is', total);
+                    
+                    totals.push(total);
+                    
+                    
                 });
                 var itemsAsJSON = JSON.stringify(itemArray);
                 console.log("itemsAsJSON", itemsAsJSON);
+                console.log('so the total is', totals); 
+                
+                totals = totals.reduce(add, 0);
+                
 
+                function add(a, b) {
+                    return a + b;
+                }
+
+                console.log('so the total is', totals); 
 
                 console.log("Check out cart with the following items", itemArray);
                 $.ajax({
-                    url: "./shoppingcart.php",
+                    url: "./cont/cart.php",
                     type: "POST",
                     dataType: 'json',
-                    data: {action: "checkoutcart", items: itemsAsJSON},
+                    data: {action: "checkoutcart", items: itemsAsJSON, total: totals},
                     success: function(returnedData) {
                         console.log("cart check out response: ", returnedData);
+                        
+                        sessionStorage.setObject('autosave', '');
+                        //window.location = './thankyou.php';
 
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
@@ -572,8 +490,10 @@
                     }
                 });
                 var shoppingCartList = $("#shoppingCart").html("");
+
+                
             });
-            
+           
  }); 
             
     ///////        
