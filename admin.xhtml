@@ -60,8 +60,9 @@
                           <tr>
                             <th>Item</th>
                             <th>Sku</th>
-                            <th>Quantity</th>
                             <th>Price</th>
+                            <th>Quantity</th>
+                            
                             <th>Action</th>
                           </tr>
                           <tbody id="table-body">
@@ -93,11 +94,13 @@
                     </form>
 
                   </div>
-
+<hr/>
 
             <!-- tal:condition="exists: isLoggedIn" -->
-
-                  <div id="logoutFormContainer" tal:condition="php: Session::get('isLoggedIn')">
+                
+                  <div id="logoutFormContainer" class = 'large-12 columns' tal:condition="php: Session::get('isLoggedIn')">
+                      
+                      <h2>logout</h2>
 
                     <form id="logoutForm">
                       <fieldset>

@@ -20,6 +20,7 @@ loadScripts();
                 $pname = $row['product_name'];
                 $price = $row['product_price'];
                 $desc = $row['description'];
+                $stock = $row['qty'];
 
                // <div class='menu'>
               $html .=   "
@@ -34,7 +35,7 @@ loadScripts();
                                     $<span class='menu-price' data-sku-price='$sku'>$price</span>
 
 
-                                    <input type='button' h4 class='menu-price add' id='add'  data-pname = '$pname' data-price = '$price' data-sku-add = '$sku' value='+ add to cart'/>
+                                    <input type='button' h4 class='menu-price add' id='add'  data-pname = '$pname' data-price = '$price' data-sku-add = '$sku' data-stock = '$stock' value='+ add to cart'/>
                                 </div>
                             </div>
                         ";

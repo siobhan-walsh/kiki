@@ -10,6 +10,7 @@ loadScripts();
         
         
         $scm = new ShoppingCartManager();
+        $pm = new ProductManager();
 
         $parameters = new Parameters("POST");
 
@@ -79,9 +80,10 @@ loadScripts();
                 
                
                 $scm->addItemsToCart($items, $_SESSION['id']);
+               
 
                 $affectRows = $scm->checkoutCart($_SESSION['id'], $total);
-           
+                $pm->updateProductQty($items);
 
                 if($affectRows > 0) {
 
