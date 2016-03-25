@@ -169,6 +169,10 @@
                         
                         getProducts();
                         checkProducts();
+                        setInterval(function(){
+                            checkProducts();
+                        }, 3000);
+                        
                         
                          function checkProducts(){
                              $.ajax({
@@ -304,28 +308,27 @@
                             var $td = $(this).parent();
                              var tdspan = $(this);
                             var $input = null;
+                             
+                             var thisthang = this;
 
-                            console.log('this span', $td.attr('class'));
-                             console.log('td is', this);
 
-                            var val = $(this).html();
-                             console.log('val ', val);
-
+                           var htmlval = $td.children('span').html();
+                            
                             if($td.attr('class') === 'itemtitle') {
-                                //var val = $(this).html();
-                                tdspan.html('<input type="text" value="' + val + '"/>');
+                               
+                                tdspan.html('<input type="text" value="' + htmlval + '"/>');
                                 var $input = $td.find('input');
                                 $input.focus();
                                 $input.select();
                             } else if($td.attr('class') === 'price') {
-                                //var val = $(this).html();
-                                tdspan.html('<input type="text" value="' + val + '"/>');
+                              
+                                tdspan.html('<input type="text" value="' + htmlval + '"/>');
                                 var $input = $td.find('input');
                                 $input.focus();
                                 $input.select();
                             } else if($td.attr('class') === 'stock') {
-                                //var val = $(this).html();
-                                tdspan.html('<input type="text" value="' + val + '"/>');
+                              
+                                 $td.children('span').html('<input type="text" value="' + htmlval + '"/>');
                                 var $input = $td.find('input');
                                 $input.focus();
                                 $input.select();
@@ -334,15 +337,15 @@
                             if($input != null) {
 
                                 $input.on('blur', function() {
-                                    $(this).replaceWith('<span>' + $(this).val() + '</span>');
+                                    $(this).parent().html($(this).val());
                                 });
 
                                 $input.keyup(function(e) {
                                     if(e.which == 13) {
-                                        $(this).replaceWith('<span>' + $(this).val() + '</span>');
+                                        $(this).parent().html($(this).val());
                                     } else if(e.which == 27) {
                                         // escape key, means user canceled operation
-                                        $(this).replaceWith('<span>' + val + '</span>');
+                                        $(this).parent().html(htmlval.html());
                                     }
                                 });
                             }
