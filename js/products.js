@@ -8,9 +8,87 @@
                 }
                 return -1;
             }
-           
+            
+          
             //click to expand cart
+            
+            
+            var winsize = $(window).width() / parseFloat($("html").css("font-size"));
+            console.log('winsize is', winsize);
+            
+            if(winsize < 40){
+                
+                console.log('use mobile style');
+                
+                $('#cart').css({"right":"-200px"});
+                $('#cart').css({"top":"25vh"});
+                $('#cart').css({"height":"75vh"});
+                
+            }
             var tog = false;
+            
+            $('#mcartbutton').click(function(){
+                console.log('heyclicky');
+                
+                 if(tog == false){
+                     
+                     
+                     
+                     $('#mcartbutton').stop(true).animate(
+                            {
+                                right:'80%',
+                                opacity:1
+                            }, 1000, function(){
+                                $('#mcartbutton').css({"background-color":"rgba(255,255,255,0)"});
+
+                            }
+                    );
+                   
+                   $('#cart').stop(true).animate(
+                            {
+
+                                width:'100%',
+                                right:'0',
+                                opacity:1
+                            }, 1000, function(){
+
+                            }
+                    );
+                   
+                    $('#arrow i').html('keyboard_arrow_right');
+                    tog = true;
+                
+                } else if(tog == true){
+                    
+                   
+                    $('#mcartbutton').stop(true).animate(
+                            {
+                                right:'0%',
+                                opacity:1
+                            }, 1000, function(){
+                                $('#mcartbutton').css({"background-color":"rgba(255,255,255,1)"});
+
+                            }
+                    );
+                    
+                   $('#cart').stop(true).animate(
+                            {
+
+                                width:'30%',
+                                right:'-200px',
+                                opacity:1
+                            }, 1000, function(){
+
+                            }
+                    );
+                    $('#arrow i').html('keyboard_arrow_left');
+                    tog = false;
+                }
+                
+                
+                
+            });
+            
             $('#arrow').click(function(){
 
                 
@@ -19,7 +97,7 @@
                    $('#cart').stop(true).animate(
                             {
 
-                                width:'50%',
+                                width:'60%',
                                 opacity:1
                             }, 1000, function(){
 
@@ -80,6 +158,13 @@
                         var listeditems = document.querySelectorAll(".showsubtotal");
                         var price = cartData.items[i].price;
                         var subtotal = parseFloat(Math.round((quan * price) * 100) / 100).toFixed(2);
+                        
+                        var alltotals = [];
+                        
+                        console.log('listeditems is', listeditems);
+                        console.log('alltotals is', alltotals);
+                        
+                        console.log('suptotal is', subtotal);
 
                         for(var x = 0; x < listeditems.length; x++){
 
@@ -89,7 +174,22 @@
                               listeditems[x].innerHTML = subtotal;
 
                             }
+                            
+                            alltotals.push(parseFloat(listeditems[x].innerHTML));
+                           
+                            
                         };
+                        
+                        var sum = alltotals.reduce(add, 0);
+
+                            function add(a, b) {
+                                return a + b;
+                            }
+
+                            console.log('sum is', sum); // 6
+                        
+                        var totalspace = document.getElementById('totalsp');
+                        totalsp.innerHTML = sum.toFixed(2);
 
 
                     };
@@ -198,6 +298,35 @@
                       
                     };
                     
+                    var alltotals = [];
+
+                    console.log('alltotals is', alltotals);
+
+                    console.log('suptotal is', subtotal);
+
+                    for(var x = 0; x < cartData['items'].length; x++){
+
+                         var itemsubtotal = parseFloat(Math.round((cartData['items'][x].qty * cartData['items'][x].price) * 100) / 100).toFixed(2);
+
+                        alltotals.push(parseFloat(itemsubtotal));
+
+
+                    };
+                    function add(a, b) {
+                            return a + b;
+                        }
+
+                    var sum = alltotals.reduce(add, 0);
+
+
+
+                        console.log('sum is', sum); // 6
+
+                    var totalspace = document.getElementById('totalsp');
+                    totalsp.innerHTML = sum.toFixed(2);
+                    
+                    
+                    
                     changeqty();
                    
                     
@@ -211,6 +340,8 @@
                 
                 var adds = document.querySelectorAll('.add');
                 console.log('cartstarted is', cartstarted);
+                
+                
                 
                 for(var i = 0; i < adds.length; i++){
                     adds[i].addEventListener('click', adding(i));
@@ -272,6 +403,32 @@
                                         sessionStorage.setObject('autosave', cartData);
                                         console.log('sesssto', sessionStorage);
                                         
+                                        var alltotals = [];
+
+                                        console.log('alltotals is', alltotals);
+
+                                        console.log('suptotal is', subtotal);
+
+                                        for(var x = 0; x < cartData['items'].length; x++){
+                                            
+                                             var itemsubtotal = parseFloat(Math.round((cartData['items'][x].qty * cartData['items'][x].price) * 100) / 100).toFixed(2);
+
+                                            alltotals.push(parseFloat(itemsubtotal));
+
+
+                                        };
+                                        function add(a, b) {
+                                                return a + b;
+                                            }
+
+                                        var sum = alltotals.reduce(add, 0);
+
+                                            
+
+                                            console.log('sum is', sum); // 6
+
+                                        var totalspace = document.getElementById('totalsp');
+                                        totalsp.innerHTML = sum.toFixed(2);
 
 
 
@@ -335,6 +492,32 @@
                         // clobber the old value
                         sessionStorage.setObject('autosave', cartData);
                         console.log('sesssto', sessionStorage);
+                            
+                            var alltotals = [];
+
+                            console.log('alltotals is', alltotals);
+
+                            console.log('suptotal is', subtotal);
+
+                            for(var x = 0; x < cartData['items'].length; x++){
+
+                                 var itemsubtotal = parseFloat(Math.round((cartData['items'][x].qty * cartData['items'][x].price) * 100) / 100).toFixed(2);
+
+                                alltotals.push(parseFloat(itemsubtotal));
+
+
+                            };
+                             function add(a, b) {
+                                    return a + b;
+                                }
+                            var sum = alltotals.reduce(add, 0);
+
+                               
+
+                                console.log('sum is', sum); // 6
+
+                            var totalspace = document.getElementById('totalsp');
+                            totalsp.innerHTML = sum.toFixed(2);
 
 
                         };
@@ -351,6 +534,7 @@
                 // WEB STORAGE REMOVE
                 var thisInputSKU = this.getAttribute('data-item-sku');
                 var thisInputQty = this.getAttribute('data-item-qty');
+                var thisInputDate = this.getAttribute('data-item-date');
                 var thisInputDate = this.getAttribute('data-item-date');
 
                 var cartData = sessionStorage.getObject('autosave');
@@ -387,6 +571,35 @@
                     }
                 };
                 
+                console.log('removeit this', $(this).closest('li').attr('data-item-total'));
+                
+                
+                
+                    var alltotals = [];
+
+                    console.log('removeit alltotals is', alltotals);
+
+                    for(var x = 0; x < cartData['items'].length; x++){
+
+                         var itemsubtotal = parseFloat(Math.round((cartData['items'][x].qty * cartData['items'][x].price) * 100) / 100).toFixed(2);
+
+                        alltotals.push(parseFloat(itemsubtotal));
+
+
+                    };
+                    function add(a, b) {
+                            return a + b;
+                        }
+
+                    var sum = alltotals.reduce(add, 0);
+
+
+
+                        console.log('removeit sum is', sum); // 6
+
+                    var totalspace = document.getElementById('totalsp');
+                    totalsp.innerHTML = sum.toFixed(2);
+               
 
             });
 
@@ -507,7 +720,7 @@
                         
                         sessionStorage.setObject('autosave', {items: []});
                         sessionStorage.cartstarted = false;
-                       // window.location = './thankyou.php';
+                        window.location = './thankyou.php';
 
                     },
                     error: function(jqXHR, textStatus, errorThrown) {

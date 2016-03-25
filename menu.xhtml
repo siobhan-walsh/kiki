@@ -28,14 +28,19 @@
 
 			</div>
 		</div>
-          
+          <div id='mcartbutton' class='show-for-small-only'><i class='material-icons'>shopping_cart</i></div>
         <div id='cart'>
-            <span id='arrow'><i class='material-icons'>keyboard_arrow_left</i></span><h4>Your cart</h4>
+            <span id='arrow' class='hide-for-small-only'><i class='material-icons'>keyboard_arrow_left</i></span>
+            
+            <span id='arrow' class='show-for-small-only'>&nbsp;</span><h4>Your cart</h4>
             
             <ul id='shoppingCart'>
             
             </ul>
+            
+            
             <div class='cartbuttons row large-12 small-12 columns'>
+                <p style='font-size:22pt'>Total: $<span id='totalsp'>0.00</span></p>
                 <button id='checkoutcart'>Checkout</button>
                 <button id='clear'>Clear</button>
             </div>
