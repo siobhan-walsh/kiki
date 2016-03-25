@@ -431,6 +431,7 @@ textarea{
 
 input[type=submit] {
     cursor:pointer;
+    width: 20%;
 }
 
 input.name {

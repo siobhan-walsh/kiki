@@ -382,6 +382,34 @@
                             });
 
                         });
+                        
+      // deleting products
+                $('#table-body').on('click', '.delete', function() {
+                        var loginValue = this.getAttribute("id");
+                        loginValue = loginValue.replace("d-", "");
+                            var editedItemName = $(this).parent().parent().find(".itemtitle span").text();
+                            var editedDesc = $(this).parent().parent().find(".itemdesc span").text();
+                            var editedPrice = $(this).parent().parent().find(".price span").text();
+                            var editedStock = $(this).parent().parent().find(".stock span").text();
+                            console.log('editeditemname', editedItemName);
+
+                    $.ajax({
+                     url: "./deleteitems.php",
+                    type: "POST",
+                    dataType: 'json',
+                    data: {action: "delete", sku: loginValue, newItemName: editedItemName, newDesc: editedDesc, newPrice: editedPrice, newStock:  editedStock},
+                    success: function(returnedData) {
+                     
+
+                        //window.location.href = "user-editor.html";
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR.statusText, textStatus);
+                        }
+                        });
+
+                        });
+
 
 
                     });
