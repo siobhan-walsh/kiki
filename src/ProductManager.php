@@ -31,6 +31,13 @@ class ProductManager {
         return null;
     }
     
+    public function updateProduct($sku, $pname, $pdesc, $price, $stock){
+        $sql = "UPDATE products SET product_name = '$pname', description = '$pdesc', product_price = '$price', qty = '$stock' WHERE sku = '$sku'";
+        $rows = $this->db->query($sql);
+        
+    }
+            
+    
     public function updateProductQty($items) {
         
         foreach($items as $item) {

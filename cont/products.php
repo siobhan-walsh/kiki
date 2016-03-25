@@ -6,13 +6,31 @@ loadScripts();
     $data = array("status" => "not set!");
 
         $pm = new ProductManager();
-        $rows = $pm->listProducts();
+    $parameters = new Parameters("POST");
 
-        $forpage = $_POST['forpage'];
+        if($_POST['action'] == 'update'){
+            
+         //   sku: loginValue, newItemName: editedItemName, newPrice: editedPrice, newStock:  editedStock},
+            
+            $sku = $_POST['sku'];
+            $pname = $parameters->getValue('newItemName');
+            $pdesc = $parameters->getValue('newDesc');
+            $price = $parameters->getValue('newPrice');
+            $stock = $parameters->getValue('newStock');
+            
+            $rows = $pm->updateProduct($sku, $pname, $pdesc, $price,  $stock);
+            
+            
+            echo json_encode($rows);
+            
+        } else if($_POST['action'] == 'menu'){
+            
+            
+            $rows = $pm->listProducts();
 
-       $html = '';
+            
 
-        if($forpage == 'menu'){
+            $html = '';
             
                 foreach($rows as $row) {
 
@@ -46,8 +64,16 @@ loadScripts();
             echo $html;
             return;
             
-        } else if ($forpage == 'admin'){
-                            foreach($rows as $row) {
+        } else if ($_POST['action'] == 'admin'){
+            
+            
+            $rows = $pm->listProducts();
+
+           
+
+            $html = '';
+                    
+            foreach($rows as $row) {
 
                         $sku = $row['sku'];
                         $pname = $row['product_name'];
@@ -61,10 +87,13 @@ loadScripts();
                                     <tr>
 
                                       
-                                     <td data-sku-name='$sku'>$pname</td>
+                                     <td data-sku-name='$sku' class='itemtitle'><span >$pname</span></td>
+                                     <td data-sku-name='$sku' class='itemdesc'><span >$desc</span></td>
                                      <td>$sku</td>
-                                     <td data-sku-price='$sku'>$price</td>
-                                     <td data-sku-price='$sku'>$qty</td>
+                                     <td data-sku-price='$sku' class='price'><span >$price</span></td>
+                                     <td data-sku-price='$sku' class='stock'><span >$qty</span></td>
+                                     <td><input id='d-$sku' class='delete' type='button' value='Delete'/></td>
+                  <td><input id='u-$sku' class='update' type='button' value='Update'/></td>
                                     </tr>
                                 ";
 

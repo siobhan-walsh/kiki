@@ -62,9 +62,10 @@
                         <thead class="expand">
                           <tr>
                             <th>Item</th>
+                            <th>Description</th>
                             <th>Sku</th>
                             <th>Price</th>
-                            <th>Quantity</th>
+                            <th>In Stock</th>
                             
                             <th>Action</th>
                           </tr>
@@ -149,9 +150,9 @@
                                 url: "./cont/products.php",
                                 type: "POST",
                                 dataType: 'HTML',
-                                 data:{forpage:'admin'},
+                                 data:{action:'admin'},
                                 success: function(presp) {
-                                   console.log("cart checkout response: ", presp);
+                                 //  console.log("cart checkout response: ", presp);
                                    $('#table-body').append(presp);
 
                                 },
@@ -246,6 +247,86 @@
                         // logout event
                         $("#logoutbutton").click(doLogout);
 
+                        
+                        // inputs for clicky 
+                        
+                         $('#table-body').on('click', 'span', function() {
+
+                            var $td = $(this).parent();
+                            var $input = null;
+
+                            console.log('this span', $td.attr('class'));
+
+                            var val = $(this).html();
+
+                            if($td.attr('class') === 'itemtitle') {
+                                //var val = $(this).html();
+                                $td.html('<input type="text" value="' + val + '"/>');
+                                var $input = $td.find('input');
+                                $input.focus();
+                                $input.select();
+                            } else if($td.attr('class') === 'price') {
+                                //var val = $(this).html();
+                                $td.html('<input type="text" value="' + val + '"/>');
+                                var $input = $td.find('input');
+                                $input.focus();
+                                $input.select();
+                            } else if($td.attr('class') === 'stock') {
+                                //var val = $(this).html();
+                                $td.html('<input type="text" value="' + val + '"/>');
+                                var $input = $td.find('input');
+                                $input.focus();
+                                $input.select();
+                            }
+
+                            if($input != null) {
+
+                                $input.on('blur', function() {
+                                    $(this).parent().html('<span>' + $(this).val() + '</span>');
+                                });
+
+                                $input.keyup(function(e) {
+                                    if(e.which == 13) {
+                                        $(this).parent().html('<span>' + $(this).val() + '</span>');
+                                    } else if(e.which == 27) {
+                                        // escape key, means user canceled operation
+                                        $(this).parent().html('<span>' + val + '</span>');
+                                    }
+                                });
+                            }
+                        });
+
+                        // updating products
+                        
+                        $('#table-body').on('click', '.update', function() {
+                
+              
+                            var loginValue = this.getAttribute("id");
+                            //var firstName = $(this).val(
+                            loginValue = loginValue.replace("u-", "");
+                            var editedItemName = $(this).parent().parent().find(".itemtitle span").text();
+                            var editedDesc = $(this).parent().parent().find(".itemdesc span").text();
+                            var editedPrice = $(this).parent().parent().find(".price span").text();
+                            var editedStock = $(this).parent().parent().find(".stock span").text();
+                            console.log('editeditemname', editedItemName);
+
+                            $.ajax({
+                                url: "./cont/products.php",
+                                type: "POST",
+                                dataType: 'json',
+                                data: {action: "update", sku: loginValue, newItemName: editedItemName, newDesc: editedDesc, newPrice: editedPrice, newStock:  editedStock},
+                                success: function(returnedData) {
+
+                                    console.log('updated returnedData', returnedData);
+                                    
+                                    //window.location.href = "user-editor.html";
+                                },
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    console.log(jqXHR.statusText, textStatus);
+                                }
+                            });
+
+                        });
 
 
                     });
