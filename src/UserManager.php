@@ -26,9 +26,15 @@ class UserManager {
     }
 
     public function listUsers() {
-        $sql = "SELECT user_name, first_name, last_name FROM user";
+        $sql = "SELECT * FROM user";
         $rows = $this->db->query($sql);
         return $rows;
+    }
+
+    public function updateUser($userid, $newFirstName, $newLastName, $newUserName) {
+        $sql = "UPDATE user SET first_name = '$newFirstName', last_name = '$newLastName', user_name = '$newUserName' WHERE ID = '$userid'";
+        $affectedRows = $this->db->affectRows($sql);
+        return $affectedRows;
     }
 
     public function updateUserFirstName($login, $newFirstName) {
@@ -43,10 +49,10 @@ class UserManager {
         return $affectedRows;
     }
 
-    public function addUser($firstName, $lastName, $userName) {
+    public function addUser($firstName, $lastName, $userName, $pw) {
 
-        $sql = "INSERT INTO user (first_name, last_name, user_name, type)
-            VALUES ('$firstName', '$lastName', '$userName', 'admin')";
+        $sql = "INSERT INTO user (first_name, last_name, user_name, type, password)
+            VALUES ('$firstName', '$lastName', '$userName', 'admin', '$pw')";
         $affectedRows = $this->db->affectRows($sql);
         return $affectedRows;
     }

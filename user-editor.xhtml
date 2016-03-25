@@ -4,7 +4,41 @@
   <headReplace metal:use-macro="/templating/head.xhtml/meta_head"></headReplace>
 
   <body>
+<style>
+      
+    .testthisuser{
+       
+    }
+    #users {
+        width:100%;
+    }
+    #users th {
+        text-align: left;
+        font-size:20pt;
+    }
+    .addNewUser input.placeholder{
+       color:rgba(100, 100, 100, 1);
+        
+    }
+    
+    ::-webkit-input-placeholder {
+       color:rgba(100, 100, 100, 1);
+    }
 
+    :-moz-placeholder { /* Firefox 18- */
+       color:rgba(100, 100, 100, 1);
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color:rgba(100, 100, 100, 1);
+    }
+
+    :-ms-input-placeholder {  
+      color:rgba(100, 100, 100, 1);
+    }
+    
+    
+    </style>
 
     <navReplace metal:use-macro="./templating/nav.xhtml/nav_bar">
     </navReplace>
@@ -19,7 +53,7 @@
            
            <div class = 'whitebg large-offset-1 large-10 columns'>
                
-               <div class = 'row'>
+               <div class = 'testthisuser row'>
 
                   <h2>Current Users</h2>
                   <table id="users">
@@ -40,9 +74,10 @@
                    
                    <h2> Add a new user:</h2>
                   <form id="addNewUser">
-                    <input id="addFirstName" type="text" placeholder="first name" required="required"/>
+                    <input id="addFirstName" type="text" placeholder="firstname" required="required"/>
                     <input id="addLastName" type="text" placeholder="last name" required="required"/>
                     <input id="addUserName" type="text" placeholder="User name" required="required"/>
+                      <input id="addPw" type="password" placeholder="password" required="required"/>
                     <input id="submitNewUser" type="submit" value="Add"/>
                   </form>
       </div>
@@ -80,6 +115,7 @@
                 var firstName = $("#addFirstName").val();
                 var lastName = $("#addLastName").val();
                 var userName = $("#addUserName").val();
+                var pw = $("#addPw").val();
 
                 //console.log(firstName, lastName, userName);
 
@@ -88,7 +124,7 @@
                     type: "POST",
                     dataType: "JSON",
                     data: {action: "add", newFirstName: firstName,
-                        newLastName: lastName, newUserName: userName},
+                        newLastName: lastName, newUserName: userName, newPw: pw},
                     success: function(returnedData) {
                         loadUsers();
                         console.log(returnedData);
@@ -123,19 +159,25 @@
             });
 
             $('#users').on('click', '.update', function() {
+                
+              
                 var loginValue = this.getAttribute("id");
                 //var firstName = $(this).val(
                 loginValue = loginValue.replace("u-", "");
                 var editedFirstName = $(this).parent().parent().find(".first_name span").text();
-               
-                //console.log(loginValue, editedFirstName);
+                var editedLastName = $(this).parent().parent().find(".last_name span").text();
+                var editedUserName = $(this).parent().parent().find(".user_name span").text();
+                
+            console.log(loginValue, editedFirstName);
 
                 $.ajax({
                     url: "./cont/users.php",
                     type: "POST",
                     dataType: 'json',
-                    data: {action: "update", username: loginValue, newFirstName: editedFirstName},
+                    data: {action: "update", userid: loginValue, newFirstName: editedFirstName, newLastName: editedLastName, newUserName: editedUserName},
                     success: function(returnedData) {
+                        
+                        console.log('updated returnedData', returnedData);
                         loadUsers();
 
                         //window.location.href = "user-editor.html";
@@ -153,10 +195,24 @@
 
                 var $td = $(this).parent();
                 var $input = null;
+                
+                console.log('this span', $td.attr('class'));
 
                 var val = $(this).html();
 
                 if($td.attr('class') === 'first_name') {
+                    //var val = $(this).html();
+                    $td.html('<input type="text" value="' + val + '"/>');
+                    var $input = $td.find('input');
+                    $input.focus();
+                    $input.select();
+                } else if($td.attr('class') === 'last_name') {
+                    //var val = $(this).html();
+                    $td.html('<input type="text" value="' + val + '"/>');
+                    var $input = $td.find('input');
+                    $input.focus();
+                    $input.select();
+                } else if($td.attr('class') === 'user_name') {
                     //var val = $(this).html();
                     $td.html('<input type="text" value="' + val + '"/>');
                     var $input = $td.find('input');

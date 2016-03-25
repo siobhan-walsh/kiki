@@ -11,6 +11,7 @@ loadScripts();
 
         $action = $parameters->getValue('action');
         $user_name = $parameters->getValue('username');
+        $userid = $parameters->getValue('userid');
 
         //$data = array("action" => $action, "user_name" => $user_name);
         if($action == 'delete' && !empty($user_name)) {
@@ -21,19 +22,22 @@ loadScripts();
             echo json_encode($data, JSON_FORCE_OBJECT);
             return;
 
-        } else if($action == 'update' && !empty($user_name)) {
+        } else if($action == 'update' && !empty($userid)) {
             $newFirstName = $parameters->getValue('newFirstName');
+            $newLastName = $parameters->getValue('newLastName');
+            $newUserName = $parameters->getValue('newUserName');
+            $userid = $parameters->getValue('userid');
 
             if(!empty($newFirstName)) {
 
                 $um = new UserManager();
-                $count = $um->updateUserFirstName($user_name, $newFirstName);
+                $count = $um->updateUser($userid, $newFirstName, $newLastName, $newUserName);
                 if($count > 0) {
                     $data = array("status" => "success", "msg" =>
                         "User '$user_name' updated with new first name ('$newFirstName').");
                 } else {
                     $data = array("status" => "fail", "msg" =>
-                        "User '$user_name' was NOT updated with new first name ('$newFirstName').");
+                        "User '$userid' was NOT updated with new first name ('$newFirstName').");
                 }
             } else {
                 $data = array("status" => "fail", "msg" =>
@@ -47,11 +51,13 @@ loadScripts();
             $newFirstName = $parameters->getValue('newFirstName');
             $newLastName = $parameters->getValue('newLastName');
             $newUserName = $parameters->getValue('newUserName');
+            $newPw = $parameters->getValue('newPw');
+            $newPw = md5($newPw);
 
-            if(!empty($newFirstName) && !empty($newLastName) && !empty($newUserName)) {
+            if(!empty($newFirstName) && !empty($newLastName) && !empty($newUserName) && !empty($newPw)) {
                 $data = array("status" => "success", "msg" => "User added.");
                 $um = new UserManager();
-                $um->addUser($newFirstName, $newLastName, $newUserName);
+                $um->addUser($newFirstName, $newLastName, $newUserName, $newPw);
 
             } else {
                 $data = array("status" => "fail", "msg" => "First name, last name, and user name cannot be empty.");
@@ -59,7 +65,7 @@ loadScripts();
             echo json_encode($data, JSON_FORCE_OBJECT);
             return;
 
-        }else {
+        } else {
             $data = array("status" => "fail", "msg" => "Action not understood.");
         }
 
@@ -74,15 +80,16 @@ loadScripts();
         if($rows != null) {
 
             foreach($rows as $row) {
+                $user_id = $row['ID'];
                 $first_name = $row['first_name'];
                 $last_name = $row['last_name'];
                 $user_name = $row['user_name'];
-                $html .= "<tr>
+                $html .= "<tr data-user-id = '$user_id'>
                   <td class='first_name'><span>$first_name</span></td>
                   <td class='last_name'><span>$last_name</span></td>
                   <td class='user_name'><span>$user_name</span></td>
                   <td><input id='d-$user_name' class='delete' type='button' value='Delete'/></td>
-                  <td><input id='u-$user_name' class='update' type='button' value='Update'/></td>
+                  <td><input id='u-$user_id' class='update' type='button' value='Update'/></td>
                   </tr>";
             }
             echo $html;
