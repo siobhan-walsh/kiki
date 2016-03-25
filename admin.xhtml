@@ -34,6 +34,9 @@
         </div>  
                 
       </form>    
+
+
+
       
             </form> 
       -->
@@ -81,7 +84,7 @@
 
                     <form id="loginForm">
                       <fieldset>
-                        <legend>Register</legend>
+                        <legend><h3>Login</h3></legend>
                         <input id="user_name" type="text" placeholder="user_name" name="user_name"
                           autofocus="autofocus"/><br/><br/>
 
@@ -100,11 +103,11 @@
                 
                   <div id="logoutFormContainer" class = 'large-12 columns' tal:condition="php: Session::get('isLoggedIn')">
                       
-                      <h2>logout</h2>
+                      <h5>logout</h5>
 
                     <form id="logoutForm">
                       <fieldset>
-                        <legend>Logout Form</legend>
+                        <legend><h4>Logout Form</h4></legend>
                         <label for="password">Password: </label>
                         <input id="logoutbutton" type="button" value="Logout"/>
                         <input type="hidden" value="logout" name="logoutButton"/>
@@ -114,7 +117,7 @@
                   </div>
 
                   <div id="messages">
-                    <p>Messages:</p>
+                    <h3>Messages:</h3>
                     <ul id="talMessages" tal:condition="php: count(messages) GT 0">
                       <li tal:repeat="msg messages" class="${msg/type}"><span tal:content="msg/text"></span></li>
                     </ul>

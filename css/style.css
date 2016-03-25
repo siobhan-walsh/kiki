@@ -74,56 +74,138 @@ ADMIN LOGIN
   width: 250px;
 }
 
+
+#logoutbutton {
+ 
+    background: #6FB98F;
+  
+   margin-left: 0;
+    padding: 1%;
+     color: #fff; 
+  
+ 
+}
+
+
+
 #loginbutton {
-  padding-top: 1%;
-  padding-bottom: 1%;
-  color: white;
-  background-color: darkblue;
-  border-style: none;
-  border-radius: 2px;
-  margin-bottom: 5px;
+ 
+    background: #6FB98F;
+    margin-top: -7%;
+   margin-left: 2%;
+    padding: 1%;
+     color: #fff; 
+  
+ 
 }
 
 #loginbutton:hover {
-  background-color: #4d4d4d;
-  -webkit-transition: all 300ms ease 0s;
-  -webkit-transition: all 200ms ease 0s;
-  transition: all 200ms ease 0s;
+ 
+    border: 1px solid #253737;
+    text-shadow: #6FB98F 0 1px 0;
+    background: #416b68;
+    color: #fff; 
+
 }
+
+
+#loginbutton:active {
+        margin-top:1px;
+    text-shadow: #333333 0 -1px 0;
+    border: 1px solid #253737;
+    background: #6da5a3;
+    background: -webkit-gradient(linear, left top, left bottom, from(#416b68), to(#416b68));
+    background: -webkit-linear-gradient(top, #416b68, #609391);
+    background: -moz-linear-gradient(top, #416b68, #6da5a3);
+    background: -ms-linear-gradient(top, #416b68, #6da5a3);
+    background: -o-linear-gradient(top, #416b68, #6da5a3);
+    background-image: -ms-linear-gradient(top, #416b68 0%, #6da5a3 100%);
+    color: #fff;
+    -webkit-box-shadow: rgba(255,255,255,0) 0 1px 0, inset rgba(255,255,255,0.7) 0 1px 0;
+    -moz-box-shadow: rgba(255,255,255,0) 0 1px 0, inset rgba(255,255,255,0.7) 0 1px 0;
+    box-shadow: rgba(255,255,255,0) 0 1px 0, inset rgba(255,255,255,0.7) 0 1px 0;
+  } 
 
 #resetLoginForm {
-  padding-top: 1%;
-  padding-bottom: 1%;
-  color: white;
-  background-color: darkblue;
-  border-style: none;
-  border-radius: 2px;
+      background: #6FB98F;
+    margin-top: -7%;
+   margin-left: 2%;
+    padding: 1%;
+     color: #fff; 
+  
 }
 
-#resetLoginForm:hover {
-  background-color: darkblue;
-  -webkit-transition: all 300ms ease 0s;
-  -webkit-transition: all 200ms ease 0s;
-  transition: all 200ms ease 0s;
+
+
+#resetLoginForm:active {
+ 
+        margin-top:1px;
+    text-shadow: #333333 0 -1px 0;
+    border: 1px solid #253737;
+    background: #6da5a3;
+    background: -webkit-gradient(linear, left top, left bottom, from(#416b68), to(#416b68));
+    background: -webkit-linear-gradient(top, #416b68, #609391);
+    background: -moz-linear-gradient(top, #416b68, #6da5a3);
+    background: -ms-linear-gradient(top, #416b68, #6da5a3);
+    background: -o-linear-gradient(top, #416b68, #6da5a3);
+    background-image: -ms-linear-gradient(top, #416b68 0%, #6da5a3 100%);
+    color: #fff;
+    -webkit-box-shadow: rgba(255,255,255,0) 0 1px 0, inset rgba(255,255,255,0.7) 0 1px 0;
+    -moz-box-shadow: rgba(255,255,255,0) 0 1px 0, inset rgba(255,255,255,0.7) 0 1px 0;
+    box-shadow: rgba(255,255,255,0) 0 1px 0, inset rgba(255,255,255,0.7) 0 1px 0;
+  } 
+
+
+#resetLoginForm: hover {
+
+  border: 1px solid #253737;
+    text-shadow: #6FB98F 0 1px 0;
+    background: #416b68;
+    color: #fff; 
+
 }
+
+
+
 
 #AJAXMessages {
   padding: 20px 0;
+
+    
   font-weight: 300;
 }
 
 #AJAXMessages li {
   list-style: none;
+padding-left: 5%; 
 }
 
 
 
+#loginFormContainer {
+ 
+ width: 75%;    
+padding-left: 25%;  
+
+    
+}
 
 
 
+#profileContainer {
+     
+    
+}
 
 
-
+#logoutFormContainer {
+    
+    padding: 2%; 
+    
+margin-left: 2%;
+    
+    
+}
 /* ---------------------------------------------- /*
  * CONTACT
 /* ---------------------------------------------- */
@@ -1108,6 +1190,8 @@ input[type="button"]:active, input[type="reset"]:active {
 
 #messages {
   float: left;
+margin-left: 4%; 
+margin-top: 2%; 
   clear: both;
 }
 
