@@ -3,7 +3,16 @@
  /* Define mobile styles */
 @media only screen {
 
+  
+#cart {
     
+ margin-right: -100px;    
+ width: 100%;  
+    
+}
+
+
+  
     
 }
 
@@ -40,6 +49,7 @@
     
     #navItems li {
         margin:0%;
+       
         width:25%;
         padding:0 2%;
         text-align: center;
@@ -65,10 +75,6 @@
 
 
 } /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
-
-
-
-
 
 
 
