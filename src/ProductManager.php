@@ -37,7 +37,13 @@ class ProductManager {
         
     }
             
-    
+    public function checkProductsStock() {
+        
+            $sql = "SELECT stock, sku FROM products";
+            $rows = $this->db->query($sql);
+            return $rows;
+        
+    }
     public function updateProductStock($items) {
         
         foreach($items as $item) {

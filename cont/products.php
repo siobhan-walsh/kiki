@@ -8,11 +8,25 @@ loadScripts();
         $pm = new ProductManager();
     $parameters = new Parameters("POST");
 
-        if($_POST['action'] == 'update'){
+    $action = $parameters->getValue('action');
+
+//action:'checkstock'
+
+       if($action == 'checkstock'){
+           
+           //check
+           
+           $sku = $parameters->getValue('sku');
+           $rows = $pm->checkProductsStock();
+           
+           echo json_encode($rows);
+           
+           
+       } else  if($action == 'update'){
             
          //   sku: loginValue, newItemName: editedItemName, newPrice: editedPrice, newStock:  editedStock},
             
-            $sku = $_POST['sku'];
+            $sku = $parameters->getValue('sku');
             $pname = $parameters->getValue('newItemName');
             $pdesc = $parameters->getValue('newDesc');
             $price = $parameters->getValue('newPrice');
@@ -23,7 +37,7 @@ loadScripts();
             
             echo json_encode($rows);
             
-        } else if($_POST['action'] == 'menu'){
+        } else if($action == 'menu'){
             
             
             $rows = $pm->listProducts();
@@ -64,7 +78,7 @@ loadScripts();
             echo $html;
             return;
             
-        } else if ($_POST['action'] == 'admin'){
+        } else if ($action == 'admin'){
             
             
             $rows = $pm->listProducts();
@@ -79,7 +93,7 @@ loadScripts();
                         $pname = $row['product_name'];
                         $price = $row['product_price'];
                         $desc = $row['description'];
-                        $qty = $row['stock'];
+                        $stock = $row['stock'];
 
                        // <div class='menu'>
                       $html .=   "
@@ -91,7 +105,7 @@ loadScripts();
                                      <td data-sku-name='$sku' class='itemdesc'><span >$desc</span></td>
                                      <td>$sku</td>
                                      <td data-sku-price='$sku' class='price'><span >$price</span></td>
-                                     <td data-sku-price='$sku' class='stock'><span >$qty</span></td>
+                                     <td data-sku-stock='$sku' class='stock'><span >$stock</span></td>
                                      <td><input id='d-$sku' class='delete' type='button' value='Delete'/></td>
                   <td><input id='u-$sku' class='update' type='button' value='Update'/></td>
                                     </tr>

@@ -6,7 +6,12 @@
   </headReplace>
 
   <body>
-
+<style>
+    .table-body tr, td, th {
+        width:20%;
+        text-align: left;
+    }
+      </style>
 
     <navReplace metal:use-macro="./templating/nav.xhtml/nav_bar">
     </navReplace>
@@ -152,7 +157,7 @@
                                 dataType: 'HTML',
                                  data:{action:'admin'},
                                 success: function(presp) {
-                                 //  console.log("cart checkout response: ", presp);
+                                 // console.log("cart checkout response: ", presp);
                                    $('#table-body').append(presp);
 
                                 },
@@ -163,6 +168,47 @@
                         };
                         
                         getProducts();
+                        checkProducts();
+                        
+                         function checkProducts(){
+                             $.ajax({
+                                url: "./cont/products.php",
+                                type: "POST",
+                                dataType: 'JSON',
+                                 data:{action:'checkstock'},
+                                success: function(presp) {
+                                 console.log("checking products stock: ", presp);
+                                    
+                                    var lowstockItems = [];
+                                    for(var i = 0; i < presp.length; i++){
+                                        
+                                        if(presp[i].stock < 4){
+                                            console.log('this product has less than 4 stock', presp[i].sku);
+                                            lowstockItems.push(presp[i].sku);
+                                            var tdtd = $('*[data-sku-stock = "' + presp[i].sku + '"]').html('<p style="color:red;">low stock:</p><span>' + presp[i].stock + '</span>');
+                                            
+                                          
+                                            console.log('td data', tdtd);
+                                            
+                                            /*if(tdtd == presp[i].sku){
+                                                
+                                                $('.stock')
+                                                
+                                            }*/
+                                        }
+                                        
+                                    };
+                                    
+                                    console.log("lowstockItems is ", lowstockItems);
+                                   
+                                  //send warning w/e
+                                },
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    console.log(jqXHR.statusText, textStatus);
+                                }
+                            });
+                        };
+                       
 
                         function doLogin() {
 
@@ -202,6 +248,9 @@
                                             + "<span>" + returnedData['user']['last_name'] + "</span>"
                                             +"<br/><br/><br/></div>");
                                         $("#AJAXMessages").html("");
+                                        
+                                        //show products
+                                        getProducts();
 
                                         // remove login form
                                         $("#loginForm").remove();
@@ -253,27 +302,30 @@
                          $('#table-body').on('click', 'span', function() {
 
                             var $td = $(this).parent();
+                             var tdspan = $(this);
                             var $input = null;
 
                             console.log('this span', $td.attr('class'));
+                             console.log('td is', this);
 
                             var val = $(this).html();
+                             console.log('val ', val);
 
                             if($td.attr('class') === 'itemtitle') {
                                 //var val = $(this).html();
-                                $td.html('<input type="text" value="' + val + '"/>');
+                                tdspan.html('<input type="text" value="' + val + '"/>');
                                 var $input = $td.find('input');
                                 $input.focus();
                                 $input.select();
                             } else if($td.attr('class') === 'price') {
                                 //var val = $(this).html();
-                                $td.html('<input type="text" value="' + val + '"/>');
+                                tdspan.html('<input type="text" value="' + val + '"/>');
                                 var $input = $td.find('input');
                                 $input.focus();
                                 $input.select();
                             } else if($td.attr('class') === 'stock') {
                                 //var val = $(this).html();
-                                $td.html('<input type="text" value="' + val + '"/>');
+                                tdspan.html('<input type="text" value="' + val + '"/>');
                                 var $input = $td.find('input');
                                 $input.focus();
                                 $input.select();
@@ -282,15 +334,15 @@
                             if($input != null) {
 
                                 $input.on('blur', function() {
-                                    $(this).parent().html('<span>' + $(this).val() + '</span>');
+                                    $(this).replaceWith('<span>' + $(this).val() + '</span>');
                                 });
 
                                 $input.keyup(function(e) {
                                     if(e.which == 13) {
-                                        $(this).parent().html('<span>' + $(this).val() + '</span>');
+                                        $(this).replaceWith('<span>' + $(this).val() + '</span>');
                                     } else if(e.which == 27) {
                                         // escape key, means user canceled operation
-                                        $(this).parent().html('<span>' + val + '</span>');
+                                        $(this).replaceWith('<span>' + val + '</span>');
                                     }
                                 });
                             }
