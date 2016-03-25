@@ -32,20 +32,20 @@ class ProductManager {
     }
     
     public function updateProduct($sku, $pname, $pdesc, $price, $stock){
-        $sql = "UPDATE products SET product_name = '$pname', description = '$pdesc', product_price = '$price', qty = '$stock' WHERE sku = '$sku'";
+        $sql = "UPDATE products SET product_name = '$pname', description = '$pdesc', product_price = '$price', stock = '$stock' WHERE sku = '$sku'";
         $rows = $this->db->query($sql);
         
     }
             
     
-    public function updateProductQty($items) {
+    public function updateProductStock($items) {
         
         foreach($items as $item) {
             $sku = $item['sku'];
             $stock = $item['stock'];
            
             
-            $sql = "UPDATE products SET qty = '$stock' WHERE sku = '$sku'";
+            $sql = "UPDATE products SET stock = '$stock' WHERE sku = '$sku'";
             $rows = $this->db->query($sql);
             
         }

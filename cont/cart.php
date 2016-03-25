@@ -83,7 +83,7 @@ loadScripts();
                
 
                 $affectRows = $scm->checkoutCart($_SESSION['id'], $total);
-                $pm->updateProductQty($items);
+                $pm->updateProductStock($items);
 
                 if($affectRows > 0) {
 

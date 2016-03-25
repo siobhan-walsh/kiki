@@ -38,7 +38,7 @@ loadScripts();
                 $pname = $row['product_name'];
                 $price = $row['product_price'];
                 $desc = $row['description'];
-                $stock = $row['qty'];
+                $stock = $row['stock'];
 
                // <div class='menu'>
               $html .=   "
@@ -79,7 +79,7 @@ loadScripts();
                         $pname = $row['product_name'];
                         $price = $row['product_price'];
                         $desc = $row['description'];
-                        $qty = $row['qty'];
+                        $qty = $row['stock'];
 
                        // <div class='menu'>
                       $html .=   "
