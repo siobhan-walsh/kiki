@@ -45,7 +45,7 @@
 
                   <div id="profileContainer">
                     <div id="userProfile" tal:condition="exists:profile">
-                      <h2>User Profile</h2>
+                      <h4>User Profile</h4>
                       <span tal:content="profile/user_name"></span>
                       <span tal:content="profile/first_name"></span>
                       <span tal:content="profile/last_name"></span>
@@ -196,7 +196,7 @@
                                         // you're in, show profile
                                         console.log(returnedData['user']);
                                         $("#profileContainer").html("<div id='userProfile'>"
-                                            + "<h2>User Profile</h2>\n"
+                                            + "<h4>User Profile</h4>\n"
                                             + "<span>" + returnedData['user']['user_name'] + "</span> "
                                             + "<span>" + returnedData['user']['first_name'] + "</span> "
                                             + "<span>" + returnedData['user']['last_name'] + "</span>"

@@ -156,13 +156,31 @@ ADMIN LOGIN
   } 
 
 
-#resetLoginForm: hover {
+
+#userProfile {
+    
+ margin-left: 10%;   
+ margin-top: 3%;   
+    
+}
+
+
+#main {
+    
+margin-left: 25%;
+background-color: skyblue;
+padding-right: 10%;   
+    
+}
+
+
+
+#resetLoginForm:hover {
 
   border: 1px solid #253737;
     text-shadow: #6FB98F 0 1px 0;
     background: #416b68;
     color: #fff; 
-
 }
 
 
@@ -200,10 +218,27 @@ padding-left: 25%;
 
 #logoutFormContainer {
     
-    padding: 2%; 
+padding: 2%; 
     
-margin-left: 2%;
+margin-left: 75%;
     
+    
+}
+
+
+.delete {
+    
+ background-color: #6FB98F;    
+ color: #fff;
+    
+}
+
+
+
+.update {
+    
+ background-color: #6FB98F;    
+ color: #fff;
     
 }
 /* ---------------------------------------------- /*
