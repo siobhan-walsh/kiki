@@ -66,6 +66,10 @@ create table user (
   PRIMARY KEY (ID)
 );
 
+
+
+
 insert into user (user_name, first_name, last_name, password, type) values ('sio', 'siobhan', 'walsh', '49f68a5c8493ec2c0bf489821c21fc3b', 'admin');
 insert into user (user_name, first_name, last_name, password, type) values ('k8esak', 'katie', 'sak', '6057f13c496ecf7fd777ceb9e79ae285', 'admin');
 
+--use password hi for sio and hey for k8esak
