@@ -9,6 +9,76 @@
 
 @media only screen and (max-width: 40em) {
     
+    #about {
+        
+    width: 100%;     
+        
+        
+    }
+    
+    .meet {
+        
+    font-size: 12pt;    
+        
+    }
+    .fam {
+        
+    width: 20px;     
+        
+        
+    }
+    
+    
+    #order {
+        
+    width: 50%; 
+    text-align: center;
+        
+        
+    }
+    #greenbox {
+        
+     width: 100%;    
+    margin-top: -1%;   
+     margin-left: 0;   
+    }
+    
+    
+    #quote {
+        
+    font-size: 14pt;     
+        
+        
+    }
+    
+    
+    
+    #panelly  {
+        
+     width: 100%;    
+        
+        
+    }
+    .meet2 {
+        
+  font-size: 22pt; 
+        
+    }
+    
+
+    .aboutp2 {
+        
+       font-size: 12pt;  
+        
+    }
+    .footerh5 {
+        
+    margin-left: -4%;     
+        
+        
+    }
+    
+    
     #cart {
 
        right: -100px;    
@@ -16,8 +86,8 @@
     
     input[type=submit] {
     cursor:pointer;
-    width: 100%;
-    margin-top: -25px; 
+    width: 50%;
+    margin-top: -15px; 
 }
 
     #mcartbutton{
@@ -33,6 +103,13 @@
         
     }
     
+    #whitebox2{
+      
+        width: 100%;
+        margin-left: 0;
+        
+        
+    }
     
     #contactbody {
 	  background:#6FB98F;
@@ -43,13 +120,12 @@
     align-content: center;
     padding-top:5%;
     padding-left: 10%;
+    margin-left: 0;
+    margin-top: -25px;
     padding-right: 2%;
-    padding-bottom: 3%;
+    padding-bottom: 12%;
    width: 100%; 
-    margin-left: 10%;
-    margin-right: 5%;
-    margin-top: 5%; 
-    margin-bottom: 5%; 
+    
 
 }
     
