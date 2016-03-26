@@ -62,14 +62,14 @@
               <div class="small-12 large-12 columns">
                   <div class='row'>
                   <h2> Add a new product:</h2>
-                  <form id="addNewUser">
+                 
                     <p>product name:</p><input id="addProductName" type="text" placeholder="product name" required="required"/>
                       <p>product desciption:</p>
                     <input id="addDesc" type="text" placeholder="product description" required="required"/>
                    <p>price:</p> <input id="addPrice" type="text" placeholder="0.00" required="required"/>
                       <p>how many in stock:</p> <input id="addStock" type="text" placeholder="item stock" required="required"/>
-                    <input id="submitNewProduct" type="submit" value="Add"/>
-                  </form>
+                    <input id="submitNewProduct" type="button" value="Add"/>
+                
               </div>
               
               </div>
@@ -193,26 +193,28 @@
                             });
                         };
                        
-                        $("#addNewUser").submit(function(e) {
-                            e.preventDefault();
-
+                      
+                        
+                        $("#submitNewProduct").click(function() {
+                           
                             // get values from form
-                            var product = $("#addFirstName").val();
-                            var lastName = $("#addLastName").val();
-                            var userName = $("#addUserName").val();
-                            var pw = $("#addPw").val();
+                            var productName = $("#addProductName").val();
+                            var productDesc = $("#addDesc").val();
+                            var productPrice = $("#addPrice").val();
+                            var productStock = $("#addStock").val();
 
-                            //console.log(firstName, lastName, userName);
+                            console.log('newproductingo', productName, productDesc, productPrice, productStock );
 
                             $.ajax({
-                                url: "./cont/users.php",
+                                url: "./cont/products.php",
                                 type: "POST",
                                 dataType: "JSON",
-                                data: {action: "add", newFirstName: firstName,
-                                    newLastName: lastName, newUserName: userName, newPw: pw},
+                                data: {action: "add", productName:  productName, productDesc: productDesc, productPrice:productPrice, productStock:productStock},
                                 success: function(returnedData) {
-                                    loadUsers();
-                                    console.log(returnedData);
+                                  
+                                    console.log('adding resp', returnedData);
+                                     location.reload(); 
+                                   
                                 },
                                 error: function(jqXHR, textStatus, errorThrown) {
                                     $("#p1").text(jqXHR.statusText);
@@ -270,6 +272,7 @@
                                         // create logout form
                                         $("#loginFormContainer").after('<div id="logoutFormContainer"><form id="logoutForm"><fieldset><legend>Logout Form</legend><label for="password">Password: </label><input id="logoutbutton" type="button" value="Logout"/><input type="hidden" value="logout" name="logoutButton"/></fieldset></form></div>');
                                         $("#logoutbutton").bind("click", doLogout);
+                                         location.reload(); 
 
                                     }
 
@@ -291,9 +294,8 @@
                                 dataType: "JSON",
                                 data: formData,
                                 success: function(returnedData) {
-                                    console.log("Logout data returned: ", returnedData);
-                                   // window.location.href = "index.php";
-
+                                  
+                                   location.reload(); 
                                 },
                                 error: function(jqXHR, textStatus, errorThrown) {
                                     //console.log(jqXHR.statusText, textStatus, errorThrown);
@@ -325,37 +327,61 @@
                            var htmlval = $td.children('span').html();
                             
                             if($td.attr('class') === 'itemtitle') {
-                               
-                                tdspan.html('<input type="text" value="' + htmlval + '"/>');
+                                
+                                var inp = document.createElement('input');
+                                inp.type = 'text';
+                                inp.value = htmlval;
+                                tdspan.replaceWith(inp);
+                              
                                 var $input = $td.find('input');
                                 $input.focus();
                                 $input.select();
                             } else if($td.attr('class') === 'price') {
                               
-                                tdspan.html('<input type="text" value="' + htmlval + '"/>');
+                                var inp = document.createElement('input');
+                                inp.type = 'text';
+                                inp.value = htmlval;
+                                tdspan.replaceWith(inp);
                                 var $input = $td.find('input');
                                 $input.focus();
                                 $input.select();
                             } else if($td.attr('class') === 'stock') {
                               
-                                 $td.children('span').html('<input type="text" value="' + htmlval + '"/>');
+                                var inp = document.createElement('input');
+                                inp.type = 'text';
+                                inp.value = htmlval;
+                                tdspan.replaceWith(inp);
+                                var $input = $td.find('input');
+                                $input.focus();
+                                $input.select();
+                            } else if($td.attr('class') === 'itemdesc') {
+                              
+                                var inp = document.createElement('input');
+                                inp.type = 'text';
+                                inp.value = htmlval;
+                                tdspan.replaceWith(inp);
                                 var $input = $td.find('input');
                                 $input.focus();
                                 $input.select();
                             }
 
                             if($input != null) {
+                                
 
                                 $input.on('blur', function() {
-                                    $(this).parent().html($(this).val());
+                                   // $(this).parent().html($(this).val());
+                                    $(this).replaceWith('<span>' + $(this).val() + '</span>');
+                                    
+                                    console.log('inpval', $(this).parent().val());
+                                    
                                 });
 
                                 $input.keyup(function(e) {
                                     if(e.which == 13) {
-                                        $(this).parent().html($(this).val());
+                                         $(this).replaceWith('<span>' + $(this).val() + '</span>');
                                     } else if(e.which == 27) {
                                         // escape key, means user canceled operation
-                                        $(this).parent().html(htmlval.html());
+                                         $(this).replaceWith('<span>' + htmlval + '</span>');            
                                     }
                                 });
                             }
@@ -384,8 +410,7 @@
 
                                     console.log('updated returnedData', returnedData);
                                     checkProducts();
-                                    
-                                    //window.location.href = "user-editor.html";
+                                     location.reload(); 
                                 },
                                 error: function(jqXHR, textStatus, errorThrown) {
                                     console.log(jqXHR.statusText, textStatus);

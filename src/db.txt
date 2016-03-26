@@ -54,10 +54,11 @@ CREATE TABLE cart_product (
   cart_id int NOT NULL,
   quantity int NOT NULL,
   time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (product_id) REFERENCES products(product_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+  FOREIGN KEY (product_id) REFERENCES products(product_id),
   FOREIGN KEY (cart_id) REFERENCES cart(cart_id) ON UPDATE CASCADE ON DELETE RESTRICT,
   PRIMARY KEY (cp_id)
 );
+
 
 INSERT INTO cart_product (cart_id, product_id) VALUES (1, 1);
 INSERT INTO cart_product (cart_id, product_id) VALUES (1, 2);

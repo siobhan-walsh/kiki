@@ -18,6 +18,19 @@ class ProductManager {
         $rows = $this->db->query($sql);
         return $rows;
     }
+    
+    public function addProduct($pname, $pdesc, $price, $stock){
+        
+        $sql = 'SELECT product_id FROM products ORDER BY product_id DESC LIMIT 1;';
+        $rows = $this->db->query($sql);
+        $previousproduct = $rows[0]['product_id'];
+        
+        $sku = 'kg' . $previousproduct;
+        
+         $moresql = "INSERT INTO products (product_name, sku, product_price, description, stock) VALUES ('$pname', '$sku', '$price', '$pdesc', '$stock');";
+        $morerows = $this->db->query($moresql);
+     
+        }
 
     public function findProduct($SKU) {
         $params = array(":sku" => $SKU);

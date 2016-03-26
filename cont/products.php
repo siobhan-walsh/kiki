@@ -37,6 +37,18 @@ loadScripts();
             
             echo json_encode($rows);
             
+        } else  if($action == 'add'){
+            
+            $pname = $parameters->getValue('productName');
+            $pdesc = $parameters->getValue('productDesc');
+            $price = $parameters->getValue('productPrice');
+            $stock = $parameters->getValue('productStock');
+            
+            $rows = $pm->addProduct($pname, $pdesc, $price,  $stock);
+            
+            
+            echo json_encode($rows);
+            
         } else if($action == 'delete'){
             $sku = $parameters->getValue('sku');
            $pm->deleteProduct($sku);
