@@ -15,6 +15,16 @@ body {
 
 * {box-sizing: border-box;}
 
+
+
+.footerimg {
+    
+    
+ margin-right: -25px;   
+    
+    
+}
+
 /********************************************
 DASHBOARD
 ********************************************/
@@ -1282,7 +1292,7 @@ float: left;
     
  	font: 700 30pt/1.2 'Pacifica', serif;
     color: aliceblue;  
-    margin-left: 6%;
+    margin-left: 3%;
       
     
 }
@@ -1292,6 +1302,20 @@ float: left;
  	font: 700 30pt/1.2 'Pacifica', serif;
     color: aliceblue;  
     margin-left: 35%;
+      
+}
+.email {
+    
+color: aquamarine;    
+    
+    
+}
+.footerh5img {
+    
+ 	font: 700 30pt/1.2 'Pacifica', serif;
+    color: aliceblue;  
+    margin-left: 70%;
+    margin-top: -22%;
       
 }
 
