@@ -139,7 +139,7 @@ ADMIN LOGIN
 
 #resetLoginForm:active {
  
-        margin-top:1px;
+    margin-top:1px;
     text-shadow: #333333 0 -1px 0;
     border: 1px solid #253737;
     background: #6da5a3;
@@ -166,11 +166,19 @@ ADMIN LOGIN
 
 
 #main {
-    
+  /*  
 margin-left: 25%;
 background-color: skyblue;
 padding-right: 10%;   
-    
+   */
+    width:80%;
+    margin:auto;
+    border-collapse: collapse;
+}
+
+#main tr:nth-child(even){
+    background-color:rgba(200, 200, 255, 0.4);;
+     margin-bottom: 10%;
 }
 
 
@@ -1387,3 +1395,36 @@ background-color: aquamarine;
 .thanksdiv p {
     padding:10%;
 }
+
+#items-view {
+    font-size:12pt;
+}
+
+    #users {
+        width:100%;
+    }
+    #users th {
+        text-align: left;
+        font-size:20pt;
+    }
+    .addNewUser input.placeholder{
+       color:rgba(100, 100, 100, 1);
+        
+    }
+    
+    ::-webkit-input-placeholder {
+       color:rgba(100, 100, 100, 1);
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+       color:rgba(100, 100, 100, 1);
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color:rgba(100, 100, 100, 1);
+    }
+
+    :-ms-input-placeholder {  
+      color:rgba(100, 100, 100, 1);
+    }
+    

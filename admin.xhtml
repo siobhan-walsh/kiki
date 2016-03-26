@@ -20,33 +20,8 @@
       </div>
       
       <div id='content' class=' large-12 columns'>
-        
-          <!--
-          <form id = "contactbody2">
-
-		<h1>Admin Login</h1>
-	       <form class="boxform">
-                     
-
-                
-            <div id = 'signin'>
-         <span id='warn' style='color:red'></span>
-            <input id='un' class='blackinp' type='text' placeholder = 'username' required='true'/>
-            <input id='pw' class='blackinp' type='text' placeholder = 'password' required='true'/>
-             <input type='button' class='buttons2' id='subm' value="Login"/>
-             
-            
-        </div>  
-                
-      </form>    
-
-
-
       
-            </form> 
-      -->
-          
-          <div class = 'whitebg large-offset-1 large-10 columns'>
+          <div class = 'whitebg large-12 columns'>
 
                   <div id="profileContainer">
                     <div id="userProfile" tal:condition="exists:profile">
@@ -62,8 +37,8 @@
                     
                       
                       
-                      <div id="items-view" class="small-12 large-8 columns">
-                       <table id="main" class="small-12">
+                      <div id="items-view" class="small-12 large-12 columns">
+                       <table id="main" class="small-12 large-10">
                         <thead class="expand">
                           <tr>
                             <th>Item</th>
@@ -82,7 +57,22 @@
                       </table>
                       </div>
                       
-                      
+                      <hr/>
+              
+              <div class="small-12 large-12 columns">
+                  <div class='row'>
+                  <h2> Add a new product:</h2>
+                  <form id="addNewUser">
+                    <p>product name:</p><input id="addProductName" type="text" placeholder="product name" required="required"/>
+                      <p>product desciption:</p>
+                    <input id="addDesc" type="text" placeholder="product description" required="required"/>
+                   <p>price:</p> <input id="addPrice" type="text" placeholder="0.00" required="required"/>
+                      <p>how many in stock:</p> <input id="addStock" type="text" placeholder="item stock" required="required"/>
+                    <input id="submitNewProduct" type="submit" value="Add"/>
+                  </form>
+              </div>
+              
+              </div>
                       
               </div>
             <br/>
@@ -171,7 +161,7 @@
                         checkProducts();
                         setInterval(function(){
                             checkProducts();
-                        }, 3000);
+                        }, 30000);
                         
                         
                          function checkProducts(){
@@ -181,31 +171,21 @@
                                 dataType: 'JSON',
                                  data:{action:'checkstock'},
                                 success: function(presp) {
-                                 console.log("checking products stock: ", presp);
-                                    
+                               
                                     var lowstockItems = [];
                                     for(var i = 0; i < presp.length; i++){
                                         
                                         if(presp[i].stock < 4){
-                                            console.log('this product has less than 4 stock', presp[i].sku);
+                                           
                                             lowstockItems.push(presp[i].sku);
                                             var tdtd = $('*[data-sku-stock = "' + presp[i].sku + '"]').html('<p style="color:red;">low stock:</p><span>' + presp[i].stock + '</span>');
-                                            
-                                          
-                                            console.log('td data', tdtd);
-                                            
-                                            /*if(tdtd == presp[i].sku){
-                                                
-                                                $('.stock')
-                                                
-                                            }*/
+                                      
+                                        } else {
+                                            $('*[data-sku-stock = "' + presp[i].sku + '"]').html('<span>' + presp[i].stock + '</span>');
                                         }
                                         
                                     };
-                                    
-                                    console.log("lowstockItems is ", lowstockItems);
-                                   
-                                  //send warning w/e
+                                 
                                 },
                                 error: function(jqXHR, textStatus, errorThrown) {
                                     console.log(jqXHR.statusText, textStatus);
@@ -213,6 +193,34 @@
                             });
                         };
                        
+                        $("#addNewUser").submit(function(e) {
+                            e.preventDefault();
+
+                            // get values from form
+                            var product = $("#addFirstName").val();
+                            var lastName = $("#addLastName").val();
+                            var userName = $("#addUserName").val();
+                            var pw = $("#addPw").val();
+
+                            //console.log(firstName, lastName, userName);
+
+                            $.ajax({
+                                url: "./cont/users.php",
+                                type: "POST",
+                                dataType: "JSON",
+                                data: {action: "add", newFirstName: firstName,
+                                    newLastName: lastName, newUserName: userName, newPw: pw},
+                                success: function(returnedData) {
+                                    loadUsers();
+                                    console.log(returnedData);
+                                },
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    $("#p1").text(jqXHR.statusText);
+                                }
+
+                            });
+
+                        });
 
                         function doLogin() {
 
@@ -306,10 +314,12 @@
                          $('#table-body').on('click', 'span', function() {
 
                             var $td = $(this).parent();
-                             var tdspan = $(this);
+                            var tdspan = $(this);
                             var $input = null;
                              
                              var thisthang = this;
+                             
+                             console.log('hey clicking', $td.attr('class'));
 
 
                            var htmlval = $td.children('span').html();
@@ -373,6 +383,7 @@
                                 success: function(returnedData) {
 
                                     console.log('updated returnedData', returnedData);
+                                    checkProducts();
                                     
                                     //window.location.href = "user-editor.html";
                                 },
@@ -385,30 +396,25 @@
                         
       // deleting products
                 $('#table-body').on('click', '.delete', function() {
-                        var loginValue = this.getAttribute("id");
-                        loginValue = loginValue.replace("d-", "");
-                            var editedItemName = $(this).parent().parent().find(".itemtitle span").text();
-                            var editedDesc = $(this).parent().parent().find(".itemdesc span").text();
-                            var editedPrice = $(this).parent().parent().find(".price span").text();
-                            var editedStock = $(this).parent().parent().find(".stock span").text();
-                            console.log('editeditemname', editedItemName);
-
+                        var deletesku = this.getAttribute("id");
+                        deletesku = deletesku.replace("d-", "");
+                   
+                       
                     $.ajax({
-                     url: "./deleteitems.php",
-                    type: "POST",
-                    dataType: 'json',
-                    data: {action: "delete", sku: loginValue, newItemName: editedItemName, newDesc: editedDesc, newPrice: editedPrice, newStock:  editedStock},
-                    success: function(returnedData) {
-                     
-
-                        //window.location.href = "user-editor.html";
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        console.log(jqXHR.statusText, textStatus);
+                         url: "./cont/products.php",
+                        type: "POST",
+                        dataType: 'json',
+                        data: {action: "delete", sku: deletesku},
+                        success: function(returnedData) {
+                         
+                            location.reload(); 
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR.statusText, textStatus);
                         }
-                        });
+                    });
 
-                        });
+                });
 
 
 

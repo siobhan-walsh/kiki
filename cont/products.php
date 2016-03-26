@@ -10,7 +10,7 @@ loadScripts();
 
     $action = $parameters->getValue('action');
 
-//action:'checkstock'
+
 
        if($action == 'checkstock'){
            
@@ -37,7 +37,14 @@ loadScripts();
             
             echo json_encode($rows);
             
-        } else if($action == 'menu'){
+        } else if($action == 'delete'){
+            $sku = $parameters->getValue('sku');
+           $pm->deleteProduct($sku);
+           
+           echo json_encode(array('deleted item' => $sku ));
+           
+               
+       } else if($action == 'menu'){
             
             
             $rows = $pm->listProducts();
@@ -103,7 +110,7 @@ loadScripts();
                                       
                                      <td data-sku-name='$sku' class='itemtitle'><span >$pname</span></td>
                                      <td data-sku-name='$sku' class='itemdesc'><span >$desc</span></td>
-                                     <td>$sku</td>
+                                     <td class='numstd'>$sku</td>
                                      <td data-sku-price='$sku' class='price'><span >$price</span></td>
                                      <td data-sku-stock='$sku' class='stock'><span >$stock</span></td>
                                      <td><input id='d-$sku' class='delete' type='button' value='Delete'/></td>

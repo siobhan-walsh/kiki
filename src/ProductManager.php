@@ -57,6 +57,15 @@ class ProductManager {
         }
 
     }
+    
+    public function deleteProduct($sku) {
+
+        $sql = "DELETE FROM products WHERE sku = '$sku';";
+        $rows = $this->db->query($sql);
+
+    }
+
+  
 
 
 }
