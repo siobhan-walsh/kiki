@@ -6,7 +6,7 @@
     $template = new PHPTAL('menu.xhtml');
 
 
-    $template->page_title = "Menu Page with PHPTAL";
+    $template->page_title = "Kiki's | Menu";
 
 
     try {

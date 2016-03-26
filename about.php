@@ -8,7 +8,7 @@
     $template = new PHPTAL('about.xhtml');
 
     // now add the variables for processing and that you created from above:
-    $template->page_title = "About Page with PHPTAL";
+    $template->page_title = "Kiki's | About";
 
 
     // execute the template

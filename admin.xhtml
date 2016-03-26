@@ -7,10 +7,7 @@
 
   <body>
 <style>
-    .table-body tr, td, th {
-        width:20%;
-        text-align: left;
-    }
+    
       </style>
 
     <navReplace metal:use-macro="./templating/nav.xhtml/nav_bar">
@@ -26,11 +23,24 @@
                   <div id="profileContainer">
                     <div id="userProfile" tal:condition="exists:profile">
                       <h4>User Profile</h4>
-                      <span tal:content="profile/user_name"></span>
-                      <span tal:content="profile/first_name"></span>
-                      <span tal:content="profile/last_name"></span>
-                      <br/><br/><br/>
+                      <b>Username: </b><span tal:content="profile/user_name"></span><br/>
+                      <b>First Name: </b><span tal:content="profile/first_name"></span> <br/>
+                      <b>Last Name: </b><span tal:content="profile/last_name"></span> <br/>
+           
                     </div>
+                      
+                      <div id="logoutFormContainer" tal:condition="php: Session::get('isLoggedIn')">
+                     
+                    <form id="logoutForm">
+                      <fieldset>
+                        <legend></legend>
+                        <input id="logoutbutton" type="button" value="Logout"/>
+                        <input type="hidden" value="logout" name="logoutButton"/>
+                      </fieldset>
+                    </form><br/><br/>
+
+                  </div>
+                      
                   </div>
 
                   <div id="shoppingCartContainer" tal:condition="php: Session::get('isLoggedIn')">
@@ -46,7 +56,6 @@
                             <th>Sku</th>
                             <th>Price</th>
                             <th>In Stock</th>
-                            
                             <th>Action</th>
                           </tr>
                           <tbody id="table-body">
@@ -60,7 +69,7 @@
                       <hr/>
               
               <div class="small-12 large-12 columns">
-                  <div class='row'>
+                  <div style='margin-left:10%;'>
                   <h2> Add a new product:</h2>
                  
                     <p>product name:</p><input id="addProductName" type="text" placeholder="product name" required="required"/>
@@ -96,23 +105,7 @@
 <hr/>
 
             <!-- tal:condition="exists: isLoggedIn" -->
-                
-                  <div id="logoutFormContainer" class = 'large-12 columns' tal:condition="php: Session::get('isLoggedIn')">
-                      
-                      <h5>logout</h5>
-
-                    <form id="logoutForm">
-                      <fieldset>
-                        <legend><h4>Logout Form</h4></legend>
-                        <label for="password">Password: </label>
-                        <input id="logoutbutton" type="button" value="Logout"/>
-                        <input type="hidden" value="logout" name="logoutButton"/>
-                      </fieldset>
-                    </form>
-
-                  </div>
-
-                  <div id="messages">
+                <div id="messages">
                     <h3>Messages:</h3>
                     <ul id="talMessages" tal:condition="php: count(messages) GT 0">
                       <li tal:repeat="msg messages" class="${msg/type}"><span tal:content="msg/text"></span></li>
@@ -120,343 +113,27 @@
                     <ul id="AJAXMessages">
                     </ul>
                   </div>
-                  <br/><br/><br/>
+                  
+
+                  
+                
                 </div>
 
                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
                 <script>
-                  /*<![CDATA[*/
-                    $(document).ready(function() {
-
-                        // from: http://www.developerdrive.com/2013/04/turning-a-form-element-into-json-and-submiting-it-via-jquery/
-                        function ConvertFormToJSON(form){
-                            var array = $(form).serializeArray();
-                            var json = {};
-
-                            jQuery.each(array, function() {
-                                // don't send 'undefined'
-                                json[this.name] = this.value || '';
-                            });
-                            return json;
-                        }
-                        
-                        function getProducts(){
-                             $.ajax({
-                                url: "./cont/products.php",
-                                type: "POST",
-                                dataType: 'HTML',
-                                 data:{action:'admin'},
-                                success: function(presp) {
-                                 // console.log("cart checkout response: ", presp);
-                                   $('#table-body').append(presp);
-
-                                },
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                    console.log(jqXHR.statusText, textStatus);
-                                }
-                            });
-                        };
-                        
-                        getProducts();
-                        checkProducts();
-                        setInterval(function(){
-                            checkProducts();
-                        }, 30000);
-                        
-                        
-                         function checkProducts(){
-                             $.ajax({
-                                url: "./cont/products.php",
-                                type: "POST",
-                                dataType: 'JSON',
-                                 data:{action:'checkstock'},
-                                success: function(presp) {
-                               
-                                    var lowstockItems = [];
-                                    for(var i = 0; i < presp.length; i++){
-                                        
-                                        if(presp[i].stock < 4){
-                                           
-                                            lowstockItems.push(presp[i].sku);
-                                            var tdtd = $('*[data-sku-stock = "' + presp[i].sku + '"]').html('<p style="color:red;">low stock:</p><span>' + presp[i].stock + '</span>');
-                                      
-                                        } else {
-                                            $('*[data-sku-stock = "' + presp[i].sku + '"]').html('<span>' + presp[i].stock + '</span>');
-                                        }
-                                        
-                                    };
-                                 
-                                },
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                    console.log(jqXHR.statusText, textStatus);
-                                }
-                            });
-                        };
-                       
-                      
-                        
-                        $("#submitNewProduct").click(function() {
-                           
-                            // get values from form
-                            var productName = $("#addProductName").val();
-                            var productDesc = $("#addDesc").val();
-                            var productPrice = $("#addPrice").val();
-                            var productStock = $("#addStock").val();
-
-                            console.log('newproductingo', productName, productDesc, productPrice, productStock );
-
-                            $.ajax({
-                                url: "./cont/products.php",
-                                type: "POST",
-                                dataType: "JSON",
-                                data: {action: "add", productName:  productName, productDesc: productDesc, productPrice:productPrice, productStock:productStock},
-                                success: function(returnedData) {
-                                  
-                                    console.log('adding resp', returnedData);
-                                     location.reload(); 
-                                   
-                                },
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                    $("#p1").text(jqXHR.statusText);
-                                }
-
-                            });
-
-                        });
-
-                        function doLogin() {
-
-                            var formData = ConvertFormToJSON("#loginForm");
-                            //console.log("Login data to send: ", formData);
-
-                            $.ajax({
-                                url: "./login.php",
-                                type: "POST",
-                                dataType: "JSON",
-                                data: formData,
-                                success: function(returnedData) {
-                                    console.log("Login data returned: ", returnedData);
-
-                                    var status = returnedData['status'];
-                                    if(status == 'error') {
-                                        msgs = returnedData['msg'];
-                                        for(msg in msgs) {
-                                            //console.log(msgs[msg]['text']);
-
-                                            $("#AJAXMessages").html("<li class='" + msgs[msg]['type']
-                                                + "'" + ">" + msgs[msg]['text'] + "</li>");
-                                        }
-
-
-                                        /* BTW, IF LOGOUT FAILED, IT'S BECAUSE THE SESSION EXPIRED
-                                           YOU COULD EASILY JUST RESET THE HTML IN THE PAGE
-                                         */
-
-                                    } else {
-                                        // you're in, show profile
-                                        console.log(returnedData['user']);
-                                        $("#profileContainer").html("<div id='userProfile'>"
-                                            + "<h4>User Profile</h4>\n"
-                                            + "<span>" + returnedData['user']['user_name'] + "</span> "
-                                            + "<span>" + returnedData['user']['first_name'] + "</span> "
-                                            + "<span>" + returnedData['user']['last_name'] + "</span>"
-                                            +"<br/><br/><br/></div>");
-                                        $("#AJAXMessages").html("");
-                                        
-                                        //show products
-                                        getProducts();
-
-                                        // remove login form
-                                        $("#loginForm").remove();
-
-                                        // create logout form
-                                        $("#loginFormContainer").after('<div id="logoutFormContainer"><form id="logoutForm"><fieldset><legend>Logout Form</legend><label for="password">Password: </label><input id="logoutbutton" type="button" value="Logout"/><input type="hidden" value="logout" name="logoutButton"/></fieldset></form></div>');
-                                        $("#logoutbutton").bind("click", doLogout);
-                                         location.reload(); 
-
-                                    }
-
-
-                                },
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                    console.log("AJAX Error", textStatus);
-                                }
-                            });
-                        }
-
-                        function doLogout() {
-                            var formData = {logout: "true"};
-                            //console.log("Logout data to send: ", formData);
-
-                            $.ajax({
-                                url: "./logout.php",
-                                type: "POST",
-                                dataType: "JSON",
-                                data: formData,
-                                success: function(returnedData) {
-                                  
-                                   location.reload(); 
-                                },
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                    //console.log(jqXHR.statusText, textStatus, errorThrown);
-                                    console.log(jqXHR.statusText, textStatus);
-                                }
-                            });
-                        }
-
-                        // login event
-                        $("#loginbutton").click(doLogin);
-
-                        // logout event
-                        $("#logoutbutton").click(doLogout);
-
-                        
-                        // inputs for clicky 
-                        
-                         $('#table-body').on('click', 'span', function() {
-
-                            var $td = $(this).parent();
-                            var tdspan = $(this);
-                            var $input = null;
-                             
-                             var thisthang = this;
-                             
-                             console.log('hey clicking', $td.attr('class'));
-
-
-                           var htmlval = $td.children('span').html();
-                            
-                            if($td.attr('class') === 'itemtitle') {
-                                
-                                var inp = document.createElement('input');
-                                inp.type = 'text';
-                                inp.value = htmlval;
-                                tdspan.replaceWith(inp);
-                              
-                                var $input = $td.find('input');
-                                $input.focus();
-                                $input.select();
-                            } else if($td.attr('class') === 'price') {
-                              
-                                var inp = document.createElement('input');
-                                inp.type = 'text';
-                                inp.value = htmlval;
-                                tdspan.replaceWith(inp);
-                                var $input = $td.find('input');
-                                $input.focus();
-                                $input.select();
-                            } else if($td.attr('class') === 'stock') {
-                              
-                                var inp = document.createElement('input');
-                                inp.type = 'text';
-                                inp.value = htmlval;
-                                tdspan.replaceWith(inp);
-                                var $input = $td.find('input');
-                                $input.focus();
-                                $input.select();
-                            } else if($td.attr('class') === 'itemdesc') {
-                              
-                                var inp = document.createElement('input');
-                                inp.type = 'text';
-                                inp.value = htmlval;
-                                tdspan.replaceWith(inp);
-                                var $input = $td.find('input');
-                                $input.focus();
-                                $input.select();
-                            }
-
-                            if($input != null) {
-                                
-
-                                $input.on('blur', function() {
-                                   // $(this).parent().html($(this).val());
-                                    $(this).replaceWith('<span>' + $(this).val() + '</span>');
-                                    
-                                    console.log('inpval', $(this).parent().val());
-                                    
-                                });
-
-                                $input.keyup(function(e) {
-                                    if(e.which == 13) {
-                                         $(this).replaceWith('<span>' + $(this).val() + '</span>');
-                                    } else if(e.which == 27) {
-                                        // escape key, means user canceled operation
-                                         $(this).replaceWith('<span>' + htmlval + '</span>');            
-                                    }
-                                });
-                            }
-                        });
-
-                        // updating products
-                        
-                        $('#table-body').on('click', '.update', function() {
                 
-              
-                            var loginValue = this.getAttribute("id");
-                            //var firstName = $(this).val(
-                            loginValue = loginValue.replace("u-", "");
-                            var editedItemName = $(this).parent().parent().find(".itemtitle span").text();
-                            var editedDesc = $(this).parent().parent().find(".itemdesc span").text();
-                            var editedPrice = $(this).parent().parent().find(".price span").text();
-                            var editedStock = $(this).parent().parent().find(".stock span").text();
-                            console.log('editeditemname', editedItemName);
-
-                            $.ajax({
-                                url: "./cont/products.php",
-                                type: "POST",
-                                dataType: 'json',
-                                data: {action: "update", sku: loginValue, newItemName: editedItemName, newDesc: editedDesc, newPrice: editedPrice, newStock:  editedStock},
-                                success: function(returnedData) {
-
-                                    console.log('updated returnedData', returnedData);
-                                    checkProducts();
-                                     location.reload(); 
-                                },
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                    console.log(jqXHR.statusText, textStatus);
-                                }
-                            });
-
-                        });
-                        
-      // deleting products
-                $('#table-body').on('click', '.delete', function() {
-                        var deletesku = this.getAttribute("id");
-                        deletesku = deletesku.replace("d-", "");
-                   
-                       
-                    $.ajax({
-                         url: "./cont/products.php",
-                        type: "POST",
-                        dataType: 'json',
-                        data: {action: "delete", sku: deletesku},
-                        success: function(returnedData) {
-                         
-                            location.reload(); 
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            console.log(jqXHR.statusText, textStatus);
-                        }
-                    });
-
-                });
-
-
-
-                    });
-                  /*]]>*/
                 </script>
 
 
             
           </div>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+       
         
         <footerReplace metal:use-macro="/templating/footer.xhtml/page_footer">
         </footerReplace>
 
     
-    
+     <script src="./js/admin.js"></script>
     </body>
 </html>

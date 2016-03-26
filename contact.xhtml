@@ -10,59 +10,38 @@
 
     <navReplace metal:use-macro="./templating/nav.xhtml/nav_bar">
     </navReplace>
+      <div id='bg5'></div>
 
-    <!-- <div class='clearbox'></div>
-      
-          <div class = 'bodybackground'></div>
+    <div id='whitebox2' class=" large-7 large-offset-1 small-12 columns">
 
-     <div class='clearbox'>
-      
-      
-      
-      
-      </div>
 
--->     <div id='bg5'></div>
 
-  <div id='whitebox2' class=" large-7 large-offset-1 small-12 columns">
-                      
-           
-           
-           <div class="map">
-	    			<iframe id='map' src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2615.606746729468!2d-122.80139399999999!3d49.037086!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5485c49db9e05ddb%3A0xb776f83a8657f36a!2sKikis+Restaurant!5e0!3m2!1sen!2sca!4v1428442366783" width="300" height="400" frameborder="0" style="border:0"></iframe>
-	    		</div>
-
-           <p class="contactp"> Phone: (604)536-8244 <br></br> 
-                            Email: kostatheos@gmail.com <br></br>  
-                        Address: 118-1959 152 St. Surrey, BC V4A 9E3</p>
-<br />
-<form id="contactbody" name="contactform" method="post" action="userfeedback.php">
-		<input class='contactinp name' name="first_name" placeholder="Name" pattern = '^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$' />
-		<input class='contactinp email' name="email" placeholder="Email" />
-
-    <textarea rows="4" cols="50" name="message" placeholder="Message" class="message" required = 'true'  id="msgFee"></textarea>
-    <input class="contactinp btn" type="submit" value="Send" />
-</form>
-     
-      
-      
-
-        
+        <div class="map">
+            <iframe id='map' src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2615.606746729468!2d-122.80139399999999!3d49.037086!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5485c49db9e05ddb%3A0xb776f83a8657f36a!2sKikis+Restaurant!5e0!3m2!1sen!2sca!4v1428442366783" width="300" height="400" frameborder="0" style="border:0"></iframe>
         </div>
-      
-       <div id = 'otherhalf' class = 'large-5 columns end'>
-      </div>
 
-              
-   
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="./js/main.js"></script>
+        <p class="contactp"> 
+            Phone: (604)536-8244 <br></br> 
+            Email: kostatheos@gmail.com <br></br>  
+            Address: 118-1959 152 St. Surrey, BC V4A 9E3
+        </p>
 
-    
+        <br />
 
+        <form id="contactbody" name="contactform" method="post" action="userfeedback.php">
+            <input class='contactinp name' name="first_name" placeholder="Name" pattern = '^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$' />
+            <input class='contactinp email' name="email" placeholder="Email" />
 
-    
-      <footerReplace metal:use-macro="/templating/footer.xhtml/page_footer">
+            <textarea rows="4" cols="50" name="message" placeholder="Message" class="message" required = 'true'  id="msgFee"></textarea>
+            <input class="contactinp btn" type="submit" value="Send" />
+            
+        </form>
+
+    </div>
+
+    <div id = 'otherhalf' class = 'large-5 columns end'>
+    </div>
+    <footerReplace metal:use-macro="/templating/footer.xhtml/page_footer">
     </footerReplace>
     
     </body>

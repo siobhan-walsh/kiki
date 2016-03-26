@@ -8,69 +8,57 @@
   <body>
 
 
-    <navReplace metal:use-macro="/templating/nav.xhtml/nav_bar">
-    </navReplace>
- 
-      <div id='bg4'></div>
+        <navReplace metal:use-macro="/templating/nav.xhtml/nav_bar">
+        </navReplace>
 
-    
-      <section id="menu" class="module">
-		<div id='whitebox' class=" large-7 large-offset-1 small-12 columns">
+          <div id='bg4'></div>
 
-			<h3>Online Order Menu</h3>
 
-			<div class="row">
+          <section id="menu" class="module">
+            <div id='whitebox' class=" large-7 large-offset-1 small-12 columns">
 
-				<div id='listitems' class="">
-	
+                <h3>Online Order Menu</h3>
 
-				</div>
+                <div class="row">
 
-			</div>
-		</div>
-          <div id='mcartbutton' class='show-for-small-only'><i class='material-icons'>shopping_cart</i></div>
-        <div id='cart'>
-            <span id='arrow' class='hide-for-small-only'><i class='material-icons'>keyboard_arrow_left</i></span>
-            
-            <span id='arrow' class='show-for-small-only'>&nbsp;</span><h4>Your cart</h4>
-            
-            <ul id='shoppingCart'>
-            
-            </ul>
-            
-            
-            <div class='cartbuttons row large-12 small-12 columns'>
-                <p style='font-size:22pt'>Total: $<span id='totalsp'>0.00</span></p>
-                <button id='checkoutcart'>Checkout</button>
-                <button id='clear'>Clear</button>
+                    <div id='listitems' class="">
+
+
+                    </div>
+
+                </div>
             </div>
-            
-          
-        </div>
+              <div id='mcartbutton' class='show-for-small-only'><i class='material-icons'>shopping_cart</i></div>
+            <div id='cart'>
+                <span id='arrow' class='hide-for-small-only'><i class='material-icons'>keyboard_arrow_left</i></span>
 
-      
-      
-      
-      </section>
-     
-      
-      
-      
-      
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-      <script src="js/main.js"></script>
-      <script src="js/products.js"></script>
+                <span id='arrow' class='show-for-small-only'>&nbsp;</span><h4>Your cart</h4>
 
-    <footerReplace metal:use-macro="/templating/footer.xhtml/page_footer">
-    </footerReplace>
+                <ul id='shoppingCart'>
 
-  
-    
-    
- 
-    
-    
-    
+                </ul>
+
+
+                <div class='cartbuttons row large-12 small-12 columns'>
+                    <p style='font-size:22pt'>Total: $<span id='totalsp'>0.00</span></p>
+                    <button id='checkoutcart'>Checkout</button>
+                    <button id='clear'>Clear</button>
+                </div>
+
+
+            </div>
+
+
+
+
+          </section>
+
+
+
+        <footerReplace metal:use-macro="/templating/footer.xhtml/page_footer">
+        </footerReplace>
+
+        <script src="js/menu.js"></script>
     </body>
 </html>
 

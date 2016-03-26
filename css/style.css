@@ -43,6 +43,10 @@ button.tiny {
   font-size: .8rem;
 }
 
+.table-body tr, td, th {
+        width:20%;
+        text-align: left;
+    }
 
 /********************************************
 ADMIN LOGIN
@@ -166,11 +170,7 @@ ADMIN LOGIN
 
 
 #main {
-  /*  
-margin-left: 25%;
-background-color: skyblue;
-padding-right: 10%;   
-   */
+
     width:80%;
     margin:auto;
     border-collapse: collapse;
@@ -225,10 +225,9 @@ padding-left: 25%;
 
 
 #logoutFormContainer {
+
     
-padding: 2%; 
-    
-margin-left: 75%;
+margin-left: 10%;
     
     
 }
@@ -776,6 +775,16 @@ margin-left: 0;
     position:absolute;
     bottom:0;
   
+}
+
+#checkoutcart{
+        background-color:#6FB98F;
+    border-style:solid;
+    border-width:2px;
+    border-color:rgba(200, 200, 200, 1);
+   max-width: 100%;
+    padding:3%;
+    color: #fff;
 }
 
 #checkout {
@@ -1337,8 +1346,8 @@ background-color: aquamarine;
     color:rgba(142,0,0,1);
 }
 
-#arrow {
-    font-size:20pt;
+#arrow i{
+    font-size:30pt;
     cursor: pointer;
 }
 

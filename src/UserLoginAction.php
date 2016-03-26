@@ -1,10 +1,5 @@
 <?php
 
-//require_once('./UserManager.php');
-//require_once('./Session.php');
-//require_once('./Messages.php');
-//require_once('./Utils.php');
-
 // Command
 class UserLoginAction {
 
@@ -30,6 +25,8 @@ class UserLoginAction {
             // params have to be there
             $user_name = $this->params->getValue('user_name');
             $user_password = $this->params->getValue('password');
+            $user_password = md5($user_password);
+            
             if($user_name != null && $user_password != null) {
                 // check if user name and password are correct
                 $usr = $this->userManager->findUser($user_name, $user_password);

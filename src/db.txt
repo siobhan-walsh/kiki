@@ -5,7 +5,7 @@ mysql -u root -p
 create database kiki;
 use kiki;
 
-//states are: started, completed, cancelled
+--states are: started, completed, cancelled
 
 CREATE TABLE cart (
   cart_id int NOT NULL AUTO_INCREMENT,
@@ -15,9 +15,6 @@ CREATE TABLE cart (
   PRIMARY KEY (cart_id)
   -- UPDATE/DELETE CASCADE = allow cascading operation, UPDATE/DELETE RESTRICT = disallow cascading operation
 );
-
-INSERT INTO cart (total, state) VALUES (0.00, 'cancelled');
-INSERT INTO cart (total, state) VALUES (0.00, 'cancelled');
 
 
 CREATE TABLE products (
@@ -59,12 +56,6 @@ CREATE TABLE cart_product (
   PRIMARY KEY (cp_id)
 );
 
-
-INSERT INTO cart_product (cart_id, product_id) VALUES (1, 1);
-INSERT INTO cart_product (cart_id, product_id) VALUES (1, 2);
-INSERT INTO cart_product (cart_id, product_id) VALUES (2, 1);
-INSERT INTO cart_product (cart_id, product_id) VALUES (2, 2);
-
 create table user (
   ID int NOT NULL AUTO_INCREMENT,
   user_name varchar(50),
@@ -75,7 +66,6 @@ create table user (
   PRIMARY KEY (ID)
 );
 
-insert into user (user_name, first_name, last_name, password, type) values ('aaa', 'arron', 'ferguson', '123', 'admin');
-insert into user (user_name, first_name, last_name, password, type) values ('jjj', 'jim', 'parry', '123', 'admin');
-insert into user (user_name, first_name, last_name, password, type) values ('jaa', 'jason', 'harrison', '123', 'admin');
+insert into user (user_name, first_name, last_name, password, type) values ('sio', 'siobhan', 'walsh', '49f68a5c8493ec2c0bf489821c21fc3b', 'admin');
+insert into user (user_name, first_name, last_name, password, type) values ('k8esak', 'katie', 'sak', '6057f13c496ecf7fd777ceb9e79ae285', 'admin');
 
