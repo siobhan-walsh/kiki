@@ -11,20 +11,31 @@
     
     #about {
         
-    width: 100%;     
-        
+    height: 14px;     
+    margin-bottom: 0;  
         
     }
     
     .meet {
         
-    font-size: 12pt;    
+    font-size: 30pt; 
+    opacity: 0;
+        
+    }
+    
+    .aboutp {
+        
+    margin-top: -30px; 
+    margin-left: 0; 
+    font-size: 14pt; 
+    margin-bottom: 0;  
+   opacity:0;
         
     }
     .fam {
         
     width: 20px;     
-        
+    opacity: 0;    
         
     }
     
@@ -54,7 +65,7 @@
     
     
     #panelly  {
-        
+    margin-top: -1%;  
      width: 100%;    
         
         
